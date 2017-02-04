@@ -109,9 +109,8 @@ recuitmentAnalysis <- function(site, year, tree, age, mat_par, path = "dataReady
 }
 
 
-#' @describeIn recuitment Analysis ing the smulationReturn the values of y-axis for a given percentage.
+#' @describeIn recuitmentAnalysis Lauch the analysis for a given row of the simulation dataframe.
 #' @export
-
 launchIt <- function(iter, simu_file = "dataReady/simu_all.Rds", mxt = 100, record = "test.txt", 
     quiet = TRUE) {
     #### 
@@ -135,7 +134,7 @@ launchIt <- function(iter, simu_file = "dataReady/simu_all.Rds", mxt = 100, reco
             clip = 20
         } else clip = NULL
         # 
-        cool2 <- recru_gensa(sim$site, sim$year, sim$tree, sim$age, favo = sim$favo, 
+        res <- recru_gensa(sim$site, sim$year, sim$tree, sim$age, favo = sim$favo, 
             disp = TRUE, neigh = sim$neigh, zero_infl = sim$pz, kernel = kernel, 
             clip = clip, quiet = quiet, mxt = mxt, record = record)
     } else {
@@ -143,4 +142,6 @@ launchIt <- function(iter, simu_file = "dataReady/simu_all.Rds", mxt = 100, reco
             disp = FALSE, neigh = sim$neigh, zero_infl = sim$pz, mxt = mxt, quiet = quiet, 
             record = record)
     }
+    ## output
+    return(res)
 }

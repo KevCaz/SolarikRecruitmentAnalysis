@@ -13,6 +13,7 @@ Imports:
     GenSA,
     sp
 Remotes: KevCaz/recruitR,
+    KevCaz/graphicsutils,
     letiR/letiRmisc
 Suggests:
     knitr,

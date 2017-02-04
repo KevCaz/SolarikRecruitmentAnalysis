@@ -24,7 +24,7 @@
 #' @param pshap An integer gving the position of the shape parameter (of the dispersal kernel) witin the vector of parameter values.
 #' @param pfav A vector of integer indicating the position of the five favorability values within the vector of parameter values.
 #' @param pneigh position of the parameter associated to the neighborhood effect in the vector of parameter values.
-#' @param quiet logial. If \code{TRUE} parameter and estimation are printed.
+#' @param quiet logial. If \code{FALSE} then parameters and likelyhood estimations are printed.
 #' @param record a connection, or a character string naming the file to print to. If \code{NULL}, the default values, no record is done.
 #'
 #' @export
