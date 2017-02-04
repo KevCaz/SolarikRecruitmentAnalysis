@@ -12,8 +12,7 @@ Imports:
     magrittr,
     GenSA,
     sp
-DevPackage:
-    KevCaz/recruitR,
+Remotes: KevCaz/recruitR,
     letiR/letiRmisc
 Suggests:
     knitr,
