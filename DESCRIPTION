@@ -1,0 +1,24 @@
+Package: seedlingsRecruitementAnalysis
+Title: Analysis of seedlings recruitment
+Version: 0.1
+Authors@R: c(
+  person("Kevin", "Cazelles", email = "kevin.cazelles@um2.fr", role = c("aut", "cre")),
+  person("Kevin", "Solarik", email = "kevinsolarik@hotmail.com", role = c("aut"))
+  )
+Description: Contains the set of R functions used in Solarik et al. 2017 paper.
+License: MIT + file LICENSE
+LazyData: true
+Imports:
+    magrittr,
+    GenSA,
+    sp
+DevPackage:
+    KevCaz/recruitR,
+    letiR/letiRmisc
+Suggests:
+    knitr,
+    rmarkdown,
+    testthat
+VignetteBuilder: rmarkdown,
+    knitr
+RoxygenNote: 5.0.1

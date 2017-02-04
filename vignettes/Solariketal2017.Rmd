@@ -1,0 +1,119 @@
+---
+title: "Seedlings recruitment analysis of Solarik et al. 2017 paper."
+author: "Kevin Cazelles and Kevin Solarik"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Seedlings recruitment}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\usepackage[utf8]{inputenc}
+---
+
+
+# Introduction
+
+These are the analysis used in Solarik et al paper [].
+
+Do not forget to chose properly your working space.
+
+```{r}
+graphics.off()
+rm(list=ls())
+```
+
+
+
+# Formatting the data
+
+
+## Downloading the data
+
+Preparing data from the `.csv` files.
+
+
+## Settings the analysis
+
+### Installing the package
+
+For convenience, all the functions are gathered in a R package, the `devtools` package make the installation pretty easy and efficient.
+
+```{r, eval=FALSE}
+if (!require("devtools")) install.packages("devtools")
+devtools::install_github("KevCaz/seedlingsRecruitmentAnalysis")
+```
+
+
+
+
+### Format of the raw data
+
+Columns description:
+
+This section will be completed once the paper published.
+
+
+### Abitbi (abi)
+
+```{r, eval=FALSE}
+getDataReady(
+  fl_trees = "data/Abitibi/abitbitrees.csv",
+  fl_regen = "dataRaw/Abitibi/abitibiregen.csv",
+  fl_regen2 = "dataRaw/Abitibi/abitibiregen2016.csv",
+  treesp = c("ABBA", "ACRU", "ACSA", "BEPA"),
+  abr_site = "abi",
+  dist_buffer = 20
+)
+```
+
+### Le Bic, Rinouksi (bic)
+
+```{r, eval=FALSE}
+getDataReady(
+  fl_trees = "data/Rimouski/rimouskitrees.csv",
+  fl_regen = "data/Rimouski/rimouskiregen.csv",
+  fl_regen2 = "data/Rimouski/rimouskiregen2016.csv",
+  treesp =  c("ABBA", "ACSA", "ACRU", "BEPA", "POTR"),
+  abr_site = "bic",
+  dist_buffer = 20
+)
+```
+
+
+### Sutton (sut)
+
+```{r, eval=FALSE}
+getDataReady(
+  fl_trees = "dataRaw/Sutton/suttontrees.csv",
+  fl_regen = "dataRaw/Sutton/suttonregen.csv",
+  fl_regen2 = "dataRaw/Sutton/suttonregen2016.csv",
+  treesp = c("ABBA", "ACSA", "BEAL", "BEPA", "FAGR"),
+  abr_site = "sut",
+  dist_buffer = 20
+)
+```
+
+
+
+## Generating the file describing all simulations
+
+```{r, eval=FALSE}
+spe_trees_abi <- c("ABBA", "ACRU", "ACSA", "BEPA")
+spe_trees_bic <- c("ABBA", "ACSA", "ACRU", "BEPA", "POTR")
+spe_trees_sut <- c("ABBA", "ACSA", "BEAL", "BEPA", "FAGR")
+#
+ls_site <- list(spe_trees_abi, spe_trees_bic, spe_trees_sut)
+szs <- unlist(lapply(ls_site, length))
+#
+grd <- expand.grid(
+  disp = c(0,1,2,3,4),
+  favo = c(TRUE, FALSE),
+  neigh = c(TRUE, FALSE),
+  pz = c(TRUE, FALSE),
+  age = c("1", "2"),
+  year = c(2015, 2016),
+  tree = unlist(ls_site)
+   ) %T>% str
+#
+simu <- cbind(site=rep(c("abi", "bic", "sut"), szs*2*80), grd[,c(7,6,5,4,1:3)])
+saveRDS(simu, file="data/simu_all.Rds")
+```
