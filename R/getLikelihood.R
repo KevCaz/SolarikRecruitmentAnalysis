@@ -7,6 +7,8 @@
 #' Kevin Cazelles
 #'
 #' @importFrom magrittr %>%
+#' @importFrom recruitR kern_lognormal
+#' @importFrom recruitR kern_exponential_power
 #'
 #' @param pars vector of parameters values, the size must
 #' @param obs vector of observations of recruitement for each plots of the stand.
@@ -23,7 +25,7 @@
 #' @param pfav A vector of integer indicating the position of the five favorability values within the vector of parameter values.
 #' @param pneigh position of the parameter associated to the neighborhood effect in the vector of parameter values.
 #' @param quiet logial. If \code{TRUE} parameter and estimation are printed.
-#' @param record A connection, or a character string naming the file to print to. If \code{NULL}, the default values, no record is done.
+#' @param record a connection, or a character string naming the file to print to. If \code{NULL}, the default values, no record is done.
 #'
 #' @export
 #'

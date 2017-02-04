@@ -40,7 +40,7 @@ getLikelihood(pars, obs, zero_infl = FALSE, neigh = NULL, disp = NULL,
 
 \item{quiet}{logial. If \code{TRUE} parameter and estimation are printed.}
 
-\item{record}{A connection, or a character string naming the file to print to. If \code{NULL}, the default values, no record is done.}
+\item{record}{a connection, or a character string naming the file to print to. If \code{NULL}, the default values, no record is done.}
 }
 \value{
 The log-likelihood values associated to a given set of parameters.
