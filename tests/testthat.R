@@ -1,4 +1,4 @@
 library(testthat)
-library(letiRmisc)
+library(seedlingsRecruitementAnalysis)
 
-test_check("letiRmisc")
+test_check("seedlingsRecruitementAnalysis")

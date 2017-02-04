@@ -1,7 +1,12 @@
-library(letiRmisc)
-context("format Data")
+library(seedlingsRecruitementAnalysis)
+context("check errors")
 
 
 test_that("check errors", {
   expect_error(formatData(), "")
+})
+
+
+test_that("check errors", {
+  expect_error(funs_likelihood(), "")
 })
