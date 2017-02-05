@@ -8,15 +8,13 @@ Authors@R: c(
 Description: Contains the set of R functions used in Solarik et al. 2017 paper.
 License: MIT + file LICENSE
 LazyData: true
-Imports:
-    magrittr,
+Imports: magrittr,
     GenSA,
     sp
 Remotes: KevCaz/recruitR,
     KevCaz/graphicsutils,
     letiR/letiRmisc
-Suggests:
-    knitr,
+Suggests: knitr,
     rmarkdown,
     testthat
 VignetteBuilder: rmarkdown,

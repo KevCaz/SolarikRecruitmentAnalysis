@@ -7,8 +7,7 @@
 #' Kevin Cazelles
 #'
 #' @importFrom magrittr %>%
-#' @importFrom recruitR kern_lognormal
-#' @importFrom recruitR kern_exponential_power
+#' @importFrom magrittr %<>%
 #'
 #' @param pars vector of parameters values, the size must
 #' @param obs vector of observations of recruitement for each plots of the stand.
@@ -52,6 +51,7 @@ getLikelihood <- function(pars, obs, zero_infl = FALSE, neigh = NULL, disp = NUL
     if (!is.null(disp)) {
         stopifnot(length(disp) == nbq)
         ## 
+        kernel %<>% paste0("recruitR::", .)
         di0 <- disp %>% lapply(kernel, shap = pars[pshap], scal = pars[pscal])
         di <- sapply(1:nbq, FUN = function(x) sum(di0[[x]] * SDBH[[x]])) %>% unlist
     } else di <- 1

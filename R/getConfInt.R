@@ -5,11 +5,17 @@
 #' @author
 #' Kevin Cazelles
 #'
-#' @param filename of the file to be
+#' @importFrom magrittr %>%
+#' @importFrom magrittr %T>%
+#'
+#' @param filename of the file to be read.
 #' @param rm_pat a pattern to be removed.
 #' @param basename_out basename of the file where results are written.
 #' @param datasim the path of the file of simulatipon.
 #' @param quiet logical. If \code{FALSE} then the id of the simulation is printed.
+#'
+#' @return
+#' A list including the likelihood and the parameters estimates as well as the confident interval associates to the parameters.
 #'
 #' @export
 
@@ -24,7 +30,6 @@ getConfInt <- function(filename, rm_pat = "codekev12", basename_out = "../codeke
         print(id)
     ## read *id* line of datasim
     lin <- readRDS(file = datasim)[id, ]
-    ## disp = TRUE, favo = TRUE, neig
     out <- getParameters(disp = (lin$disp > 0), favo = lin$favo, neigh = lin$neigh)
     ## the estimation in the minimum not the last one!
     tmp <- try(read.table(filename, dec = ".", sep = ""))
@@ -41,9 +46,9 @@ getConfInt <- function(filename, rm_pat = "codekev12", basename_out = "../codeke
     } else {
         lik <- Inf
     }
-    ## make the list to be returned
+    ## Make the list to be returned
     ls_out <- list(likelihood = lik, pars = out) %T>% saveRDS(file = paste0(basename_out, 
         letiRmisc::adjustString(id, 4L), ".Rds"))
-    # 
+    ## 
     return(ls_out)
 }

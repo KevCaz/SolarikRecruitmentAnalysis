@@ -9,7 +9,7 @@ getConfInt(filename, rm_pat = "codekev12",
   datasim = "dataReady/simu_all.Rds", quiet = TRUE)
 }
 \arguments{
-\item{filename}{of the file to be}
+\item{filename}{of the file to be read.}
 
 \item{rm_pat}{a pattern to be removed.}
 
@@ -18,6 +18,9 @@ getConfInt(filename, rm_pat = "codekev12",
 \item{datasim}{the path of the file of simulatipon.}
 
 \item{quiet}{logical. If \code{FALSE} then the id of the simulation is printed.}
+}
+\value{
+A list including the likelihood and the parameters estimates as well as the confident interval associates to the parameters.
 }
 \description{
 A function to get confidence interval of paramters associated to one simulation.

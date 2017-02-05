@@ -7,6 +7,7 @@
 #' Kevin Cazelles
 #'
 #' @importFrom magrittr %>%
+#' @importFrom magrittr %<>%
 #'
 #' @param site site name.
 #' @param year year (2015 or 2016) name.
