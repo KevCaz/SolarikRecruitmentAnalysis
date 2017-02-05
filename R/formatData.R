@@ -31,9 +31,9 @@ formatData <- function(fl_trees, fl_regen, fl_regen2, treesp, abbr_site, path_ou
     
     ## Import the data based on the path to the files given as arguments.  tree data
     trees <- read.csv(fl_trees, header = TRUE, stringsAsFactors = FALSE)
-    # Regeneration data for 2015
+    ## Regeneration data for 2015
     regen <- read.csv(fl_regen, header = TRUE, stringsAsFactors = FALSE)
-    # Regeneration data for 2016
+    ## Regeneration data for 2016
     regen2 <- read.csv(fl_regen2, header = TRUE, stringsAsFactors = FALSE)
     
     ## Subsetting (some plot are removed due to the border effect)
@@ -52,7 +52,8 @@ formatData <- function(fl_trees, fl_regen, fl_regen2, treesp, abbr_site, path_ou
     regen$ba_tot <- regen2$ba_tot <- lapply(lsdist, function(x) (pi * 2.5e-05 * trees$DBH[x < 
         dist_buffer]^2) %>% sum) %>% unlist
     
-    ## Buffering
+    ## Buffering (return the id of the tree withing the buffer and the basal area
+    ## associated for all studied species)
     for (i in treesp) {
         id <- which(trees$SP != i)
         regen[paste0("ba_", i)] <- lapply(lsdist, function(x) (pi * 2.5e-05 * trees$DBH[id][x[id] < 

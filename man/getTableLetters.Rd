@@ -2,20 +2,20 @@
 % Please edit documentation in R/getTableLetters.R
 \name{getTableLetters}
 \alias{getTableLetters}
-\title{Get tables describing best models with letters.}
+\title{Get table describing best models with letters.}
 \usage{
 getTableLetters(tmp, year)
 }
 \arguments{
-\item{tmp}{a data.frame including results.}
+\item{tmp}{a data frame including the output of the recruitment analaysis.}
 
-\item{year}{the year for which the table is produce.}
+\item{year}{the year for which the table is produced.}
 }
 \value{
-A character matrix indicating the processes involved in the best model for the different seedlings.
+A character matrix indicating the processes involved in the best models for the different plots.
 }
 \description{
-Get tables describing best models with letters.
+This functions creates ansd returns a table that identifies a list of ecological processes involved for all species x plots.
 }
 \author{
 Kevin Cazelles

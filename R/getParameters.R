@@ -1,19 +1,19 @@
 #' Get parameters values.
 #'
-#' A function to get the minimum, maximum and starting values for the parameters associated to a given simulation.
+#' A function to get ranges and starting values for the parameters associated to a given simulation.
 #'
 #' @author
 #' Kevin Cazelles
 #'
-#' @param disp a logical. If \code{TRUE}, then dispersal parameters are used.
-#' @param favo a logical. If \code{TRUE}, then favorability parameters are used.
-#' @param neigh a logical. If \code{TRUE}, then neighborhood effect parameter is used.
+#' @param disp a logical. If \code{TRUE}, then dispersal parameters are returned.
+#' @param favo a logical. If \code{TRUE}, then favorability parameters are returned.
+#' @param neigh a logical. If \code{TRUE}, then neighborhood effect parameter is returned.
 #' @param lognormal a logical. If \code{TRUE}, then the values of dispersal parameter are the one assocoated to a lognormal dispersal kernel, default is set to \code{FALSE}.
 #' @param abbr an abbreviation for a tree species name.
 #' @param full_names a logical. If \code{TRUE} teh scientific names of the tree species is returned.
 #'
 #' @return
-#' A matrix including the required values.
+#' A matrix including the parameters ranges and starting values.
 #'
 #' @export
 
@@ -41,7 +41,6 @@ getParameters <- function(disp = TRUE, favo = TRUE, neigh = TRUE, lognormal = FA
 }
 
 
-
 #' @describeIn getParameters Make the conversion between the two different abbreviation used for the names of tree species.
 #' @export
 convertTreeAbbr <- function(abbr, full_names = FALSE) {
@@ -65,10 +64,3 @@ convertTreeAbbr <- function(abbr, full_names = FALSE) {
         return(vec2[which(vec1 == abbr)])
     }
 }
-
-# | abbr1 | abbr2 | Scientific Names | TSN |
-# |:------|:------|:----------------------|:-------| | BF | ABBA | Abies balsamea
-# | 18032 | | RM | ABBA | Acer rubrum | 28728 | | SM | ACSA | Acer saccharum |
-# 28731 | | YB | BEAL | Betula alleghaniensis | 19481 | | WB | BEPA | Betula
-# papyrifera | 19489 | | AB | FAGR | Fagus grandifolia | 19462 | | AS | POTR |
-# Populus tremuloides | 195773 |

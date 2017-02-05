@@ -1,11 +1,11 @@
 #' Draw kernels.
 #'
-#' A function to display the kernels associated to the best models.
+#' A function used to display the kernels associated to the best models.
 #'
 #' @author
 #' Kevin Cazelles
 #'
-#' @param datares the dataframe returned by the analysis process.
+#' @param datares the dataframe returned by the recruitement analysis.
 #' @param filename a character string, giving the names of the figure to be drawn.
 #' @param xlim numeric vectors of length 2, giving the x coordinates ranges.
 #' @param ylim numeric vectors of length 2, giving the y coordinates ranges.
@@ -16,9 +16,11 @@ figKernels <- function(datares, filename = "../figs/fig1.pdf", xlim = c(0, 100),
     ylim = c(0, 0.0025)) {
     ## 
     nm_tre <- as.character(unique(datares$tree))
+    ## Colors
     pal <- rep(c("#746270", "#0c486c", "#176c45", "grey10"), length.out = length(nm_tre))
+    ## Line types
     lty <- rep(c(1, 3), each = 4, length.out = length(nm_tre))
-    ## 
+    ## text size
     cex.txt <- 2
     ## 
     matlay <- cbind(7, rbind(8, matrix(1:6, 2), 9))
@@ -27,11 +29,9 @@ figKernels <- function(datares, filename = "../figs/fig1.pdf", xlim = c(0, 100),
     ## 
     datares$tosplit <- paste0(datares$site, datares$age)
     ls_tre <- split(datares, datares$tosplit)
-    ## 
+    #### export as a pdf files.
     pdf(filename, height = 6.5, width = 8)
-    ## 
     layout(mat = matlay, widths = c(0.2, 1, 1, 1), heights = c(0.2, 1, 1, 0.5))
-    ## 
     par(mar = c(1.5, 2, 1, 1), las = 1, mgp = c(2.2, 0.75, 0))
     ## 
     for (i in 1:length(ls_tre)) {
@@ -68,6 +68,6 @@ figKernels <- function(datares, filename = "../figs/fig1.pdf", xlim = c(0, 100),
     legend("bottom", bty = "n", legend = nm_tre, lwd = 2.4, lty = lty, seg.len = 2, 
         col = pal, ncol = 4, cex = 1.8)
     dev.off()
-    
+    ## 
     return("DONE")
 }

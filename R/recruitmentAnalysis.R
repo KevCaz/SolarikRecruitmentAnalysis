@@ -42,7 +42,7 @@ recuitmentAnalysis <- function(site, year, tree, age, mat_par, path = "dataReady
     reg <- paste0(path, "regen", site, year, ".Rds") %>% readRDS
     tre <- paste0(path, "trees", site, ".Rds") %>% readRDS
     ## Getting the observations
-    obs <- reg[, paste0(conv_nmt(tree), "_", age)]
+    obs <- reg[, paste0(convertTreeAbbr(tree), "_", age)]
     ## 
     ker <- FALSE
     if (kernel == "kern_lognormal") {
@@ -82,8 +82,9 @@ recuitmentAnalysis <- function(site, year, tree, age, mat_par, path = "dataReady
         disp <- NULL
         SDBH <- NULL
     }
-    print(pars)
-    ##-- favo
+    if (!quiet) 
+        print(pars)
+    ## 
     if (favo) {
         ## same order as in the parameters dataframe
         favo <- 0.01 * reg[, c("moss", "leaf", "needle", "deciduous", "soft")]
@@ -114,35 +115,33 @@ recuitmentAnalysis <- function(site, year, tree, age, mat_par, path = "dataReady
 #' @export
 launchIt <- function(iter, simu_file = "dataReady/simu_all.Rds", mxt = 100, record = "test.txt", 
     quiet = TRUE) {
-    #### 
-    simu <- readRDS(simu_file)
     ## 
+    simu <- readRDS(simu_file)
     simu$site %<>% as.character
     simu$tree %<>% as.character
     simu$age %<>% as.character
-    ## 
     sim <- simu[iter, ]
-    print(sim)
+    if (!quiet) 
+        print(sim)
     ## 
     if (sim$disp > 0) {
         disp <- TRUE
-        # 
+        ## 
         if (sim$disp > 2) {
             kernel = "kern_exponential_power"
         } else kernel = "kern_lognormal"
-        # even => non-clipped / odd => clip
+        ## even => non-clipped / odd => clip
         if (sim$disp%%2) {
             clip = 20
         } else clip = NULL
-        # 
-        res <- recru_gensa(sim$site, sim$year, sim$tree, sim$age, favo = sim$favo, 
+        ## 
+        res <- recuitmentAnalysis(sim$site, sim$year, sim$tree, sim$age, favo = sim$favo, 
             disp = TRUE, neigh = sim$neigh, zero_infl = sim$pz, kernel = kernel, 
             clip = clip, quiet = quiet, mxt = mxt, record = record)
     } else {
-        res <- recru_gensa(sim$site, sim$year, sim$tree, sim$age, favo = sim$favo, 
+        res <- recuitmentAnalysis(sim$site, sim$year, sim$tree, sim$age, favo = sim$favo, 
             disp = FALSE, neigh = sim$neigh, zero_infl = sim$pz, mxt = mxt, quiet = quiet, 
             record = record)
     }
-    ## output
     return(res)
 }

@@ -1,17 +1,17 @@
-#' Get tables describing best models with letters.
+#' Get table describing best models with letters.
 #'
-#' Get tables describing best models with letters.
+#' This functions creates ansd returns a table that identifies a list of ecological processes involved for all species x plots.
 #'
 #' @author
 #' Kevin Cazelles
 #'
 #' @importFrom magrittr %>%
 #'
-#' @param tmp a data.frame including results.
-#' @param year the year for which the table is produce.
+#' @param tmp a data frame including the output of the recruitment analaysis.
+#' @param year the year for which the table is produced.
 #'
 #' @return
-#' A character matrix indicating the processes involved in the best model for the different seedlings.
+#' A character matrix indicating the processes involved in the best models for the different plots.
 #'
 #' @export
 

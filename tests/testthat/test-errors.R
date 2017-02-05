@@ -8,5 +8,5 @@ test_that("check errors", {
 
 
 test_that("check errors", {
-  expect_error(funs_likelihood(), "")
+  expect_error(getLikelihood(), "")
 })

@@ -40,6 +40,7 @@ getLikelihood <- function(pars, obs, zero_infl = FALSE, neigh = NULL, disp = NUL
     
     ## Number of quadrats
     nbq <- length(obs)
+    ## 
     STR <- pars[pstr]
     
     ## Favorability
@@ -49,7 +50,7 @@ getLikelihood <- function(pars, obs, zero_infl = FALSE, neigh = NULL, disp = NUL
     } else fa <- 1
     ## Dispersal
     if (!is.null(disp)) {
-        stopifnot(length(disp) == nbq)
+        stopifnot(length(disp) == nbq | is.na(pars[pscal]) | is.na(pars[pshap]))
         ## 
         kernel %<>% paste0("recruitR::", .)
         di0 <- disp %>% lapply(kernel, shap = pars[pshap], scal = pars[pscal])
@@ -57,7 +58,7 @@ getLikelihood <- function(pars, obs, zero_infl = FALSE, neigh = NULL, disp = NUL
     } else di <- 1
     ## Neighborhood
     if (!is.null(neigh)) {
-        stopifnot(length(neigh) == nbq & !is.null(pb))
+        stopifnot(length(neigh) == nbq | is.na(pars[pneigh]))
         ne <- exp(-pars[pneigh] * neigh)
     } else ne <- 1
     
@@ -67,7 +68,7 @@ getLikelihood <- function(pars, obs, zero_infl = FALSE, neigh = NULL, disp = NUL
     ## Fitting (include the selection of the proper distribution)
     if (zero_infl) {
         Pz <- pars[ppz]
-        # zero-inflated Poisson distribution style
+        ## Zero-inflated Poisson distribution
         lik = double(length(obs))
         if (length(obs == 0) > 0) 
             lik[obs == 0] = Pz + (1 - Pz) * dpois(obs[obs == 0], lambda = R[obs == 
@@ -76,7 +77,7 @@ getLikelihood <- function(pars, obs, zero_infl = FALSE, neigh = NULL, disp = NUL
             lik[obs > 0] = (1 - Pz) * dpois(obs[obs > 0], lambda = R[obs > 0])
     } else lik <- dpois(obs, lambda = R)
     
-    ## Sum the loglikelihood
+    ## Sum of log-likelihood
     out <- -sum(log(lik))
     if (!is.null(record)) {
         if (!is.infinite(out)) 

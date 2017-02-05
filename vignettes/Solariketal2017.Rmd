@@ -12,14 +12,35 @@ vignette: >
 
 # Introduction
 
-These are the analysis used in Solarik et al paper [].
-
+These are the analysis used in Solarik et al. paper[^tobeadded].
 Do not forget to chose properly your working space.
 
 ```{r}
 graphics.off()
 rm(list=ls())
 ```
+
+## Tree species
+
+| abbr1 | abbr2 | Scientific Names      | TSN    |
+|:------|:------|:----------------------|:-------|
+| BF    | ABBA  |\u00a0Abies balsamea        | 18032  |
+| RM    | ACRU  |\u00a0Acer rubrum           | 28728  |
+| SM    | ACSA  |\u00a0Acer saccharum        | 28731  |
+| YB    | BEAL  |\u00a0Betula alleghaniensis | 19481  |
+| WB    | BEPA  |\u00a0Betula papyrifera     | 19489  |
+| AB    | FAGR  |\u00a0Fagus grandifolia     | 19462  |
+| AS    | POTR  | Populus tremuloides   | 195773 |
+
+[^tobeadded]: To be added once the paper published
+
+
+## Analysis principle
+
+Simple likelihood optimization using simulated annealing
+(implemented by the [GenSA](https://cran.r-project.org/web/packages/GenSA/index.html) package).
+
+
 
 
 
@@ -116,4 +137,185 @@ grd <- expand.grid(
 #
 simu <- cbind(site=rep(c("abi", "bic", "sut"), szs*2*80), grd[,c(7,6,5,4,1:3)])
 saveRDS(simu, file="data/simu_all.Rds")
+```
+
+
+
+
+
+
+# Parameters estimation
+
+## Likelihood optimization
+
+```{r, eval=FALSE}
+simu <- readRDS(file="data/simu_all.Rds")
+```
+
+For all the simulation we apply the same analysis and proceeded as follows :
+
+```{r, eval=FALSE}
+for (i in 1:nrowm(simu)){
+  launchIt(i, simufile="data/simu_all.Rds", mxt=1000,
+    record=paste0("test", adjustString(i,4), ".txt"), quiet=FALSE)
+}
+```
+
+We benefited from calculus facilities (Mammoth super computer, Calcul Canada).
+
+
+
+## Convergence
+
+To check the model that converged.
+
+```{r, eval=FALSE}
+val <- as.numeric(gsub(list.files("res"), pat = "\\D", rep =""))
+rerun <- which(!(1:1120 %in% val)) %T>% saveRDS("rerun.Rds")
+```
+
+```{r, eval=FALSE}
+script_ci
+```
+
+## Gathering results of the GenSA analyses
+
+```{r, eval=FALSE}
+pathestim <- "~/Pending/kevSol/"
+tmp <- read.csv(paste0(pathestim, "estim.csv"))
+```
+
+## Mean dispersal distance
+
+```{r, eval=FALSE}
+tmp$mean_disp_dist <- NA
+```
+
+```{r, eval=FALSE}
+for (i in 1:nrow(tmp)){
+  if (tmp$disp[i] & !is.na(tmp$shap[i]) & !is.na(tmp$scal[i])){
+    if (tmp$disp[i]>2){
+      nm <- "exponential_power"
+    } else {
+      nm <- "lognormal"
+    }
+    tmp$mean_disp_dist[i] <- meanDispDist(nm, tmp$scal[i], shap = tmp$shap[i])
+  }
+}
+```
+
+
+## McFadden's pseudo R-squared
+
+```{r, eval=FALSE}
+nrep <- nrow(unique(tmp[,c("site","tree","age")]))
+##
+tmp$McFad_adj$aic <- 2*tmp$nbpar - 2*tmp$lik
+tmp$McFad_adj <- NA
+tmp$best <- FALSE
+##
+nmod = 40
+idrm <- c(
+  subset(tmp, site=="abi" & tree=="ACRU" & year==2016 & age==1)$X,
+  subset(tmp, site=="abi" & tree=="BEPA" & year==2016 & age==1)$X,
+  subset(tmp, site=="abi" & tree=="BEPA" & year==2016 & age==2)$X,
+  subset(tmp, site=="bic" & tree=="POTR" & year==2016 & age==1)$X,
+  subset(tmp, site=="sut" & tree=="ABBA" & year==2015 & age==1)$X,
+  subset(tmp, site=="sut" & tree=="ABBA" & year==2016 & age==1)$X
+)
+tmp <- tmp[-idrm,]
+```
+
+
+```{r, eval=FALSE}
+# ti be removed
+# | site |tree  | year | age |
+# |:-----|:-----|:-----|:----|
+# | abi  |ACCRU | 2016 | 1   |
+# | abi  | BEPA | 2016 | 1   |
+# | abi  | BEPA | 2016 | 2   |
+# | bic  | POTR | 2016 | 1   |
+# | sut  | ABBA | 2015 | 1   |
+# | sut  | ABBA | 2016 | 1   |
+```
+
+
+
+```{r, eval=FALSE}
+for (i in 1:(nrow(tmp)/nmod)){
+  lag <- (i-1)*nmod
+  rg <- lag + 1:nmod
+  id <- lag + which(tmp$nbpar[rg]==1)
+  print(tmp$lik[id])
+  if (tmp$lik[id]>-0.001) print(tmp[id,1:5])
+  tmp$McFad_adj[rg] <- 1 - (tmp$lik[rg]-(tmp$nbpar[rg]-1))/(tmp$lik[id])
+  tmp$best[lag+which.max(tmp$McFad_adj[rg])] <- TRUE
+}
+##
+tmp[tmp$best, c("McFad_adj")]*100
+tmp[tmp$best, c("mean_disp_dist")]
+tmp[tmp$best,] %>% kable(digits=4) %>% cat(sep="\n", file="~/Pending/kevSol/best_mod.md")
+## produce table
+saveRDS(tmp[tmp$best,], file="~/Pending/kevSol/resbest_all.Rds")
+write.csv(tmp, file="~/Pending/kevSol/res_all.csv")
+write.csv(tmp[tmp$best,], file="~/Pending/kevSol/resbest_all.csv")
+## Symbol table / per year
+get_symb_mod(tmp, year=2015) %>% kable %>% cat(sep="\n", file="~/Pending/kevSol/table_all2015.md")
+get_symb_mod(tmp, year=2016) %>% kable %>% cat(sep="\n", file="~/Pending/kevSol/table_all2016.md")
+
+
+##-- 1-3 clip
+tmpc <- tmp[which(tmp$disp%in%c(0,1,3)),]
+tmpc$McFad_adj <- NA
+tmpc$best <- FALSE
+nmod <- 24
+for (i in 1:(nrow(tmpc)/nmod)){
+  lag <- (i-1)*nmod
+  rg <- lag + 1:nmod
+  id <- lag + which(tmpc$nbpar[rg]==1)
+  tmpc$McFad_adj[rg] <- 1 - (tmpc$lik[rg]-(tmpc$nbpar[rg]-1))/(tmpc$lik[id])
+  tmpc$best[lag+which.max(tmpc$McFad_adj[rg])] <- TRUE
+}
+##
+get_symb_mod(tmpc, year=2015) %>% kable %>% cat(sep="\n", file="~/Pending/kevSol/table_clip2015.md")
+get_symb_mod(tmpc, year=2016) %>% kable %>% cat(sep="\n", file="~/Pending/kevSol/table_clip2016.md")
+# tmpc[tmpc$best,] %>% kable(digits=4) %>% cat(sep="\n", file="~/Pending/kevSol/best_mod_clip.md")
+saveRDS(tmpc[tmpc$best,], file="~/Pending/kevSol/resbest_clip.Rds")
+write.csv(tmpc[tmpc$best,], file="~/Pending/kevSol/resbest_clip.csv")
+
+
+
+##-- 2-4 non-clip
+tmpc <- tmp[which(tmp$disp%in%c(0,2,4)),]
+tmpc$McFad_adj <- NA
+tmpc$best <- FALSE
+for (i in 1:(nrow(tmpc)/nmod)){
+  lag <- (i-1)*nmod
+  rg <- lag + 1:nmod
+  id <- lag + which(tmpc$nbpar[rg]==1)
+  tmpc$McFad_adj[rg] <- 1 - (tmpc$lik[rg]-(tmpc$nbpar[rg]-1))/(tmpc$lik[id])
+  tmpc$best[lag+which.max(tmpc$McFad_adj[rg])] <- TRUE
+}
+get_symb_mod(tmpc, year=2015) %>% kable %>% cat(sep="\n", file="~/Pending/kevSol/table_nonclip2015.md")
+get_symb_mod(tmpc, year=2016) %>% kable %>% cat(sep="\n", file="~/Pending/kevSol/table_nonclip2016.md")
+saveRDS(tmpc[tmpc$best,], file="~/Pending/kevSol/resbest_nonclip.Rds")
+write.csv(tmpc[tmpc$best,], file="~/Pending/kevSol/resbest_nonclip.csv")
+```
+
+```{r, eval=FALSE}
+##-- Converting the tables from md. tp pdf and docx.
+for (inp in list.files("~/Pending/kevSol/", pattern=".md$", full.names=T)){
+  out <- gsub(inp, pat=".md", rep="")
+  system(paste0("pandoc ", inp, " -o ", out, ".pdf"))
+}
+```
+
+
+## Figures kernels
+
+```{r, eval=FALSE}
+# use the best model to subset the tables
+tall <- readRDS("~/Pending/kevSol/resbest_all.Rds")
+figKernels(tall[tall$year==2015,], filename="~/Pending/kevSol/figall2015.pdf")
+figKernels(tall[tall$year==2016,], filename="~/Pending/kevSol/figall2016.pdf")
 ```

@@ -8,7 +8,7 @@ figKernels(datares, filename = "../figs/fig1.pdf", xlim = c(0, 100),
   ylim = c(0, 0.0025))
 }
 \arguments{
-\item{datares}{the dataframe returned by the analysis process.}
+\item{datares}{the dataframe returned by the recruitement analysis.}
 
 \item{filename}{a character string, giving the names of the figure to be drawn.}
 
@@ -17,7 +17,7 @@ figKernels(datares, filename = "../figs/fig1.pdf", xlim = c(0, 100),
 \item{ylim}{numeric vectors of length 2, giving the y coordinates ranges.}
 }
 \description{
-A function to display the kernels associated to the best models.
+A function used to display the kernels associated to the best models.
 }
 \author{
 Kevin Cazelles

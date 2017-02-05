@@ -10,11 +10,11 @@ getParameters(disp = TRUE, favo = TRUE, neigh = TRUE, lognormal = FALSE)
 convertTreeAbbr(abbr, full_names = FALSE)
 }
 \arguments{
-\item{disp}{a logical. If \code{TRUE}, then dispersal parameters are used.}
+\item{disp}{a logical. If \code{TRUE}, then dispersal parameters are returned.}
 
-\item{favo}{a logical. If \code{TRUE}, then favorability parameters are used.}
+\item{favo}{a logical. If \code{TRUE}, then favorability parameters are returned.}
 
-\item{neigh}{a logical. If \code{TRUE}, then neighborhood effect parameter is used.}
+\item{neigh}{a logical. If \code{TRUE}, then neighborhood effect parameter is returned.}
 
 \item{lognormal}{a logical. If \code{TRUE}, then the values of dispersal parameter are the one assocoated to a lognormal dispersal kernel, default is set to \code{FALSE}.}
 
@@ -23,10 +23,10 @@ convertTreeAbbr(abbr, full_names = FALSE)
 \item{full_names}{a logical. If \code{TRUE} teh scientific names of the tree species is returned.}
 }
 \value{
-A matrix including the required values.
+A matrix including the parameters ranges and starting values.
 }
 \description{
-A function to get the minimum, maximum and starting values for the parameters associated to a given simulation.
+A function to get ranges and starting values for the parameters associated to a given simulation.
 }
 \section{Functions}{
 \itemize{

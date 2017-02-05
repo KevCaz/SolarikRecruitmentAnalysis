@@ -2,16 +2,16 @@
 % Please edit documentation in R/getConfInt.R
 \name{getConfInt}
 \alias{getConfInt}
-\title{Get Confidence Interval.}
+\title{Get Confidence Intervals.}
 \usage{
 getConfInt(filename, rm_pat = "codekev12",
   basename_out = "../codekev12/resf/resf_",
   datasim = "dataReady/simu_all.Rds", quiet = TRUE)
 }
 \arguments{
-\item{filename}{of the file to be read.}
+\item{filename}{a character string, giving the path of output file to be read.}
 
-\item{rm_pat}{a pattern to be removed.}
+\item{rm_pat}{a pattern to be removed to get the simulation id.}
 
 \item{basename_out}{basename of the file where results are written.}
 
@@ -23,7 +23,7 @@ getConfInt(filename, rm_pat = "codekev12",
 A list including the likelihood and the parameters estimates as well as the confident interval associates to the parameters.
 }
 \description{
-A function to get confidence interval of paramters associated to one simulation.
+This function returns confidence interval of paramters associated to a givem simulation output file.
 }
 \author{
 Kevin Cazelles

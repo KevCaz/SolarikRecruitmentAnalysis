@@ -1,6 +1,6 @@
-#' Get Confidence Interval.
+#' Get Confidence Intervals.
 #'
-#' A function to get confidence interval of paramters associated to one simulation.
+#' This function returns confidence interval of paramters associated to a givem simulation output file.
 #'
 #' @author
 #' Kevin Cazelles
@@ -8,8 +8,8 @@
 #' @importFrom magrittr %>%
 #' @importFrom magrittr %T>%
 #'
-#' @param filename of the file to be read.
-#' @param rm_pat a pattern to be removed.
+#' @param filename a character string, giving the path of output file to be read.
+#' @param rm_pat a pattern to be removed to get the simulation id.
 #' @param basename_out basename of the file where results are written.
 #' @param datasim the path of the file of simulatipon.
 #' @param quiet logical. If \code{FALSE} then the id of the simulation is printed.
