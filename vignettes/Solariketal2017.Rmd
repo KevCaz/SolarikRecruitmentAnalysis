@@ -12,51 +12,95 @@ vignette: >
 
 # Introduction
 
-These are the analysis used in Solarik et al. paper[^tobeadded].
-Do not forget to chose properly your working space.
+## What this document is for?
 
-```{r}
-graphics.off()
-rm(list=ls())
-```
+This document aims at presenting the numerical implementation accomplished in the
+article entitled *Why a Mickael Marsh is always needed?* by Solarik et al. paper[^tobeadded]. The lines below detail the steps needed to obtain the results.
 
-## Tree species
 
-| abbr1 | abbr2 | Scientific Names      | TSN    |
-|:------|:------|:----------------------|:-------|
-| BF    | ABBA  |\u00a0Abies balsamea        | 18032  |
-| RM    | ACRU  |\u00a0Acer rubrum           | 28728  |
-| SM    | ACSA  |\u00a0Acer saccharum        | 28731  |
-| YB    | BEAL  |\u00a0Betula alleghaniensis | 19481  |
-| WB    | BEPA  |\u00a0Betula papyrifera     | 19489  |
-| AB    | FAGR  |\u00a0Fagus grandifolia     | 19462  |
-| AS    | POTR  | Populus tremuloides   | 195773 |
+## The Study
 
-[^tobeadded]: To be added once the paper published
+In Solarik et al. 2017 the authors explain the number of seedlings of different species of one or two ages on three sites (see data section) in quadrats of 1x1m (hereafter plots).
+
+| Ecological process  |abbr  |number of paramters|
+|:--------------------|:-----|:------------------|
+| dispersion          |disp  |2                  |
+| neighborhood effect |neigh |5                  |
+| favorability        |favo  |1                  |
+
+### Site
+
+| Name     |abbr | Longitude | Latitude | Number of plots |  
+|:-------- |:--- |:----------|:---------|:----------------|
+| Abitibi  |abi  | xxx       | xxx      | xxx             |
+| Le Bic   |bic  | xxx       | xxx      | xxx             |
+| Sutton   |sut  | xxx       | xxx      | xxx             |
+
+
+## Dataset
+
+Part of the datasets published [here]()[^tobeadded].
 
 
 ## Analysis principle
 
-Simple likelihood optimization using simulated annealing
+Likelihood optimization using simulated annealing
 (implemented by the [GenSA](https://cran.r-project.org/web/packages/GenSA/index.html) package).
+For different models (40 models for each combination site x species x year x age).
 
 
 
+
+## Tree species
+
+| abbr1 | abbr2 | Scientific Names      | TSN    |abi  |bic  |sut  |
+|:------|:------|:----------------------|:-------|:----|:----|:----|
+| BF    | ABBA  | Abies balsamea        | 18032  |TRUE |TRUE |TRUE |
+| RM    | ACRU  | Acer rubrum           | 28728  |TRUE |TRUE |TRUE |
+| SM    | ACSA  | Acer saccharum        | 28731  |TRUE |TRUE |TRUE |
+| YB    | BEAL  | Betula alleghaniensis | 19481  |TRUE |TRUE |TRUE |
+| WB    | BEPA  | Betula papyrifera     | 19489  |TRUE |TRUE |TRUE |
+| AB    | FAGR  | Fagus grandifolia     | 19462  |TRUE |TRUE |TRUE |
+| AS    | POTR  | Populus tremuloides   | 195773 |TRUE |TRUE |TRUE |
+
+: abbreviations, names, TSN (Taxonomic Serial Number) of the tree species considered and their respective presence in the three sites of the study.
+
+
+[^tobeadded]: To be added once the paper published
+
+
+
+## File index
+
+```{r, eval=FALSE}
+fl_simu <- data/simu_all.Rds
+```
+
+```{r, eval=FALSE, echo=FALSE}
+setwd("/Users/KevCaz/Dropbox/Kev_code")
+```
 
 
 # Formatting the data
 
+Before starting, do not forget to chose properly your working space.
+The code lines below creates three folder where data, results and figures will
+be stored.
+
+```{r, eval=FALSE}
+graphics.off()
+rm(list=ls())
+sapply(c("data", "res", "fig"), dir.create)
+```
 
 ## Downloading the data
 
-Preparing data from the `.csv` files.
+Would be either url or included in the packages (either `.csv` or `rds` files).
 
 
-## Settings the analysis
+## Installing the package
 
-### Installing the package
-
-For convenience, all the functions are gathered in a R package, the `devtools` package make the installation pretty easy and efficient.
+For convenience, all the functions are gathered in a R package, the `devtools` package makes the installation of github packages easy.
 
 ```{r, eval=FALSE}
 if (!require("devtools")) install.packages("devtools")
@@ -64,23 +108,31 @@ devtools::install_github("KevCaz/seedlingsRecruitmentAnalysis")
 ```
 
 
-
-
-### Format of the raw data
+### Formatting raw data
 
 Columns description:
 
+```{r, eval=FALSE}
+colnames()
+```
+
 This section will be completed once the paper published.
+
+```{r, eval=FALSE}
+spe_trees_abi <- c("ABBA", "ACRU", "ACSA", "BEPA")
+spe_trees_bic <- c("ABBA", "ACSA", "ACRU", "BEPA", "POTR")
+spe_trees_sut <- c("ABBA", "ACSA", "BEAL", "BEPA", "FAGR")
+```
 
 
 ### Abitbi (abi)
 
 ```{r, eval=FALSE}
 getDataReady(
-  fl_trees = "data/Abitibi/abitbitrees.csv",
-  fl_regen = "dataRaw/Abitibi/abitibiregen.csv",
-  fl_regen2 = "dataRaw/Abitibi/abitibiregen2016.csv",
-  treesp = c("ABBA", "ACRU", "ACSA", "BEPA"),
+  fl_trees = "data/abitbitrees.csv",
+  fl_regen = "data/abitibiregen.csv",
+  fl_regen2 = "data/abitibiregen2016.csv",
+  treesp = spe_trees_abi,
   abr_site = "abi",
   dist_buffer = 20
 )
@@ -90,10 +142,10 @@ getDataReady(
 
 ```{r, eval=FALSE}
 getDataReady(
-  fl_trees = "data/Rimouski/rimouskitrees.csv",
-  fl_regen = "data/Rimouski/rimouskiregen.csv",
-  fl_regen2 = "data/Rimouski/rimouskiregen2016.csv",
-  treesp =  c("ABBA", "ACSA", "ACRU", "BEPA", "POTR"),
+  fl_trees = "data/rimouskitrees.csv",
+  fl_regen = "data/rimouskiregen.csv",
+  fl_regen2 = "data/rimouskiregen2016.csv",
+  treesp =  spe_trees_bic,
   abr_site = "bic",
   dist_buffer = 20
 )
@@ -104,10 +156,10 @@ getDataReady(
 
 ```{r, eval=FALSE}
 getDataReady(
-  fl_trees = "dataRaw/Sutton/suttontrees.csv",
-  fl_regen = "dataRaw/Sutton/suttonregen.csv",
-  fl_regen2 = "dataRaw/Sutton/suttonregen2016.csv",
-  treesp = c("ABBA", "ACSA", "BEAL", "BEPA", "FAGR"),
+  fl_trees = "data/suttontrees.csv",
+  fl_regen = "data/suttonregen.csv",
+  fl_regen2 = "data/suttonregen2016.csv",
+  treesp = spe_trees_sut,
   abr_site = "sut",
   dist_buffer = 20
 )
@@ -117,14 +169,11 @@ getDataReady(
 
 ## Generating the file describing all simulations
 
+
 ```{r, eval=FALSE}
-spe_trees_abi <- c("ABBA", "ACRU", "ACSA", "BEPA")
-spe_trees_bic <- c("ABBA", "ACSA", "ACRU", "BEPA", "POTR")
-spe_trees_sut <- c("ABBA", "ACSA", "BEAL", "BEPA", "FAGR")
-#
 ls_site <- list(spe_trees_abi, spe_trees_bic, spe_trees_sut)
 szs <- unlist(lapply(ls_site, length))
-#
+##
 grd <- expand.grid(
   disp = c(0,1,2,3,4),
   favo = c(TRUE, FALSE),
@@ -134,40 +183,55 @@ grd <- expand.grid(
   year = c(2015, 2016),
   tree = unlist(ls_site)
    ) %T>% str
-#
+##
 simu <- cbind(site=rep(c("abi", "bic", "sut"), szs*2*80), grd[,c(7,6,5,4,1:3)])
-saveRDS(simu, file="data/simu_all.Rds")
+saveRDS(simu, file = fl_simu)
 ```
 
+To import the simulation file, use the following:
 
+```{r, eval=FALSE}
+simu <- readRDS(file="fl_simu")
+```
 
 
 
 
 # Parameters estimation
 
-## Likelihood optimization
+## Parameters ranges and estimation
 
-```{r, eval=FALSE}
-simu <- readRDS(file="data/simu_all.Rds")
+```{r, echo=FALSE}
+getParameters() %>% as.data.frame %>%
+  knitr::kable(caption = 'Parameters values', booktabs = TRUE)
 ```
 
-For all the simulation we apply the same analysis and proceeded as follows :
+```{r}
+knitr::kable(
+  head(iris, 20), caption = 'Here is a nice table!',
+  booktabs = TRUE
+)
+```
+
+
+## Likelihood optimization
+
+For all simulations, we apply the same analysis and proceed as follows:
 
 ```{r, eval=FALSE}
 for (i in 1:nrowm(simu)){
-  launchIt(i, simufile="data/simu_all.Rds", mxt=1000,
-    record=paste0("test", adjustString(i,4), ".txt"), quiet=FALSE)
+  launchIt(i, simufile = "data/simu_all.Rds", mxt = 1000,
+    record = paste0("test", adjustString(i,4), ".txt"), quiet=FALSE)
 }
 ```
 
-We benefited from calculus facilities (Mammoth super computer, Calcul Canada).
+We benefited from calculus facilities (Mammoth super computer, Compute Canada).
 
 
 
 ## Convergence
 
-To check the model that converged.
+To check which models converged:
 
 ```{r, eval=FALSE}
 val <- as.numeric(gsub(list.files("res"), pat = "\\D", rep =""))
@@ -175,10 +239,11 @@ rerun <- which(!(1:1120 %in% val)) %T>% saveRDS("rerun.Rds")
 ```
 
 ```{r, eval=FALSE}
-script_ci
+script_ci()
 ```
 
-## Gathering results of the GenSA analyses
+
+## Results of the GenSA analyses
 
 ```{r, eval=FALSE}
 pathestim <- "~/Pending/kevSol/"
@@ -279,7 +344,7 @@ for (i in 1:(nrow(tmpc)/nmod)){
 ##
 get_symb_mod(tmpc, year=2015) %>% kable %>% cat(sep="\n", file="~/Pending/kevSol/table_clip2015.md")
 get_symb_mod(tmpc, year=2016) %>% kable %>% cat(sep="\n", file="~/Pending/kevSol/table_clip2016.md")
-# tmpc[tmpc$best,] %>% kable(digits=4) %>% cat(sep="\n", file="~/Pending/kevSol/best_mod_clip.md")
+
 saveRDS(tmpc[tmpc$best,], file="~/Pending/kevSol/resbest_clip.Rds")
 write.csv(tmpc[tmpc$best,], file="~/Pending/kevSol/resbest_clip.csv")
 
@@ -303,7 +368,7 @@ write.csv(tmpc[tmpc$best,], file="~/Pending/kevSol/resbest_nonclip.csv")
 ```
 
 ```{r, eval=FALSE}
-##-- Converting the tables from md. tp pdf and docx.
+##-- Converting the tables from md. to pdf and docx.
 for (inp in list.files("~/Pending/kevSol/", pattern=".md$", full.names=T)){
   out <- gsub(inp, pat=".md", rep="")
   system(paste0("pandoc ", inp, " -o ", out, ".pdf"))

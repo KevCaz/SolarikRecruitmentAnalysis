@@ -15,7 +15,6 @@
 #'
 #' @export
 
-
 getTableLetters <- function(tmp, year) {
     ## 
     id <- which(tmp$year == year)
