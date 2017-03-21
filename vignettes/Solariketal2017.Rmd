@@ -10,17 +10,16 @@ vignette: >
 ---
 
 
+
 # Introduction
 
-## What this document is for?
 
-This document aims at presenting the numerical implementation accomplished in the
-article entitled *Why a Mickael Marsh is always needed?* by Solarik et al. paper[^tobeadded]. The lines below detail the steps needed to obtain the results.
+This document details the different steps of the numerical implementation used to get the results presented in Solarik et al. 2017[^tobeadded].
 
 
 ## The Study
 
-In Solarik et al. 2017 the authors explain the number of seedlings of different species of one or two ages on three sites (see data section) in quadrats of 1x1m (hereafter plots).
+In Solarik et al. 2017, the authors explain the number of seedlings of different species of one or two ages on three sites (see data section) in quadrats of 1x1m (hereafter plots).
 
 | Ecological process  |abbr  |number of paramters|
 |:--------------------|:-----|:------------------|
@@ -66,7 +65,7 @@ For different models (40 models for each combination site x species x year x age
 : abbreviations, names, TSN (Taxonomic Serial Number) of the tree species considered and their respective presence in the three sites of the study.
 
 
-[^tobeadded]: To be added once the paper published
+[^tobeadded]: Ref To be added once the paper published
 
 
 
@@ -79,6 +78,9 @@ fl_simu <- data/simu_all.Rds
 ```{r, eval=FALSE, echo=FALSE}
 setwd("/Users/KevCaz/Dropbox/Kev_code")
 ```
+
+
+
 
 
 # Formatting the data
@@ -193,6 +195,10 @@ To import the simulation file, use the following:
 ```{r, eval=FALSE}
 simu <- readRDS(file="fl_simu")
 ```
+
+
+
+
 
 
 
@@ -376,7 +382,9 @@ for (inp in list.files("~/Pending/kevSol/", pattern=".md$", full.names=T)){
 ```
 
 
-## Figures kernels
+## Figures
+
+### Kernels
 
 ```{r, eval=FALSE}
 # use the best model to subset the tables

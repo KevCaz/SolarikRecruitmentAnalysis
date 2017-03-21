@@ -4,7 +4,7 @@
 \alias{figKernels}
 \title{Draw kernels.}
 \usage{
-figKernels(datares, filename = "../figs/fig1.pdf", xlim = c(0, 100),
+figKernels(datares, filename = "../figs/fig1.pdf", xlim = c(0, 60),
   ylim = c(0, 0.0025))
 }
 \arguments{
@@ -22,4 +22,3 @@ A function used to display the kernels associated to the best models.
 \author{
 Kevin Cazelles
 }
-

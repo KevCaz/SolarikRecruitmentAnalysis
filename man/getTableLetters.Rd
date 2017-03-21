@@ -20,4 +20,3 @@ This functions creates ansd returns a table that identifies a list of ecological
 \author{
 Kevin Cazelles
 }
-

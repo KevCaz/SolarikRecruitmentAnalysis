@@ -55,4 +55,3 @@ The parameter \code{pz} have a value even if it is not included in the analysis 
 \author{
 Kevin Cazelles
 }
-

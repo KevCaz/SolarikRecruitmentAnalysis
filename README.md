@@ -5,8 +5,8 @@ This is not really a R package in the common sense. It is rather the set
 of functions we used for Solarik et al. 2007 paper. The form of a is
 quite convenient to share efficiently our code, which however remains
 quite specific to the kind of datasets we used. Nevertheless, as the
-kernels are more general and could be used in other context, I put them
-in a separate package available
+kernels are more general and could be used in another studies, they were
+put in a separate package available
 [here](https://github.com/KevCaz/recruitR). The whole analysis we
 undertook is described in the package's vignette.
 
@@ -29,6 +29,7 @@ status](https://ci.appveyor.com/api/projects/status/x5ngkcflyfiixr37?svg=true)](
 To do
 -----
 
-1.  Vignette is about 40% complete.
-
-2.  Links to the paper and datasets will be added once published.
+-   \[ \] Vignette is about 35% complete.
+-   \[ \] Improve the code coverage
+-   \[ \] Adding Links to the paper and the datasets once they are
+    published.

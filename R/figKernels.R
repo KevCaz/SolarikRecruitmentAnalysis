@@ -12,8 +12,8 @@
 #'
 #' @export
 
-figKernels <- function(datares, filename = "../figs/fig1.pdf", xlim = c(0, 100), 
-    ylim = c(0, 0.0025)) {
+figKernels <- function(datares, filename = "../figs/fig1.pdf", xlim = c(0, 60), ylim = c(0, 
+    0.0025)) {
     ## 
     nm_tre <- as.character(unique(datares$tree))
     ## Colors
@@ -25,7 +25,7 @@ figKernels <- function(datares, filename = "../figs/fig1.pdf", xlim = c(0, 100),
     ## 
     matlay <- cbind(7, rbind(8, matrix(1:6, 2), 9))
     matlay[c(1, 4), 1] <- 0
-    seqd <- seq(0, 100, 0.01)
+    seqd <- seq(xlim[1], xlim[2], 0.01)
     ## 
     datares$tosplit <- paste0(datares$site, datares$age)
     ls_tre <- split(datares, datares$tosplit)
@@ -42,11 +42,11 @@ figKernels <- function(datares, filename = "../figs/fig1.pdf", xlim = c(0, 100),
             if (ls_tre[[i]]$disp[j]) {
                 id <- as.numeric(ls_tre[[i]]$tree[j])
                 if (ls_tre[[i]]$disp[j] > 2) {
-                  lines(seqd, kern_lognormal(seqd, scal = ls_tre[[i]]$scal[j], shap = ls_tre[[i]]$shap[j]), 
-                    col = pal[id], lty = lty[id], lwd = 2)
-                } else {
                   lines(seqd, kern_exponential_power(seqd, scal = ls_tre[[i]]$scal[j], 
                     shap = ls_tre[[i]]$shap[j]), col = pal[id], lty = lty[id], lwd = 2)
+                } else {
+                  lines(seqd, kern_lognormal(seqd, scal = ls_tre[[i]]$scal[j], shap = ls_tre[[i]]$shap[j]), 
+                    col = pal[id], lty = lty[id], lwd = 2)
                 }
             }
         }

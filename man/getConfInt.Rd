@@ -28,4 +28,3 @@ This function returns confidence interval of paramters associated to a givem sim
 \author{
 Kevin Cazelles
 }
-
