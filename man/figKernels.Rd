@@ -4,8 +4,8 @@
 \alias{figKernels}
 \title{Draw kernels.}
 \usage{
-figKernels(datares, filename = "../figs/fig1.pdf", xlim = c(0, 60),
-  ylim = c(0, 0.0025))
+figKernels(datares, filename = "../figs/fig1.pdf", xlim = c(0, 50),
+  ylim = c(0, 0.015), colors = c("#771224", "#31679f", "#6db80f", "grey10"))
 }
 \arguments{
 \item{datares}{the dataframe returned by the recruitement analysis.}

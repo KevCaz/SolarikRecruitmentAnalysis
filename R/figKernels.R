@@ -12,14 +12,14 @@
 #'
 #' @export
 
-figKernels <- function(datares, filename = "../figs/fig1.pdf", xlim = c(0, 60), ylim = c(0, 
-    0.0025)) {
+figKernels <- function(datares, filename = "../figs/fig1.pdf", xlim = c(0, 50), ylim = c(0, 
+    0.015), colors = c("#771224", "#31679f", "#6db80f", "grey10")) {
     ## 
     nm_tre <- as.character(unique(datares$tree))
     ## Colors
-    pal <- rep(c("#746270", "#0c486c", "#176c45", "grey10"), length.out = length(nm_tre))
+    pal <- rep(colors, length.out = length(nm_tre))
     ## Line types
-    lty <- rep(c(1, 3), each = 4, length.out = length(nm_tre))
+    lty <- rep(c(1, 2), each = 4, length.out = length(nm_tre))
     ## text size
     cex.txt <- 2
     ## 
@@ -30,9 +30,9 @@ figKernels <- function(datares, filename = "../figs/fig1.pdf", xlim = c(0, 60), 
     datares$tosplit <- paste0(datares$site, datares$age)
     ls_tre <- split(datares, datares$tosplit)
     #### export as a pdf files.
-    pdf(filename, height = 6.5, width = 8)
-    layout(mat = matlay, widths = c(0.2, 1, 1, 1), heights = c(0.2, 1, 1, 0.5))
-    par(mar = c(1.5, 2, 1, 1), las = 1, mgp = c(2.2, 0.75, 0))
+    pdf(filename, height = 6.5, width = 9)
+    layout(mat = matlay, widths = c(0.2, 1, 1, 1), heights = c(0.15, 1, 1, 0.5))
+    par(mar = c(1.5, 2.25, 0.5, 1.25), las = 1, mgp = c(2.2, 0.75, 0))
     ## 
     for (i in 1:length(ls_tre)) {
         graphicsutils::plot0(xlim, ylim)
@@ -42,15 +42,15 @@ figKernels <- function(datares, filename = "../figs/fig1.pdf", xlim = c(0, 60), 
             if (ls_tre[[i]]$disp[j]) {
                 id <- as.numeric(ls_tre[[i]]$tree[j])
                 if (ls_tre[[i]]$disp[j] > 2) {
-                  lines(seqd, kern_exponential_power(seqd, scal = ls_tre[[i]]$scal[j], 
-                    shap = ls_tre[[i]]$shap[j]), col = pal[id], lty = lty[id], lwd = 2)
+                  seqy <- kern_exponential_power(seqd, scal = ls_tre[[i]]$scal[j], 
+                    shap = ls_tre[[i]]$shap[j])
                 } else {
-                  lines(seqd, kern_lognormal(seqd, scal = ls_tre[[i]]$scal[j], shap = ls_tre[[i]]$shap[j]), 
-                    col = pal[id], lty = lty[id], lwd = 2)
+                  seqy <- kern_lognormal(seqd, scal = ls_tre[[i]]$scal[j], shap = ls_tre[[i]]$shap[j])
                 }
+                lines(seqd, seqy, col = pal[id], lty = lty[id], lwd = 1.4)
             }
         }
-        text(percX(72), percY(90), paste0("Age: ", 2 - i%%2), cex = 1.6)
+        text(percX(80), percY(92), paste0("Age: ", 2 - i%%2), cex = 1.6)
         box2(1:2)
     }
     ## 
@@ -58,9 +58,9 @@ figKernels <- function(datares, filename = "../figs/fig1.pdf", xlim = c(0, 60), 
     graphicsutils::plot0()
     text(-0.2, 0, labels = "Density", srt = 90, cex = cex.txt)
     ## 
-    par(mar = c(0.5, 2, 0, 1), xaxs = "i")
+    par(mar = c(0.1, 2, 0, 1), xaxs = "i")
     graphicsutils::plot0(c(0, 3), c(0, 1))
-    text(0:2 + 0.25, rep(0.5, 3), labels = c("ABI", "BIC", "SUT"), cex = cex.txt)
+    text(c(0.12, 1.17, 2.24), rep(0.5, 3), labels = c("ABI", "BIC", "SUT"), cex = cex.txt)
     ## 
     graphicsutils::plot0()
     text(0, 0.7, labels = "Distance (m)", cex = cex.txt)

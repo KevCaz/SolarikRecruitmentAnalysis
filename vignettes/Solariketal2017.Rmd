@@ -68,8 +68,17 @@ For different models (40 models for each combination site x species x year x age
 [^tobeadded]: Ref To be added once the paper published
 
 
+## Set up
+
+```{r, eval=FALSE}
+library(margittr)
+```
+
 
 ## File index
+
+
+
 
 ```{r, eval=FALSE}
 fl_simu <- data/simu_all.Rds
@@ -207,12 +216,12 @@ simu <- readRDS(file="fl_simu")
 
 ## Parameters ranges and estimation
 
-```{r, echo=FALSE}
+```{r, eval=FALSE, echo=FALSE}
 getParameters() %>% as.data.frame %>%
   knitr::kable(caption = 'Parameters values', booktabs = TRUE)
 ```
 
-```{r}
+```{r, eval=FALSE}
 knitr::kable(
   head(iris, 20), caption = 'Here is a nice table!',
   booktabs = TRUE
