@@ -8,9 +8,9 @@ output:
     toc: yes
     toc_float: yes
 vignette: >
-  %\VignetteIndexEntry{Seedlings recruitment}
-  %\VignetteEngine{knitr::rmarkdown}
-  %\usepackage[utf8]{inputenc}
+   %\VignetteIndexEntry{Seedlings recruitment}
+   %\VignetteEngine{knitr::rmarkdown}
+   %\usepackage[utf8]{inputenc}
 ---
 
 
@@ -44,12 +44,10 @@ spSite <- sp::SpatialPointsDataFrame(
     data = datS,
     proj4string = sp::CRS("+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs +towgs84=0,0,0")
   )
-mapview::mapview(spSite)
+mapview::mapview(spSite)@map
 ```
 
-
-
-## Tree species of the study
+### Tree species of the study
 
 | abbr1 | abbr2 | Scientific Names      | TSN    |abi  |bic  |sut  |
 |:------|:------|:----------------------|:-------|:----|:----|:----|
@@ -69,6 +67,8 @@ mapview::mapview(spSite)
 
 
 
+
+
 ## Statistical model
 
 ### Model
@@ -83,7 +83,7 @@ mapview::mapview(spSite)
 
 
 
-## Overall strategy of our analysis
+### Overall strategy of our analysis
 
 Likelihood optimization using simulated annealing
 (implemented by the [GenSA](https://cran.r-project.org/web/packages/GenSA/index.html) package).

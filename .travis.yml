@@ -5,5 +5,8 @@ sudo: required
 r_packages:
   - covr
 
+before_script:
+  - Rscript -e 'install.packages("mapview")'
+
 after_success:
   - Rscript -e 'covr::codecov()'
