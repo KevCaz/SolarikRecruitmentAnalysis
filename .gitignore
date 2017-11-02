@@ -27,7 +27,7 @@ vignettes/*.pdf
 Makefile
 # MacOS files
 .DS_Store
-# README.Rmd
+README.Rmd
 README.Rmd
 inst/doc
 record_updates.txt

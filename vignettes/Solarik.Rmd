@@ -2,7 +2,11 @@
 title: "Seedlings recruitment analysis of Solarik et al. 2017 paper."
 author: "Kevin Cazelles and Kevin Solarik"
 date: "`r Sys.Date()`"
-output: rmarkdown::html_vignette
+output:
+  html_document:
+    theme: readable
+    toc: yes
+    toc_float: yes
 vignette: >
   %\VignetteIndexEntry{Seedlings recruitment}
   %\VignetteEngine{knitr::rmarkdown}
@@ -11,46 +15,41 @@ vignette: >
 
 
 
-# Introduction
+# Abstract
 
 
-This document details the different steps of the numerical implementation used to get the results presented in Solarik et al. 2017[^tobeadded].
+This vignette aims at guiding the reader through the different steps of
+the analysis we carried out in Solarik et al. XXXX. Abstract is as follows:
 
 
-## The Study
-
-In Solarik et al. 2017, the authors explain the number of seedlings of different species of one or two ages on three sites (see data section) in quadrats of 1x1m (hereafter plots).
-
-| Ecological process  |abbr  |number of paramters|
-|:--------------------|:-----|:------------------|
-| dispersion          |disp  |2                  |
-| neighborhood effect |neigh |5                  |
-| favorability        |favo  |1                  |
-
-### Site
-
-| Name     |abbr | Longitude | Latitude | Number of plots |  
-|:-------- |:--- |:----------|:---------|:----------------|
-| Abitibi  |abi  | xxx       | xxx      | xxx             |
-| Le Bic   |bic  | xxx       | xxx      | xxx             |
-| Sutton   |sut  | xxx       | xxx      | xxx             |
-
-
-## Dataset
+## Data
 
 Part of the datasets published [here]()[^tobeadded].
 
 
-## Analysis principle
+### Sites
 
-Likelihood optimization using simulated annealing
-(implemented by the [GenSA](https://cran.r-project.org/web/packages/GenSA/index.html) package).
-For different models (40 models for each combination site x species x year x age).
+```{r map, message=FALSE, echo=FALSE}
+datS <- data.frame(
+  id = c('abi', 'bic', 'sut'),
+  name = c('Abitibi-Temiscaminque', 'Le Bic', 'Sutton'),
+  lon = c(-79.401219, -68.817719, -72.541297),
+  lat = c(48.162539, 48.333619, 45.112803),
+  plots= c(NA, NA, NA)
+)
+##
+rownames(datS) <- datS$id
+spSite <- sp::SpatialPointsDataFrame(
+    datS[,c('lon', 'lat')],
+    data = datS,
+    proj4string = sp::CRS("+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs +towgs84=0,0,0")
+  )
+mapview::mapview(spSite)
+```
 
 
 
-
-## Tree species
+## Tree species of the study
 
 | abbr1 | abbr2 | Scientific Names      | TSN    |abi  |bic  |sut  |
 |:------|:------|:----------------------|:-------|:----|:----|:----|
@@ -62,22 +61,51 @@ For different models (40 models for each combination site x species x year x age
 | AB    | FAGR  | Fagus grandifolia     | 19462  |TRUE |TRUE |TRUE |
 | AS    | POTR  | Populus tremuloides   | 195773 |TRUE |TRUE |TRUE |
 
-: abbreviations, names, TSN (Taxonomic Serial Number) of the tree species considered and their respective presence in the three sites of the study.
+: abbreviations, names, TSN (Taxonomic Serial Number, viti the [Integrated
+  Taxonomic Information System website](https://www.itis.gov/pdf/faq_itis_tsn.pdf)
+  for more details about TSN) of the tree species considered and their
+  respective presence in the three sites of the study.
+
+
+
+
+## Statistical model
+
+### Model
+
+### Parameters
+
+| Ecological process  |abbr  |number of parameters|
+|:--------------------|:-----|:-------------------|
+| dispersion          |disp  |2                   |
+| neighborhood effect |neigh |5                   |
+| favorability        |favo  |1                   |
+
+
+
+## Overall strategy of our analysis
+
+Likelihood optimization using simulated annealing
+(implemented by the [GenSA](https://cran.r-project.org/web/packages/GenSA/index.html) package).
+For different models (40 models for each combination site x species x year x age).
+
+
 
 
 [^tobeadded]: Ref To be added once the paper published
 
 
-## Set up
-
-```{r, eval=FALSE}
-library(margittr)
-```
 
 
+
+
+
+
+
+
+
+<!--
 ## File index
-
-
 
 
 ```{r, eval=FALSE}
@@ -400,4 +428,4 @@ for (inp in list.files("~/Pending/kevSol/", pattern=".md$", full.names=T)){
 tall <- readRDS("~/Pending/kevSol/resbest_all.Rds")
 figKernels(tall[tall$year==2015,], filename="~/Pending/kevSol/figall2015.pdf")
 figKernels(tall[tall$year==2016,], filename="~/Pending/kevSol/figall2016.pdf")
-```
+``` -->

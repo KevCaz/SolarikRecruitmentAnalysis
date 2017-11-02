@@ -1,6 +1,6 @@
 #' Draw kernels.
 #'
-#' A function used to display the kernels associated to the best models.
+#' Display the kernels associated to the best models.
 #'
 #' @author
 #' Kevin Cazelles
@@ -69,5 +69,5 @@ figKernels <- function(datares, filename = "../figs/fig1.pdf", xlim = c(0, 50), 
         col = pal, ncol = 4, cex = 1.8)
     dev.off()
     ## 
-    return("DONE")
+    invisible(NULL)
 }

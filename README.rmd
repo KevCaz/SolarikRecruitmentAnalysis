@@ -1,0 +1,31 @@
+# seedlingsRecruitmentAnalysis
+
+Ths repository includes all the R functions to reproduce the analyses we
+carry out in Solarik *et al.* XXXX. The form of a standard R package is
+convenient to share code aand ensure Operating System (OS interoperability.
+Moreover this repository is dedicated for discuss and handle potential code issues
+an user may have.
+
+In this package we use a Rcpp implementation of dispersal kernel available as
+a separate package ([recruitR](https://github.com/KevCaz/recruitR)).
+The whole analysis we undertook is described in the package's vignette.
+
+Notes:
+  1. Function's names are written using Camel case (*e.g.* `formatData()`).
+
+
+## Current status
+
+[![Build
+status](https://ci.appveyor.com/api/projects/status/x5ngkcflyfiixr37?svg=true)](https://ci.appveyor.com/project/KevCaz/seedlingsrecruitmentanalysis)
+[![Travis](https://travis-ci.org/letiR/letiRmisc.svg?branch=master)](https://travis-ci.org/KevCaz/seedlingsrecruitmentanalysis)
+[![codecov](https://codecov.io/gh/KevCaz/seedlingsRecruitmentAnalysis/branch/master/graph/badge.svg)](https://codecov.io/gh/KevCaz/seedlingsrecruitmentanalysis)
+
+
+
+
+## To do
+
+-  [ ] Vignette is about 35% complete.
+-  [ ] Improve the code coverage
+-  [ ] Adding Links to the paper and the datasets once published.

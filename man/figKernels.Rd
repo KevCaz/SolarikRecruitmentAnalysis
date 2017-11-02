@@ -17,7 +17,7 @@ figKernels(datares, filename = "../figs/fig1.pdf", xlim = c(0, 50),
 \item{ylim}{numeric vectors of length 2, giving the y coordinates ranges.}
 }
 \description{
-A function used to display the kernels associated to the best models.
+Display the kernels associated to the best models.
 }
 \author{
 Kevin Cazelles

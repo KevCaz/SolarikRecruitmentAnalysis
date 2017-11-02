@@ -6,3 +6,5 @@
 ^Makefile
 ^README\.rmd
 record_updates.txt
+LICENSE
+docs/
