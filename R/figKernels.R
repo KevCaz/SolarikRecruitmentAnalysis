@@ -6,14 +6,16 @@
 #' Kevin Cazelles
 #'
 #' @param datares the dataframe returned by the recruitement analysis.
-#' @param filename a character string, giving the names of the figure to be drawn.
 #' @param xlim numeric vectors of length 2, giving the x coordinates ranges.
 #' @param ylim numeric vectors of length 2, giving the y coordinates ranges.
 #'
+#' @importFrom graphics axis par layout legend lines points text
+#' @importFrom recruitR kern_exponential_power kern_lognormal
+#'
 #' @export
 
-figKernels <- function(datares, filename = "../figs/fig1.pdf", xlim = c(0, 50), ylim = c(0, 
-    0.015), colors = c("#771224", "#31679f", "#6db80f", "grey10")) {
+figKernels <- function(datares, xlim = c(0, 50), ylim = c(0, 0.015), colors = c("#771224", 
+    "#31679f", "#6db80f", "grey10")) {
     ## 
     nm_tre <- as.character(unique(datares$tree))
     ## Colors
@@ -29,8 +31,8 @@ figKernels <- function(datares, filename = "../figs/fig1.pdf", xlim = c(0, 50), 
     ## 
     datares$tosplit <- paste0(datares$site, datares$age)
     ls_tre <- split(datares, datares$tosplit)
-    #### export as a pdf files.
-    pdf(filename, height = 6.5, width = 9)
+    
+    ## 
     layout(mat = matlay, widths = c(0.2, 1, 1, 1), heights = c(0.15, 1, 1, 0.5))
     par(mar = c(1.5, 2.25, 0.5, 1.25), las = 1, mgp = c(2.2, 0.75, 0))
     ## 
@@ -55,19 +57,18 @@ figKernels <- function(datares, filename = "../figs/fig1.pdf", xlim = c(0, 50), 
     }
     ## 
     par(mar = c(1.5, 0, 1, 0))
-    graphicsutils::plot0()
+    graphicsUtils::plot0()
     text(-0.2, 0, labels = "Density", srt = 90, cex = cex.txt)
     ## 
     par(mar = c(0.1, 2, 0, 1), xaxs = "i")
-    graphicsutils::plot0(c(0, 3), c(0, 1))
+    graphicsUtils::plot0(c(0, 3), c(0, 1))
     text(c(0.12, 1.17, 2.24), rep(0.5, 3), labels = c("ABI", "BIC", "SUT"), cex = cex.txt)
     ## 
-    graphicsutils::plot0()
+    graphicsUtils::plot0()
     text(0, 0.7, labels = "Distance (m)", cex = cex.txt)
     ## 
     legend("bottom", bty = "n", legend = nm_tre, lwd = 2.4, lty = lty, seg.len = 2, 
         col = pal, ncol = 4, cex = 1.8)
-    dev.off()
     ## 
     invisible(NULL)
 }

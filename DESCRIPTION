@@ -1,18 +1,20 @@
 Package: seedlingsRecruitementAnalysis
-Title: Analysis of seedlings recruitment
+Title: Analysis of seedlings recruitment as in Solarik et al.
 Version: 0.1
 Authors@R: c(
-  person("Kevin", "Cazelles", email = "kevin.cazelles@um2.fr", role = c("aut", "cre")),
+  person("Kevin", "Cazelles", email = "kevin.cazelle@uoguelph.ca", role = c("aut", "cre")),
   person("Kevin", "Solarik", email = "kevinsolarik@hotmail.com", role = c("aut"))
   )
 Description: Set of R functions used in Solarik et al. 2017 paper.
 License: GPL-3
 LazyData: true
-Imports: magrittr,
+Imports:
+    graphics,
+    magrittr,
     GenSA,
     sp
 Remotes: KevCaz/recruitR,
-    KevCaz/graphicsutils,
+    inSileco/graphicsUtils,
     inSileco/letiRmisc
 Suggests: knitr,
     mapview,

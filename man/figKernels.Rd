@@ -4,13 +4,11 @@
 \alias{figKernels}
 \title{Draw kernels.}
 \usage{
-figKernels(datares, filename = "../figs/fig1.pdf", xlim = c(0, 50),
-  ylim = c(0, 0.015), colors = c("#771224", "#31679f", "#6db80f", "grey10"))
+figKernels(datares, xlim = c(0, 50), ylim = c(0, 0.015),
+  colors = c("#771224", "#31679f", "#6db80f", "grey10"))
 }
 \arguments{
 \item{datares}{the dataframe returned by the recruitement analysis.}
-
-\item{filename}{a character string, giving the names of the figure to be drawn.}
 
 \item{xlim}{numeric vectors of length 2, giving the x coordinates ranges.}
 

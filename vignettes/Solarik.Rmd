@@ -14,12 +14,17 @@ vignette: >
 ---
 
 
+<br><br>
 
-# Abstract
-
+# Few notes about the paper
 
 This vignette aims at guiding the reader through the different steps of
-the analysis we carried out in Solarik et al. XXXX. Abstract is as follows:
+the analysis we carried out in Solarik *et al.* XXXX. Data and R code to
+reproduce our analyse and this vignette are available at
+[https://github.com/KevCaz/seedlingsRecruitmentAnalysis](https://github.com/KevCaz/seedlingsRecruitmentAnalysis).
+
+
+
 
 
 ## Data
@@ -89,16 +94,14 @@ Likelihood optimization using simulated annealing
 (implemented by the [GenSA](https://cran.r-project.org/web/packages/GenSA/index.html) package).
 For different models (40 models for each combination site x species x year x age).
 
-
-
-
 [^tobeadded]: Ref To be added once the paper published
 
 
 
 
 
-
+<br><br>
+# Numerical implementation
 
 
 
@@ -137,14 +140,6 @@ sapply(c("data", "res", "fig"), dir.create)
 Would be either url or included in the packages (either `.csv` or `rds` files).
 
 
-## Installing the package
-
-For convenience, all the functions are gathered in a R package, the `devtools` package makes the installation of github packages easy.
-
-```{r, eval=FALSE}
-if (!require("devtools")) install.packages("devtools")
-devtools::install_github("KevCaz/seedlingsRecruitmentAnalysis")
-```
 
 
 ### Formatting raw data
@@ -268,7 +263,7 @@ for (i in 1:nrowm(simu)){
 }
 ```
 
-We benefited from calculus facilities (Mammoth super computer, Compute Canada).
+We benefited from Compute Canada facilities (Mammoth super computer, Compute Canada).
 
 
 
@@ -425,7 +420,6 @@ for (inp in list.files("~/Pending/kevSol/", pattern=".md$", full.names=T)){
 
 ```{r, eval=FALSE}
 # use the best model to subset the tables
-tall <- readRDS("~/Pending/kevSol/resbest_all.Rds")
 figKernels(tall[tall$year==2015,], filename="~/Pending/kevSol/figall2015.pdf")
 figKernels(tall[tall$year==2016,], filename="~/Pending/kevSol/figall2016.pdf")
 ``` -->

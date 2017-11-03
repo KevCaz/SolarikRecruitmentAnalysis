@@ -1,35 +1,43 @@
 seedlingsRecruitmentAnalysis
 ============================
 
-This is not really a R package in the common sense. It is rather the set
-of functions we used for Solarik et al. 2007 paper. The form of a is
-quite convenient to share efficiently our code, which however remains
-quite specific to the kind of datasets we used. Nevertheless, as the
-kernels are more general and could be used in another studies, they were
-put in a separate package available
-[here](https://github.com/KevCaz/recruitR). The whole analysis we
-undertook is described in the package's vignette.
+This repository includes all the R functions to reproduce the analyses we carry out in Solarik *et al.* XXXX. The form of a standard R package is convenient to share code and ensure Operating System (OS) interoperability. Moreover this repository is an appropriate platform to discuss and handle code issues related issues.
 
-Details
-=======
+In this package we use a Rcpp implementation of dispersal kernel available as a separate package ([recruitR](https://github.com/KevCaz/recruitR)). The whole analysis we undertook is described in the package's vignette.
 
-Function's names are written using Camel case (*e.g.* `formatData()`).
+Notes: 1. Function's names are written using Camel case (*e.g.* `formatData()`).
 
-Current state
-=============
+How to use the package
+----------------------
 
-Code evaluation
----------------
+A couple of Github package are required. To install them we recommend the use of the `devtools` package one can get it on CRAN using the `install.packages()` function:
 
-[![Build
-status](https://ci.appveyor.com/api/projects/status/x5ngkcflyfiixr37?svg=true)](https://ci.appveyor.com/project/KevCaz/seedlingsrecruitmentanalysis)
-[![Travis](https://travis-ci.org/letiR/letiRmisc.svg?branch=master)](https://travis-ci.org/KevCaz/seedlingsrecruitmentanalysis)
-[![codecov](https://codecov.io/gh/KevCaz/seedlingsRecruitmentAnalysis/branch/master/graph/badge.svg)](https://codecov.io/gh/KevCaz/seedlingsrecruitmentanalysis)
+``` r
+install.packages('devtools')
+```
+
+Once loaded, `install_guthub()` eases the installation of the other packages:
+
+``` r
+library(devtools)
+install_github(c('KevCaz/recruitR', 'inSileco/letiRmisc', 'inSileco/graphicsUtils'))
+```
+
+including this package:
+
+``` r
+install_github('KevCaz/seedlingsRecruitmentAnalysis')
+```
+
+Current status
+--------------
+
+[![Build status](https://ci.appveyor.com/api/projects/status/xcsiox3ufc4bab69?svg=true)](https://ci.appveyor.com/project/KevCaz/seedlingsrecruitmentanalysis) [![Build Status](https://travis-ci.org/KevCaz/seedlingsRecruitmentAnalysis.svg?branch=master)](https://travis-ci.org/KevCaz/seedlingsRecruitmentAnalysis) [![codecov](https://codecov.io/gh/KevCaz/seedlingsRecruitmentAnalysis/branch/master/graph/badge.svg)](https://codecov.io/gh/KevCaz/seedlingsrecruitmentanalysis)
 
 To do
 -----
 
--   \[ \] Vignette is about 35% complete.
+-   \[ \] Include data as rda files
+-   \[ \] Complete vignette (~30% complete)
 -   \[ \] Improve the code coverage
--   \[ \] Adding Links to the paper and the datasets once they are
-    published.
+-   \[ \] Adding Links to the paper and the datasets once published.
