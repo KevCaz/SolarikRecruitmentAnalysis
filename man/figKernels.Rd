@@ -13,6 +13,8 @@ figKernels(datares, xlim = c(0, 50), ylim = c(0, 0.015),
 \item{xlim}{numeric vectors of length 2, giving the x coordinates ranges.}
 
 \item{ylim}{numeric vectors of length 2, giving the y coordinates ranges.}
+
+\item{colors}{vector of colors.}
 }
 \description{
 Display the kernels associated to the best models.

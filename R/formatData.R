@@ -30,11 +30,11 @@ formatData <- function(fl_trees, fl_regen, fl_regen2, treesp, abbr_site, path_ou
     dist_buffer = 20, export = TRUE) {
     
     ## Import the data based on the path to the files given as arguments.  tree data
-    trees <- read.csv(fl_trees, header = TRUE, stringsAsFactors = FALSE)
+    trees <- utils::read.csv(fl_trees, header = TRUE, stringsAsFactors = FALSE)
     ## Regeneration data for 2015
-    regen <- read.csv(fl_regen, header = TRUE, stringsAsFactors = FALSE)
+    regen <- utils::read.csv(fl_regen, header = TRUE, stringsAsFactors = FALSE)
     ## Regeneration data for 2016
-    regen2 <- read.csv(fl_regen2, header = TRUE, stringsAsFactors = FALSE)
+    regen2 <- utils::read.csv(fl_regen2, header = TRUE, stringsAsFactors = FALSE)
     
     ## Subsetting (some plot are removed due to the border effect)
     regen %<>% subset(X > -5 & X < 165 & Y > 15 & Y < 185)
@@ -43,12 +43,12 @@ formatData <- function(fl_trees, fl_regen, fl_regen2, treesp, abbr_site, path_ou
     ## List of distances between plots and
     lsdist <- list()
     for (i in 1:nrow(regen)) {
-        lsdist[[i]] <- as.matrix(trees[, c("UTMX", "UTMY")]) %>% spDistsN1(as.matrix(regen[i, 
+        lsdist[[i]] <- as.matrix(trees[, c("UTMX", "UTMY")]) %>% sp::spDistsN1(as.matrix(regen[i, 
             c("UTMX", "UTMY")]))
     }
     
     ## Add basal area (with dist_buffer meters): total per species
-    iddist <- lapply(lsdist, . %>% is_less_than(dist_buffer))
+    iddist <- lapply(lsdist, . %>% magrittr::is_less_than(dist_buffer))
     regen$ba_tot <- regen2$ba_tot <- lapply(lsdist, function(x) (pi * 2.5e-05 * trees$DBH[x < 
         dist_buffer]^2) %>% sum) %>% unlist
     
@@ -58,8 +58,6 @@ formatData <- function(fl_trees, fl_regen, fl_regen2, treesp, abbr_site, path_ou
         id <- which(trees$SP != i)
         regen[paste0("ba_", i)] <- lapply(lsdist, function(x) (pi * 2.5e-05 * trees$DBH[id][x[id] < 
             dist_buffer]^2) %>% sum) %>% unlist
-        regen2[paste0("ba_", i)] <- lapply(lsdist_abi, function(x) (pi * 2.5e-05 * 
-            trees$DBH[id][x[id] < dist_buffer]^2) %>% sum) %>% unlist
     }
     
     ## Exporting R objects

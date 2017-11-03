@@ -87,6 +87,15 @@ mapview::mapview(spSite)@map
 | favorability        |favo  |1                   |
 
 
+### Kernels
+
+| numb | disp | which          | clip  |
+|:-----|:-----|:---------------|:------|
+|0     |--    |non-significant | -     |
+|1     |dc    |lognormal       |clip   |
+|2     |d-    |lognormal       |no-clip|
+|3     |Dc    |power-exponetial|clip   |
+|4     |D-    |power-exponetial|no-clip|
 
 ### Overall strategy of our analysis
 

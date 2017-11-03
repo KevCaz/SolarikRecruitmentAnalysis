@@ -13,7 +13,7 @@
 #' @param year year (2015 or 2016) name.
 #' @param tree abbreviation of the tree species names of the species.
 #' @param age age of the species (1 or 2).
-#' @param mat_par a matrix of parameters (see \link[seedlingsRecruitmentAnalysis]{getParameters}).
+#' @param mat_par a matrix of parameters (see \code{getParameters}).
 #' @param path a character string giving the path to access the data.
 #' @param zero_infl logical. If \code{TRUE} then a zero-inflated poisson distribution is used, otherwose a poisson distribution is used.
 #' @param disp a logical. If \code{TRUE}, then dispersal parameters are used.
@@ -24,8 +24,8 @@
 #' @param mxt a numeric. Maximum running time in seconds (see \link[GenSA]{GenSA}).
 #' @param quiet logial. If \code{TRUE} details about the state of simulations are printed.
 #' @param record a connection, or a character string naming the file to print to. If \code{NULL}, the default values, no record is done.
-#' @param iter a interget
-#' @param simu_file
+#' @param iter a interger.
+#' @param simu_file a file that includes a description of simulation.
 #'
 #' @export
 #'
@@ -48,7 +48,7 @@ recuitmentAnalysis <- function(site, year, tree, age, mat_par, path = "dataReady
     if (kernel == "kern_lognormal") {
         ker <- TRUE
     }
-    pars <- getParameters(disp, favo, neigh, kernel = ker)
+    pars <- getParameters(disp, favo, neigh, lognormal = FALSE)
     ## Finding the index of parameters
     pstr <- which(colnames(pars) == "STR")
     ppz <- which(colnames(pars) == "Pz")
@@ -101,9 +101,9 @@ recuitmentAnalysis <- function(site, year, tree, age, mat_par, path = "dataReady
     if (!quiet) 
         cat("Calling GenSA for a maxtime of", mxt, "sec \n  ")
     ####### 
-    resSA <- GenSA::GenSA(par = pars[1L, ], fn = lik_all, lower = pars[2L, ], upper = pars[3L, 
-        ], control = list(verbose = TRUE, max.time = mxt, smooth = FALSE), obs = obs, 
-        zero_infl = zero_infl, disp = disp, SDBH = SDBH, kernel = "kern_lognormal", 
+    resSA <- GenSA::GenSA(par = pars[1L, ], fn = getLikelihood, lower = pars[2L, 
+        ], upper = pars[3L, ], control = list(verbose = TRUE, max.time = mxt, smooth = FALSE), 
+        obs = obs, zero_infl = zero_infl, disp = disp, SDBH = SDBH, kernel = "kern_lognormal", 
         neigh = neigh, favo = favo, quiet = quiet, pstr = pstr, ppz = ppz, pscal = pscal, 
         pshap = pshap, pfav = pfav, pneigh = pneigh, record = record)
     # 

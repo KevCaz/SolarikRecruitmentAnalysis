@@ -22,7 +22,7 @@ launchIt(iter, simu_file = "dataReady/simu_all.Rds", mxt = 100,
 
 \item{age}{age of the species (1 or 2).}
 
-\item{mat_par}{a matrix of parameters (see \link[seedlingsRecruitmentAnalysis]{getParameters}).}
+\item{mat_par}{a matrix of parameters (see \code{getParameters}).}
 
 \item{path}{a character string giving the path to access the data.}
 
@@ -44,9 +44,9 @@ launchIt(iter, simu_file = "dataReady/simu_all.Rds", mxt = 100,
 
 \item{record}{a connection, or a character string naming the file to print to. If \code{NULL}, the default values, no record is done.}
 
-\item{iter}{a interget}
+\item{iter}{a interger.}
 
-\item{simu_file}{}
+\item{simu_file}{a file that includes a description of simulation.}
 }
 \value{
 The log-likelihood values associated to a given set of parameters.

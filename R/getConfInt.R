@@ -23,8 +23,8 @@ getConfInt <- function(filename, rm_pat = "codekev12", basename_out = "../codeke
     datasim = "dataReady/simu_all.Rds", quiet = TRUE) {
     
     ## The names of the files to be read countains the id, we get below.
-    id <- filename %>% gsub(pat = rm_pat, rep = "") %>% gsub(pat = "\\D", rep = "") %>% 
-        as.numeric
+    id <- filename %>% gsub(pattern = rm_pat, replacement = "") %>% gsub(pattern = "\\D", 
+        replacement = "") %>% as.numeric
     ## 
     if (!quiet) 
         print(id)
@@ -32,11 +32,11 @@ getConfInt <- function(filename, rm_pat = "codekev12", basename_out = "../codeke
     lin <- readRDS(file = datasim)[id, ]
     out <- getParameters(disp = (lin$disp > 0), favo = lin$favo, neigh = lin$neigh)
     ## the estimation in the minimum not the last one!
-    tmp <- try(read.table(filename, dec = ".", sep = ""))
+    tmp <- try(utils::read.table(filename, dec = ".", sep = ""))
     if (class(tmp) != "try-error") {
         idmn <- which.min(tmp[, 1L])
         vec <- 2 * (tmp[, 1L] - tmp[idmn, 1L])
-        val <- which(vec < qchisq(0.95, df = 1L))
+        val <- which(vec < stats::qchisq(0.95, df = 1L))
         for (i in 1L:ncol(out)) {
             out[1L, i] <- tmp[idmn, i + 1]
             out[2L, i] <- min(tmp[val, i + 1])

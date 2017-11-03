@@ -9,10 +9,15 @@ Description: Set of R functions used in Solarik et al. 2017 paper.
 License: GPL-3
 LazyData: true
 Imports:
-    graphics,
-    magrittr,
     GenSA,
-    sp
+    graphics,
+    graphicsutils,
+    letiRmisc,
+    magrittr,
+    recruitR,
+    sp,
+    stats,
+    utils
 Remotes: KevCaz/recruitR,
     inSileco/graphicsUtils,
     inSileco/letiRmisc

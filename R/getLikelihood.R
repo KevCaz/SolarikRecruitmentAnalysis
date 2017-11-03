@@ -46,7 +46,7 @@ getLikelihood <- function(pars, obs, zero_infl = FALSE, neigh = NULL, disp = NUL
     ## Favorability
     if (!is.null(favo)) {
         stopifnot(nrow(favo) == nbq | is.na(pars[pfav]))
-        fa <- apply(favo, 1, weighted.mean, pars[pfav])
+        fa <- apply(favo, 1, stats::weighted.mean, pars[pfav])
     } else fa <- 1
     ## Dispersal
     if (!is.null(disp)) {
@@ -71,11 +71,12 @@ getLikelihood <- function(pars, obs, zero_infl = FALSE, neigh = NULL, disp = NUL
         ## Zero-inflated Poisson distribution
         lik = double(length(obs))
         if (length(obs == 0) > 0) 
-            lik[obs == 0] = Pz + (1 - Pz) * dpois(obs[obs == 0], lambda = R[obs == 
+            lik[obs == 0] = Pz + (1 - Pz) * stats::dpois(obs[obs == 0], lambda = R[obs == 
                 0])
         if (length(obs > 0) > 0) 
-            lik[obs > 0] = (1 - Pz) * dpois(obs[obs > 0], lambda = R[obs > 0])
-    } else lik <- dpois(obs, lambda = R)
+            lik[obs > 0] = (1 - Pz) * stats::dpois(obs[obs > 0], lambda = R[obs > 
+                0])
+    } else lik <- stats::dpois(obs, lambda = R)
     
     ## Sum of log-likelihood
     out <- -sum(log(lik))

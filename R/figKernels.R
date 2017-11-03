@@ -8,6 +8,7 @@
 #' @param datares the dataframe returned by the recruitement analysis.
 #' @param xlim numeric vectors of length 2, giving the x coordinates ranges.
 #' @param ylim numeric vectors of length 2, giving the y coordinates ranges.
+#' @param colors vector of colors.
 #'
 #' @importFrom graphics axis par layout legend lines points text
 #' @importFrom recruitR kern_exponential_power kern_lognormal
@@ -38,8 +39,8 @@ figKernels <- function(datares, xlim = c(0, 50), ylim = c(0, 0.015), colors = c(
     ## 
     for (i in 1:length(ls_tre)) {
         graphicsutils::plot0(xlim, ylim)
-        axis(1, lwd = 0, lwd.tick = 0.5)
-        axis(2, lwd = 0, lwd.tick = 0.5)
+        axis(1, lwd = 0, lwd.ticks = 0.5)
+        axis(2, lwd = 0, lwd.ticks = 0.5)
         for (j in 1:nrow(ls_tre[[i]])) {
             if (ls_tre[[i]]$disp[j]) {
                 id <- as.numeric(ls_tre[[i]]$tree[j])
@@ -52,19 +53,20 @@ figKernels <- function(datares, xlim = c(0, 50), ylim = c(0, 0.015), colors = c(
                 lines(seqd, seqy, col = pal[id], lty = lty[id], lwd = 1.4)
             }
         }
-        text(percX(80), percY(92), paste0("Age: ", 2 - i%%2), cex = 1.6)
-        box2(1:2)
+        text(graphicsutils::percX(80), graphicsutils::percY(92), paste0("Age: ", 
+            2 - i%%2), cex = 1.6)
+        graphicsutils::box2(1:2)
     }
     ## 
     par(mar = c(1.5, 0, 1, 0))
-    graphicsUtils::plot0()
+    graphicsutils::plot0()
     text(-0.2, 0, labels = "Density", srt = 90, cex = cex.txt)
     ## 
     par(mar = c(0.1, 2, 0, 1), xaxs = "i")
-    graphicsUtils::plot0(c(0, 3), c(0, 1))
+    graphicsutils::plot0(c(0, 3), c(0, 1))
     text(c(0.12, 1.17, 2.24), rep(0.5, 3), labels = c("ABI", "BIC", "SUT"), cex = cex.txt)
     ## 
-    graphicsUtils::plot0()
+    graphicsutils::plot0()
     text(0, 0.7, labels = "Distance (m)", cex = cex.txt)
     ## 
     legend("bottom", bty = "n", legend = nm_tre, lwd = 2.4, lty = lty, seg.len = 2, 
