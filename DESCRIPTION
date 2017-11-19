@@ -1,6 +1,6 @@
 Package: seedlingsRecruitementAnalysis
 Title: Analysis of seedlings recruitment as in Solarik et al.
-Version: 0.1
+Version: 0.1.1
 Authors@R: c(
   person("Kevin", "Cazelles", email = "kevin.cazelle@uoguelph.ca", role = c("aut", "cre")),
   person("Kevin", "Solarik", email = "kevinsolarik@hotmail.com", role = c("aut"))
@@ -8,6 +8,8 @@ Authors@R: c(
 Description: Set of R functions used in Solarik et al. 2017 paper.
 License: GPL-3
 LazyData: true
+Depends:
+    R (>= 3.0)
 Imports:
     GenSA,
     graphics,

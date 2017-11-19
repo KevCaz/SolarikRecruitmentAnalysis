@@ -6,8 +6,7 @@
 #' @author
 #' Kevin Cazelles
 #'
-#' @importFrom magrittr %>%
-#' @importFrom magrittr %<>%
+#' @importFrom magrittr %>% %<>%
 #'
 #' @return
 #' A list of dataset includin a set of trees and their location, 2 regen files
@@ -32,9 +31,9 @@ formatData <- function(fl_trees, fl_regen, fl_regen2, treesp, abbr_site, path_ou
     ## Import the data based on the path to the files given as arguments.  tree data
     trees <- utils::read.csv(fl_trees, header = TRUE, stringsAsFactors = FALSE)
     ## Regeneration data for 2015
-    regen <- utils::read.csv(fl_regen, header = TRUE, stringsAsFactors = FALSE)
+    regen0 <- utils::read.csv(fl_regen, header = TRUE, stringsAsFactors = FALSE)
     ## Regeneration data for 2016
-    regen2 <- utils::read.csv(fl_regen2, header = TRUE, stringsAsFactors = FALSE)
+    regen20 <- utils::read.csv(fl_regen2, header = TRUE, stringsAsFactors = FALSE)
     
     ## Subsetting (some plot are removed due to the border effect)
     regen %<>% subset(X > -5 & X < 165 & Y > 15 & Y < 185)

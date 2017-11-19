@@ -47,11 +47,14 @@ install_github('KevCaz/seedlingsRecruitmentAnalysis')
 Current status
 --------------
 
+To be added.
+
 [![Build
 status](https://ci.appveyor.com/api/projects/status/xcsiox3ufc4bab69?svg=true)](https://ci.appveyor.com/project/KevCaz/seedlingsrecruitmentanalysis)
 [![Build
 Status](https://travis-ci.org/KevCaz/seedlingsRecruitmentAnalysis.svg?branch=master)](https://travis-ci.org/KevCaz/seedlingsRecruitmentAnalysis)
-[![codecov](https://codecov.io/gh/KevCaz/seedlingsRecruitmentAnalysis/branch/master/graph/badge.svg)](https://codecov.io/gh/KevCaz/seedlingsrecruitmentanalysis)
+<!-- [![codecov](https://codecov.io/gh/KevCaz/seedlingsRecruitmentAnalysis/branch/master/graph/badge.svg)](https://codecov.io/gh/KevCaz/seedlingsrecruitmentanalysis)
+ -->
 
 To do
 -----
@@ -60,5 +63,4 @@ To do
 -   \[ \] Complete vignette (~40% complete) up to provide an example for
     on line of `simuDesign`
 -   \[ \] Turn Solarik.Rmd as a real vignette
--   \[ \] Improve the code coverage
--   \[ \] Adding Links to the paper and the datasets once published.
+-   \[ \] Adding links to the paper and the datasets once published.
