@@ -9,6 +9,11 @@ output:
     toc_float: true
 ---
 
+
+```{r, echo=FALSE}
+devtools::load_all()
+```
+
 <br>
 <br>
 
@@ -73,7 +78,7 @@ spSite <- sp::SpatialPointsDataFrame(
 ## Recruitment data
 
 A link to the dataset would hopefully be available before publication.
-
+<!-- even as rda... -->
 
 
 
@@ -83,11 +88,11 @@ A link to the dataset would hopefully be available before publication.
 
 # Statistical models
 
-Below are detailed all the steps we used during the study.
+Below are detailed the steps to reproduce our analysis.
 
 ## Model
 
-## Parameters
+### Parameters
 
 | Ecological process  |abbr  |number of parameters|
 |:--------------------|:-----|:-------------------|
@@ -107,14 +112,44 @@ Below are detailed all the steps we used during the study.
 |4     |D-    |power-exponetial|no-clip|
 
 
-### Overall strategy of our analysis
+## Overall strategy for the analysis
 
 Likelihood optimization using simulated annealing
 (implemented by the [GenSA](https://cran.r-project.org/web/packages/GenSA/index.html) package).
 For different models (40 models for each combination site x species x year x age).
 
 
+## Simulations design
+
+```{r simudesign}
+data(simuDesign)
+knitr::kable(head(simuDesign, 16))
+```
+
+for each row we have a likelihood approach.
 
 
-<br><br>
-# Numerical implementation
+
+<br>
+
+## Numerical implementation
+
+For each row of `simuDesign` column are arguments passed to `recruitmentAnalysis()`
+in which:
+
+1- parameters are computed for the simulated annealing (`getParameters()`)
+
+2- simulated annealing is performed (`GenSA()` from GenSA package) to minimize
+the likelihood (`getLikelihood()`).
+
+
+
+```{r getParameter}
+knitr::kable(getParameters(T, T, T, lognormal = FALSE))
+```
+
+
+
+## Example
+
+Do it for the quick one (the one with nothing)

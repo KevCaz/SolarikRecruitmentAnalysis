@@ -56,7 +56,9 @@ Status](https://travis-ci.org/KevCaz/seedlingsRecruitmentAnalysis.svg?branch=mas
 To do
 -----
 
--   \[ \] Include analyzed data as `.rda` files
--   \[ \] Complete vignette (~30% complete)
+-   \[ \] Include data as `.rda` files
+-   \[ \] Complete vignette (~40% complete) up to provide an example for
+    on line of `simuDesign`
+-   \[ \] Turn Solarik.Rmd as a real vignette
 -   \[ \] Improve the code coverage
 -   \[ \] Adding Links to the paper and the datasets once published.

@@ -11,7 +11,7 @@
 
 <meta name="author" content="Kevin Cazelles and Kevin Solarik" />
 
-<meta name="date" content="2017-11-18" />
+<meta name="date" content="2017-11-19" />
 
 <title>Seedlings recruitment analysis of Solarik et al. XXXX paper.</title>
 
@@ -6141,11 +6141,12 @@ div.tocify {
 
 <h1 class="title toc-ignore">Seedlings recruitment analysis of Solarik et al. XXXX paper.</h1>
 <h4 class="author"><em>Kevin Cazelles and Kevin Solarik</em></h4>
-<h4 class="date"><em>2017-11-18</em></h4>
+<h4 class="date"><em>2017-11-19</em></h4>
 
 </div>
 
 
+<pre><code>## Loading seedlingsRecruitementAnalysis</code></pre>
 <p><br> <br></p>
 <p>This vignette aims at guiding the reader through the different steps of the analysis we carried out in Solarik <em>et al.</em> XXXX. Data, R code and this vignette are available at <a href="https://github.com/KevCaz/seedlingsRecruitmentAnalysis" class="uri">https://github.com/KevCaz/seedlingsRecruitmentAnalysis</a>.</p>
 <section id="data" class="level1">
@@ -6160,8 +6161,8 @@ div.tocify {
 <li>‘sut’: Sutton</li>
 </ul>
 <p>The map below show the location of those sites. For each sites some extra information are available on clicks.</p>
-<div id="htmlwidget-a65dcb5214918c554d82" style="width:864px;height:480px;" class="leaflet html-widget"></div>
-<script type="application/json" data-for="htmlwidget-a65dcb5214918c554d82">{"x":{"options":{"minZoom":1,"maxZoom":100,"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}},"bounceAtZoomLimits":false,"maxBounds":[[[-90,-370]],[[90,370]]]},"calls":[{"method":"addProviderTiles","args":["CartoDB.Positron",1,"CartoDB.Positron",{"errorTileUrl":"","noWrap":false,"zIndex":null,"unloadInvisibleTiles":null,"updateWhenIdle":null,"detectRetina":false,"reuseTiles":false}]},{"method":"addProviderTiles","args":["CartoDB.DarkMatter",2,"CartoDB.DarkMatter",{"errorTileUrl":"","noWrap":false,"zIndex":null,"unloadInvisibleTiles":null,"updateWhenIdle":null,"detectRetina":false,"reuseTiles":false}]},{"method":"addProviderTiles","args":["OpenStreetMap",3,"OpenStreetMap",{"errorTileUrl":"","noWrap":false,"zIndex":null,"unloadInvisibleTiles":null,"updateWhenIdle":null,"detectRetina":false,"reuseTiles":false}]},{"method":"addProviderTiles","args":["Esri.WorldImagery",4,"Esri.WorldImagery",{"errorTileUrl":"","noWrap":false,"zIndex":null,"unloadInvisibleTiles":null,"updateWhenIdle":null,"detectRetina":false,"reuseTiles":false}]},{"method":"addProviderTiles","args":["OpenTopoMap",5,"OpenTopoMap",{"errorTileUrl":"","noWrap":false,"zIndex":null,"unloadInvisibleTiles":null,"updateWhenIdle":null,"detectRetina":false,"reuseTiles":false}]},{"method":"addCircleMarkers","args":[[48.162539,48.333619,45.112803],[-79.401219,-68.817719,-72.541297],6,null,"spSite",{"lineCap":null,"lineJoin":null,"clickable":true,"pointerEvents":null,"className":"","stroke":true,"color":"#333333","weight":2,"opacity":0.9,"fill":true,"fillColor":"#6666FF","fillOpacity":0.6,"dashArray":null},null,null,["<html><head><link rel=\"stylesheet\" type=\"text/css\" href=\"lib/popup/popup.css\"><\/head><body><div class=\"scrollableContainer\"><table class=\"popup scrollable\"><table id=\"popup\"><tr class='coord'><td><\/td><td><b>Feature ID<\/b><\/td><td>abi<\/td><\/tr><tr class='alt'><td>1<\/td><td><b>id<\/b><\/td><td>abi<\/td><\/tr><tr><td>2<\/td><td><b>name<\/b><\/td><td>Abitibi-Temiscaminque<\/td><\/tr><tr class='alt'><td>3<\/td><td><b>lon<\/b><\/td><td>-79.401219<\/td><\/tr><tr><td>4<\/td><td><b>lat<\/b><\/td><td>48.162539<\/td><\/tr><tr class='alt'><td>5<\/td><td><b>plots<\/b><\/td><td>400<\/td><\/tr><tr><td>6<\/td><td><b>geometry<\/b><\/td><td>sfc_POINT<\/td><\/tr><\/table><\/body><\/html>","<html><head><link rel=\"stylesheet\" type=\"text/css\" href=\"lib/popup/popup.css\"><\/head><body><div class=\"scrollableContainer\"><table class=\"popup scrollable\"><table id=\"popup\"><tr class='coord'><td><\/td><td><b>Feature ID<\/b><\/td><td>bic<\/td><\/tr><tr class='alt'><td>1<\/td><td><b>id<\/b><\/td><td>bic<\/td><\/tr><tr><td>2<\/td><td><b>name<\/b><\/td><td>Le Bic<\/td><\/tr><tr class='alt'><td>3<\/td><td><b>lon<\/b><\/td><td>-68.817719<\/td><\/tr><tr><td>4<\/td><td><b>lat<\/b><\/td><td>48.333619<\/td><\/tr><tr class='alt'><td>5<\/td><td><b>plots<\/b><\/td><td>1024<\/td><\/tr><tr><td>6<\/td><td><b>geometry<\/b><\/td><td>sfc_POINT<\/td><\/tr><\/table><\/body><\/html>","<html><head><link rel=\"stylesheet\" type=\"text/css\" href=\"lib/popup/popup.css\"><\/head><body><div class=\"scrollableContainer\"><table class=\"popup scrollable\"><table id=\"popup\"><tr class='coord'><td><\/td><td><b>Feature ID<\/b><\/td><td>sut<\/td><\/tr><tr class='alt'><td>1<\/td><td><b>id<\/b><\/td><td>sut<\/td><\/tr><tr><td>2<\/td><td><b>name<\/b><\/td><td>Sutton<\/td><\/tr><tr class='alt'><td>3<\/td><td><b>lon<\/b><\/td><td>-72.541297<\/td><\/tr><tr><td>4<\/td><td><b>lat<\/b><\/td><td>45.112803<\/td><\/tr><tr class='alt'><td>5<\/td><td><b>plots<\/b><\/td><td>2000<\/td><\/tr><tr><td>6<\/td><td><b>geometry<\/b><\/td><td>sfc_POINT<\/td><\/tr><\/table><\/body><\/html>"],{"maxWidth":800,"minWidth":50,"maxHeight":null,"autoPan":true,"keepInView":false,"closeButton":true,"zoomAnimation":true,"closeOnClick":true,"className":""},["abi","bic","sut"],null,null]},{"method":"addScaleBar","args":[{"maxWidth":100,"metric":true,"imperial":true,"updateWhenIdle":true,"position":"bottomleft"}]},{"method":"addHomeButton","args":[-79.401219,45.112803,-68.817719,48.333619,"Zoom to spSite","<strong> spSite <\/strong>","bottomright"]},{"method":"addLayersControl","args":[["CartoDB.Positron","CartoDB.DarkMatter","OpenStreetMap","Esri.WorldImagery","OpenTopoMap"],"spSite",{"collapsed":true,"autoZIndex":true,"position":"topleft"}]}],"limits":{"lat":[45.112803,48.333619],"lng":[-79.401219,-68.817719]}},"evals":[],"jsHooks":{"render":[{"code":"function(el, x, data) {\n  return (\nfunction(el, x, data) {\n\n  // get the leaflet map\n  var map = this; //HTMLWidgets.find('#' + el.id);\n\n  // we need a new div element because we have to handle\n  // the mouseover output separately\n  // debugger;\n  function addElement () {\n    // generate new div Element\n    var newDiv = $(document.createElement('div'));\n    // append at end of leaflet htmlwidget container\n    $(el).append(newDiv);\n    //provide ID and style\n    newDiv.addClass('lnlt');\n    newDiv.css({\n      'position': 'relative',\n      'bottomleft':  '0px',\n      'background-color': 'rgba(255, 255, 255, 0.7)',\n      'box-shadow': '0 0 2px #bbb',\n      'background-clip': 'padding-box',\n      'margin': '0',\n      'padding-left': '5px',\n      'color': '#333',\n      'font': '9px/1.5 \"Helvetica Neue\", Arial, Helvetica, sans-serif',\n    });\n    return newDiv;\n  }\n\n  // check for already existing lnlt class to not duplicate\n  var lnlt = $(el).find('.lnlt');\n  if(!lnlt.length) {\n    lnlt = addElement();\n\n    // grab the special div we generated in the beginning\n    // and put the mousmove output there\n    map.on('mousemove', function (e) {\n      lnlt.text(\n      ' x: ' + L.CRS.EPSG3857.project(e.latlng).x.toFixed(0) +\n      ' | y: ' + L.CRS.EPSG3857.project(e.latlng).y.toFixed(0) +\n      ' | epsg: 3857 ' +\n      ' | proj4: +proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs ' +\n      ' | lon: ' + (e.latlng.lng).toFixed(5) +\n      ' | lat: ' + (e.latlng.lat).toFixed(5) +\n      ' | zoom: ' + map.getZoom() + ' ');\n    })\n  };\n}\n).call(this.getMap(), el, x, data);\n}","data":null}]}}</script>
+<div id="htmlwidget-780f8a91d0cc2a4c616f" style="width:864px;height:480px;" class="leaflet html-widget"></div>
+<script type="application/json" data-for="htmlwidget-780f8a91d0cc2a4c616f">{"x":{"options":{"minZoom":1,"maxZoom":100,"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}},"bounceAtZoomLimits":false,"maxBounds":[[[-90,-370]],[[90,370]]]},"calls":[{"method":"addProviderTiles","args":["CartoDB.Positron",1,"CartoDB.Positron",{"errorTileUrl":"","noWrap":false,"zIndex":null,"unloadInvisibleTiles":null,"updateWhenIdle":null,"detectRetina":false,"reuseTiles":false}]},{"method":"addProviderTiles","args":["CartoDB.DarkMatter",2,"CartoDB.DarkMatter",{"errorTileUrl":"","noWrap":false,"zIndex":null,"unloadInvisibleTiles":null,"updateWhenIdle":null,"detectRetina":false,"reuseTiles":false}]},{"method":"addProviderTiles","args":["OpenStreetMap",3,"OpenStreetMap",{"errorTileUrl":"","noWrap":false,"zIndex":null,"unloadInvisibleTiles":null,"updateWhenIdle":null,"detectRetina":false,"reuseTiles":false}]},{"method":"addProviderTiles","args":["Esri.WorldImagery",4,"Esri.WorldImagery",{"errorTileUrl":"","noWrap":false,"zIndex":null,"unloadInvisibleTiles":null,"updateWhenIdle":null,"detectRetina":false,"reuseTiles":false}]},{"method":"addProviderTiles","args":["OpenTopoMap",5,"OpenTopoMap",{"errorTileUrl":"","noWrap":false,"zIndex":null,"unloadInvisibleTiles":null,"updateWhenIdle":null,"detectRetina":false,"reuseTiles":false}]},{"method":"addCircleMarkers","args":[[48.162539,48.333619,45.112803],[-79.401219,-68.817719,-72.541297],6,null,"spSite",{"lineCap":null,"lineJoin":null,"clickable":true,"pointerEvents":null,"className":"","stroke":true,"color":"#333333","weight":2,"opacity":0.9,"fill":true,"fillColor":"#6666FF","fillOpacity":0.6,"dashArray":null},null,null,["<html><head><link rel=\"stylesheet\" type=\"text/css\" href=\"lib/popup/popup.css\"><\/head><body><div class=\"scrollableContainer\"><table class=\"popup scrollable\"><table id=\"popup\"><tr class='coord'><td><\/td><td><b>Feature ID<\/b><\/td><td>abi<\/td><\/tr><tr class='alt'><td>1<\/td><td><b>id<\/b><\/td><td>abi<\/td><\/tr><tr><td>2<\/td><td><b>name<\/b><\/td><td>Abitibi-Temiscaminque<\/td><\/tr><tr class='alt'><td>3<\/td><td><b>lon<\/b><\/td><td>-79.401219<\/td><\/tr><tr><td>4<\/td><td><b>lat<\/b><\/td><td>48.162539<\/td><\/tr><tr class='alt'><td>5<\/td><td><b>plots<\/b><\/td><td>400<\/td><\/tr><tr><td>6<\/td><td><b>geometry<\/b><\/td><td>sfc_POINT<\/td><\/tr><\/table><\/body><\/html>","<html><head><link rel=\"stylesheet\" type=\"text/css\" href=\"lib/popup/popup.css\"><\/head><body><div class=\"scrollableContainer\"><table class=\"popup scrollable\"><table id=\"popup\"><tr class='coord'><td><\/td><td><b>Feature ID<\/b><\/td><td>bic<\/td><\/tr><tr class='alt'><td>1<\/td><td><b>id<\/b><\/td><td>bic<\/td><\/tr><tr><td>2<\/td><td><b>name<\/b><\/td><td>Le Bic<\/td><\/tr><tr class='alt'><td>3<\/td><td><b>lon<\/b><\/td><td>-68.817719<\/td><\/tr><tr><td>4<\/td><td><b>lat<\/b><\/td><td>48.333619<\/td><\/tr><tr class='alt'><td>5<\/td><td><b>plots<\/b><\/td><td>1024<\/td><\/tr><tr><td>6<\/td><td><b>geometry<\/b><\/td><td>sfc_POINT<\/td><\/tr><\/table><\/body><\/html>","<html><head><link rel=\"stylesheet\" type=\"text/css\" href=\"lib/popup/popup.css\"><\/head><body><div class=\"scrollableContainer\"><table class=\"popup scrollable\"><table id=\"popup\"><tr class='coord'><td><\/td><td><b>Feature ID<\/b><\/td><td>sut<\/td><\/tr><tr class='alt'><td>1<\/td><td><b>id<\/b><\/td><td>sut<\/td><\/tr><tr><td>2<\/td><td><b>name<\/b><\/td><td>Sutton<\/td><\/tr><tr class='alt'><td>3<\/td><td><b>lon<\/b><\/td><td>-72.541297<\/td><\/tr><tr><td>4<\/td><td><b>lat<\/b><\/td><td>45.112803<\/td><\/tr><tr class='alt'><td>5<\/td><td><b>plots<\/b><\/td><td>2000<\/td><\/tr><tr><td>6<\/td><td><b>geometry<\/b><\/td><td>sfc_POINT<\/td><\/tr><\/table><\/body><\/html>"],{"maxWidth":800,"minWidth":50,"maxHeight":null,"autoPan":true,"keepInView":false,"closeButton":true,"zoomAnimation":true,"closeOnClick":true,"className":""},["abi","bic","sut"],null,null]},{"method":"addScaleBar","args":[{"maxWidth":100,"metric":true,"imperial":true,"updateWhenIdle":true,"position":"bottomleft"}]},{"method":"addHomeButton","args":[-79.401219,45.112803,-68.817719,48.333619,"Zoom to spSite","<strong> spSite <\/strong>","bottomright"]},{"method":"addLayersControl","args":[["CartoDB.Positron","CartoDB.DarkMatter","OpenStreetMap","Esri.WorldImagery","OpenTopoMap"],"spSite",{"collapsed":true,"autoZIndex":true,"position":"topleft"}]}],"limits":{"lat":[45.112803,48.333619],"lng":[-79.401219,-68.817719]}},"evals":[],"jsHooks":{"render":[{"code":"function(el, x, data) {\n  return (\nfunction(el, x, data) {\n\n  // get the leaflet map\n  var map = this; //HTMLWidgets.find('#' + el.id);\n\n  // we need a new div element because we have to handle\n  // the mouseover output separately\n  // debugger;\n  function addElement () {\n    // generate new div Element\n    var newDiv = $(document.createElement('div'));\n    // append at end of leaflet htmlwidget container\n    $(el).append(newDiv);\n    //provide ID and style\n    newDiv.addClass('lnlt');\n    newDiv.css({\n      'position': 'relative',\n      'bottomleft':  '0px',\n      'background-color': 'rgba(255, 255, 255, 0.7)',\n      'box-shadow': '0 0 2px #bbb',\n      'background-clip': 'padding-box',\n      'margin': '0',\n      'padding-left': '5px',\n      'color': '#333',\n      'font': '9px/1.5 \"Helvetica Neue\", Arial, Helvetica, sans-serif',\n    });\n    return newDiv;\n  }\n\n  // check for already existing lnlt class to not duplicate\n  var lnlt = $(el).find('.lnlt');\n  if(!lnlt.length) {\n    lnlt = addElement();\n\n    // grab the special div we generated in the beginning\n    // and put the mousmove output there\n    map.on('mousemove', function (e) {\n      lnlt.text(\n      ' x: ' + L.CRS.EPSG3857.project(e.latlng).x.toFixed(0) +\n      ' | y: ' + L.CRS.EPSG3857.project(e.latlng).y.toFixed(0) +\n      ' | epsg: 3857 ' +\n      ' | proj4: +proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs ' +\n      ' | lon: ' + (e.latlng.lng).toFixed(5) +\n      ' | lat: ' + (e.latlng.lat).toFixed(5) +\n      ' | zoom: ' + map.getZoom() + ' ');\n    })\n  };\n}\n).call(this.getMap(), el, x, data);\n}","data":null}]}}</script>
 <p><br></p>
 </section>
 <section id="tree-species-of-the-study" class="level2">
@@ -6249,17 +6250,16 @@ div.tocify {
 </section>
 <section id="recruitment-data" class="level2">
 <h2>Recruitment data</h2>
-<p>A link to the dataset would hopefully be available before publication.</p>
+<p>A link to the dataset would hopefully be available before publication. <!-- even as rda... --></p>
 </section>
 </section>
-<section id="statistical-model" class="level1">
-<h1>Statistical model</h1>
-<p>Below are detailed all the steps we used during the study.</p>
+<section id="statistical-models" class="level1">
+<h1>Statistical models</h1>
+<p>Below are detailed the steps to reproduce our analysis.</p>
 <section id="model" class="level2">
 <h2>Model</h2>
-</section>
-<section id="parameters" class="level2">
-<h2>Parameters</h2>
+<section id="parameters" class="level3">
+<h3>Parameters</h3>
 <table>
 <thead>
 <tr class="header">
@@ -6286,6 +6286,7 @@ div.tocify {
 </tr>
 </tbody>
 </table>
+</section>
 <section id="kernels" class="level3">
 <h3>Kernels</h3>
 <table>
@@ -6331,11 +6332,262 @@ div.tocify {
 </tbody>
 </table>
 </section>
-<section id="overall-strategy-of-our-analysis" class="level3">
-<h3>Overall strategy of our analysis</h3>
-<p>Likelihood optimization using simulated annealing (implemented by the <a href="https://cran.r-project.org/web/packages/GenSA/index.html">GenSA</a> package). For different models (40 models for each combination site x species x year x age).</p>
-<p><br><br> # Numerical implementation</p>
 </section>
+<section id="overall-strategy-for-the-analysis" class="level2">
+<h2>Overall strategy for the analysis</h2>
+<p>Likelihood optimization using simulated annealing (implemented by the <a href="https://cran.r-project.org/web/packages/GenSA/index.html">GenSA</a> package). For different models (40 models for each combination site x species x year x age).</p>
+</section>
+<section id="simulations-design" class="level2">
+<h2>Simulations design</h2>
+<pre class="r"><code>data(simuDesign)
+knitr::kable(head(simuDesign, 16))</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">site</th>
+<th style="text-align: left;">tree</th>
+<th style="text-align: right;">year</th>
+<th style="text-align: left;">age</th>
+<th style="text-align: left;">pz</th>
+<th style="text-align: right;">disp</th>
+<th style="text-align: left;">favo</th>
+<th style="text-align: left;">neigh</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">abi</td>
+<td style="text-align: left;">ABBA</td>
+<td style="text-align: right;">2015</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">TRUE</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: left;">TRUE</td>
+<td style="text-align: left;">TRUE</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">abi</td>
+<td style="text-align: left;">ABBA</td>
+<td style="text-align: right;">2015</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">TRUE</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">TRUE</td>
+<td style="text-align: left;">TRUE</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">abi</td>
+<td style="text-align: left;">ABBA</td>
+<td style="text-align: right;">2015</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">TRUE</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">TRUE</td>
+<td style="text-align: left;">TRUE</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">abi</td>
+<td style="text-align: left;">ABBA</td>
+<td style="text-align: right;">2015</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">TRUE</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: left;">TRUE</td>
+<td style="text-align: left;">TRUE</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">abi</td>
+<td style="text-align: left;">ABBA</td>
+<td style="text-align: right;">2015</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">TRUE</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: left;">TRUE</td>
+<td style="text-align: left;">TRUE</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">abi</td>
+<td style="text-align: left;">ABBA</td>
+<td style="text-align: right;">2015</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">TRUE</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: left;">FALSE</td>
+<td style="text-align: left;">TRUE</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">abi</td>
+<td style="text-align: left;">ABBA</td>
+<td style="text-align: right;">2015</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">TRUE</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">FALSE</td>
+<td style="text-align: left;">TRUE</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">abi</td>
+<td style="text-align: left;">ABBA</td>
+<td style="text-align: right;">2015</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">TRUE</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">FALSE</td>
+<td style="text-align: left;">TRUE</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">abi</td>
+<td style="text-align: left;">ABBA</td>
+<td style="text-align: right;">2015</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">TRUE</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: left;">FALSE</td>
+<td style="text-align: left;">TRUE</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">abi</td>
+<td style="text-align: left;">ABBA</td>
+<td style="text-align: right;">2015</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">TRUE</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: left;">FALSE</td>
+<td style="text-align: left;">TRUE</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">abi</td>
+<td style="text-align: left;">ABBA</td>
+<td style="text-align: right;">2015</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">TRUE</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: left;">TRUE</td>
+<td style="text-align: left;">FALSE</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">abi</td>
+<td style="text-align: left;">ABBA</td>
+<td style="text-align: right;">2015</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">TRUE</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">TRUE</td>
+<td style="text-align: left;">FALSE</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">abi</td>
+<td style="text-align: left;">ABBA</td>
+<td style="text-align: right;">2015</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">TRUE</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">TRUE</td>
+<td style="text-align: left;">FALSE</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">abi</td>
+<td style="text-align: left;">ABBA</td>
+<td style="text-align: right;">2015</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">TRUE</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: left;">TRUE</td>
+<td style="text-align: left;">FALSE</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">abi</td>
+<td style="text-align: left;">ABBA</td>
+<td style="text-align: right;">2015</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">TRUE</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: left;">TRUE</td>
+<td style="text-align: left;">FALSE</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">abi</td>
+<td style="text-align: left;">ABBA</td>
+<td style="text-align: right;">2015</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">TRUE</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: left;">FALSE</td>
+<td style="text-align: left;">FALSE</td>
+</tr>
+</tbody>
+</table>
+<p>for each row we have a likelihood approach.</p>
+<p><br></p>
+</section>
+<section id="numerical-implementation" class="level2">
+<h2>Numerical implementation</h2>
+<p>For each row of <code>simuDesign</code> column are arguments passed to <code>recruitmentAnalysis()</code> in which:</p>
+<p>1- parameters are computed for the simulated annealing (<code>getParameters()</code>)</p>
+<p>2- simulated annealing is performed (<code>GenSA()</code> from GenSA package) to minimize the likelihood (<code>getLikelihood()</code>).</p>
+<pre class="r"><code>knitr::kable(getParameters(T, T, T, lognormal = FALSE))</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th style="text-align: right;">STR</th>
+<th style="text-align: right;">Pz</th>
+<th style="text-align: right;">scal</th>
+<th style="text-align: right;">shap</th>
+<th style="text-align: right;">pm</th>
+<th style="text-align: right;">pl</th>
+<th style="text-align: right;">pn</th>
+<th style="text-align: right;">pd</th>
+<th style="text-align: right;">ps</th>
+<th style="text-align: right;">pb</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>start</td>
+<td style="text-align: right;">1e+02</td>
+<td style="text-align: right;">0.5</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">0.5</td>
+<td style="text-align: right;">0.5</td>
+<td style="text-align: right;">0.5</td>
+<td style="text-align: right;">0.5</td>
+<td style="text-align: right;">0.5</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="even">
+<td>low</td>
+<td style="text-align: right;">0e+00</td>
+<td style="text-align: right;">0.0</td>
+<td style="text-align: right;">0.02</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.0</td>
+<td style="text-align: right;">0.0</td>
+<td style="text-align: right;">0.0</td>
+<td style="text-align: right;">0.0</td>
+<td style="text-align: right;">0.0</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td>high</td>
+<td style="text-align: right;">1e+06</td>
+<td style="text-align: right;">1.0</td>
+<td style="text-align: right;">20.00</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">1.0</td>
+<td style="text-align: right;">1.0</td>
+<td style="text-align: right;">1.0</td>
+<td style="text-align: right;">1.0</td>
+<td style="text-align: right;">1.0</td>
+<td style="text-align: right;">1000</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="example" class="level2">
+<h2>Example</h2>
+<p>Do it for the quick one (the one with nothing)</p>
 </section>
 </section>
 
