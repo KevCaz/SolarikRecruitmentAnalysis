@@ -4,10 +4,10 @@
 \alias{getLikelihood}
 \title{Compute the likelihood.}
 \usage{
-getLikelihood(pars, obs, zero_infl = FALSE, neigh = NULL, disp = NULL,
-  favo = NULL, SDBH = NULL, kernel = "kern_lognormal", pstr = NA,
-  ppz = NA, pscal = NA, pshap = NA, pfav = NA, pneigh = NA,
-  quiet = TRUE, record = NULL)
+getLikelihood(pars, obs, zero_infl = FALSE, neigh = NULL,
+  disp = NULL, favo = NULL, SDBH = NULL, kernel = "kern_lognormal",
+  pstr = NA, ppz = NA, pscal = NA, pshap = NA, pfav = NA,
+  pneigh = NA, quiet = TRUE, record = NULL)
 }
 \arguments{
 \item{pars}{vector of parameters values, the size must}

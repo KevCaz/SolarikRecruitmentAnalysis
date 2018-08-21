@@ -4,8 +4,8 @@
 \alias{formatData}
 \title{Functions to format data.}
 \usage{
-formatData(fl_trees, fl_regen, fl_regen2, treesp, abbr_site, path_out = ".",
-  dist_buffer = 20, export = TRUE)
+formatData(fl_trees, fl_regen, fl_regen2, treesp, abbr_site,
+  path_out = ".", dist_buffer = 20, export = TRUE)
 }
 \arguments{
 \item{fl_trees}{a character string indicating path to the .csv file including the georeferenced trees.}

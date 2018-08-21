@@ -1,6 +1,7 @@
 #' Get parameters values.
 #'
-#' A function to get ranges and starting values for the parameters associated to a given simulation.
+#' A function to get ranges and starting values for the parameters associated to
+#' a given simulation.
 #'
 #' @author
 #' Kevin Cazelles
@@ -24,8 +25,8 @@ getParameters <- function(disp = TRUE, favo = TRUE, neigh = TRUE, lognormal = FA
     mat_par <- rbind(st <- c(100, 0.5, 1, 2, rep(0.5, 5), 1), lo <- c(0, 0, 0.02, 
         1, rep(0, 5), 0), hg <- c(10^6, 1, 20, 4, rep(1, 5), 1000))
     if (lognormal) {
-        mat_par[, 3] <- c(1, 0.01, 20)  # peak min = 1 cm max 20m
-        mat_par[, 4] <- c(1, delta, 5)
+        mat_par[, 3L] <- c(1, 0.01, 20)  # peak min = 1 cm max 20m
+        mat_par[, 4L] <- c(1, delta, 5)
     }
     colnames(mat_par) <- cnm
     rownames(mat_par) <- rnm
@@ -37,7 +38,7 @@ getParameters <- function(disp = TRUE, favo = TRUE, neigh = TRUE, lognormal = FA
     if (!neigh) 
         mat_par <- mat_par[, !colnames(mat_par) %in% c("pb")]
     
-    return(mat_par)
+    mat_par
 }
 
 

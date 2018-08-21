@@ -5,7 +5,8 @@
 \alias{convertTreeAbbr}
 \title{Get parameters values.}
 \usage{
-getParameters(disp = TRUE, favo = TRUE, neigh = TRUE, lognormal = FALSE)
+getParameters(disp = TRUE, favo = TRUE, neigh = TRUE,
+  lognormal = FALSE)
 
 convertTreeAbbr(abbr, full_names = FALSE)
 }
@@ -26,7 +27,8 @@ convertTreeAbbr(abbr, full_names = FALSE)
 A matrix including the parameters ranges and starting values.
 }
 \description{
-A function to get ranges and starting values for the parameters associated to a given simulation.
+A function to get ranges and starting values for the parameters associated to
+a given simulation.
 }
 \section{Functions}{
 \itemize{

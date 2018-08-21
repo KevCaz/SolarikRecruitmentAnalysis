@@ -19,14 +19,14 @@
 #'
 #' @export
 
-getConfInt <- function(filename, rm_pat = "codekev12", basename_out = "../codekev12/resf/resf_",
+getConfInt <- function(filename, rm_pat = "codekev12", basename_out = "../codekev12/resf/resf_", 
     datasim = "dataReady/simu_all.Rds", quiet = TRUE) {
-
+    
     ## The names of the files to be read countains the id, we get below.
-    id <- filename %>% gsub(pattern = rm_pat, replacement = "") %>% gsub(pattern = "\\D",
+    id <- filename %>% gsub(pattern = rm_pat, replacement = "") %>% gsub(pattern = "\\D", 
         replacement = "") %>% as.numeric
-    ##
-    if (!quiet)
+    ## 
+    if (!quiet) 
         print(id)
     ## read *id* line of datasim
     lin <- readRDS(file = datasim)[id, ]
@@ -47,8 +47,8 @@ getConfInt <- function(filename, rm_pat = "codekev12", basename_out = "../codeke
         lik <- Inf
     }
     ## Make the list to be returned
-    ls_out <- list(likelihood = lik, pars = out) %T>% saveRDS(file = paste0(basename_out,
+    ls_out <- list(likelihood = lik, pars = out) %T>% saveRDS(file = paste0(basename_out, 
         inSilecoMisc::adjustString(id, 4L), ".Rds"))
-    ##
-    return(ls_out)
+    ## 
+    ls_out
 }

@@ -2,12 +2,12 @@
 title: Seedlings recruitment analysis of Solarik et al. XXXX paper.
 author: Kevin Cazelles and Kevin Solarik
 date: '`r Sys.Date()`'
-#output:
-#  html_document:
-#    theme: readable
-#    toc: true
-#    toc_float: true
-output: rmarkdown::html_vignette
+output:
+  # rmarkdown::html_vignette
+  html_document:
+      theme: readable
+      toc: true
+      toc_float: true
 vignette: >
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteIndexEntry{Vignette Title}
@@ -15,14 +15,15 @@ vignette: >
 ---
 
 
-```{r, echo=FALSE}
+```{r, echo=FALSE, message = FALSE}
 devtools::load_all()
 ```
 
 <br>
-<br>
 
-This vignette aims at guiding the reader through the different steps of the analysis we carried out in Solarik _et al._ XXXX. Data, R code and this vignette are available at <https://github.com/KevCaz/seedlingsRecruitmentAnalysis>.
+This vignette aims at guiding the reader through the different steps of the
+analysis carried out in Solarik _et al._ XXXX. Data, R code and this vignette
+are available at <https://github.com/KevCaz/seedlingsRecruitmentAnalysis>.
 
 # Data
 
@@ -54,7 +55,6 @@ spSite <- sp::SpatialPointsDataFrame(
   proj4string = sp::CRS("+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs +towgs84=0,0,0")
  )
  mapview::mapview(spSite)@map
-
 ```
 
 
@@ -95,7 +95,19 @@ A link to the dataset would hopefully be available before publication.
 
 Below are detailed the steps to reproduce our analysis.
 
-## Model
+## Models
+
+### General equation
+
+For a givens species and a given year, the seeds recruitment depends on:
+
+- the fecondity of surrounding individuals of the same species
+- the substrate favorability
+- the neighborhood effect
+
+
+$$R_i = \text{STR}\sum_{j=1}^Sc_{i,j}f_{i,j}\sum_{k=1}^T\left(\frac{\text{DBH}_k}{30}\right)^2 \frac{1}{K}e^{-\text{DM}_{i,k}}e^{-\frac{h_i}{1-h_i}\sum_{l=1}^Ba_{i,l}}$$
+
 
 ### Parameters
 
@@ -117,27 +129,33 @@ Below are detailed the steps to reproduce our analysis.
 |4     |D-    |power-exponetial|no-clip|
 
 
-## Overall strategy for the analysis
 
-Likelihood optimization using simulated annealing
-(implemented by the [GenSA](https://cran.r-project.org/web/packages/GenSA/index.html) package).
-For different models (40 models for each combination site x species x year x age).
+## Simulations
 
 
-## Simulations design
+### Overall strategy
+
+Below we present the 15 first models (each row is a model) out of the
+`r nrow(simuDesign)/7` we tested for  *Abies balsamea*.
 
 ```{r simudesign}
 data(simuDesign)
-knitr::kable(head(simuDesign, 16))
+knitr::kable(head(simuDesign, 15))
 ```
 
-for each row we have a likelihood approach.
-
+For each model, we estimate the parameters through the maximization of the
+likelihood (minimization of the likelihood log-transformed) for the corresponding
+data. As our model is not linear and highly customized we optimized the likelihood
+with a simulated annealing algorithm.
 
 
 <br>
 
-## Numerical implementation
+### Numerical implementation
+
+(implemented by the [GenSA](https://cran.r-project.org/web/packages/GenSA/index.html) package).
+For different models (40 models for each combination site x species x year x age).
+
 
 For each row of `simuDesign` column are arguments passed to `recruitmentAnalysis()`
 in which:

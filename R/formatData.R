@@ -68,6 +68,6 @@ formatData <- function(fl_trees, fl_regen, fl_regen2, treesp, abbr_site, path_ou
         saveRDS(iddist, file = paste0(path_out, "/iddist", abbr_site, ".rds"))
     }
     
-    ## Return all the data as a list.
-    return(list(trees, regen, regen2, lsdist, iddist))
+    ## data as a list.
+    list(trees, regen, regen2, lsdist, iddist)
 }

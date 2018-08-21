@@ -10,8 +10,8 @@ recuitmentAnalysis(site, year, tree, age, mat_par, path = "dataReady/",
   clip = NULL, kernel = "kern_lognormal", mxt = 100, quiet = TRUE,
   record = NULL)
 
-launchIt(iter, simu_file = "dataReady/simu_all.Rds", mxt = 100,
-  record = "test.txt", quiet = TRUE)
+launchIt(iter, simu = NULL, simu_file = "dataReady/simu_all.Rds",
+  mxt = 100, record = "test.txt", quiet = TRUE)
 }
 \arguments{
 \item{site}{site name.}
@@ -44,9 +44,11 @@ launchIt(iter, simu_file = "dataReady/simu_all.Rds", mxt = 100,
 
 \item{record}{a connection, or a character string naming the file to print to. If \code{NULL}, the default values, no record is done.}
 
-\item{iter}{a interger.}
+\item{iter}{a interger indentifying the iteration.}
 
 \item{simu_file}{a file that includes a description of simulation.}
+
+\item{a}{file that includes a description of simulation.}
 }
 \value{
 The log-likelihood values associated to a given set of parameters.
@@ -60,7 +62,7 @@ The parameter \code{pz} have a value even if it is not included in the analysis 
 }
 \section{Functions}{
 \itemize{
-\item \code{launchIt}: Lauch the analysis for a given row of the simulation dataframe.
+\item \code{launchIt}: Launch the analysis for a given row of the simulation data frame or file.
 }}
 
 \author{

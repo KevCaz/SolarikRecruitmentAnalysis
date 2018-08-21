@@ -8,6 +8,8 @@ Status](https://travis-ci.org/KevCaz/seedlingsRecruitmentAnalysis.svg?branch=mas
 <!-- [![codecov](https://codecov.io/gh/KevCaz/seedlingsRecruitmentAnalysis/branch/master/graph/badge.svg)](https://codecov.io/gh/KevCaz/seedlingsrecruitmentanalysis)
  -->
 
+Functions are written using Camel case (*e.g.* `formatData()`).
+
 seedlingsRecruitmentAnalysis
 ============================
 
@@ -20,9 +22,6 @@ discuss and handle potential code issues.
 The whole analysis pipeline is described in the package’s vignette and
 accessible as a
 [webpage](https://kevcaz.github.io/seedlingsRecruitmentAnalysis/).
-
-Functions of package names are written using Camel case (*e.g.*
-`formatData()`).
 
 How to use this R package
 -------------------------

@@ -24,7 +24,8 @@
 #' @param mxt a numeric. Maximum running time in seconds (see \link[GenSA]{GenSA}).
 #' @param quiet logial. If \code{TRUE} details about the state of simulations are printed.
 #' @param record a connection, or a character string naming the file to print to. If \code{NULL}, the default values, no record is done.
-#' @param iter a interger.
+#' @param iter a interger indentifying the iteration.
+#' @param a file that includes a description of simulation.
 #' @param simu_file a file that includes a description of simulation.
 #'
 #' @export
@@ -45,9 +46,9 @@ recuitmentAnalysis <- function(site, year, tree, age, mat_par, path = "dataReady
     obs <- reg[, paste0(convertTreeAbbr(tree), "_", age)]
     ## 
     ker <- FALSE
-    if (kernel == "kern_lognormal") {
+    if (kernel == "kern_lognormal") 
         ker <- TRUE
-    }
+    
     pars <- getParameters(disp, favo, neigh, lognormal = FALSE)
     ## Finding the index of parameters
     pstr <- which(colnames(pars) == "STR")
@@ -78,10 +79,7 @@ recuitmentAnalysis <- function(site, year, tree, age, mat_par, path = "dataReady
             disp <- disp0
             SDBH <- rep(list(SDBH0), nbq)
         }
-    } else {
-        disp <- NULL
-        SDBH <- NULL
-    }
+    } else SDBH <- disp <- NULL
     if (!quiet) 
         print(pars)
     ## 
@@ -106,17 +104,18 @@ recuitmentAnalysis <- function(site, year, tree, age, mat_par, path = "dataReady
         obs = obs, zero_infl = zero_infl, disp = disp, SDBH = SDBH, kernel = "kern_lognormal", 
         neigh = neigh, favo = favo, quiet = quiet, pstr = pstr, ppz = ppz, pscal = pscal, 
         pshap = pshap, pfav = pfav, pneigh = pneigh, record = record)
-    # 
-    return(resSA)
+    # OUTPUT
+    resSA
 }
 
 
-#' @describeIn recuitmentAnalysis Lauch the analysis for a given row of the simulation dataframe.
+#' @describeIn recuitmentAnalysis Launch the analysis for a given row of the simulation data frame or file.
 #' @export
-launchIt <- function(iter, simu_file = "dataReady/simu_all.Rds", mxt = 100, record = "test.txt", 
-    quiet = TRUE) {
+launchIt <- function(iter, simu = NULL, simu_file = "dataReady/simu_all.Rds", mxt = 100, 
+    record = "test.txt", quiet = TRUE) {
     ## 
-    simu <- readRDS(simu_file)
+    if (is.null(simu)) 
+        simu <- readRDS(simu_file)
     simu$site %<>% as.character
     simu$tree %<>% as.character
     simu$age %<>% as.character
