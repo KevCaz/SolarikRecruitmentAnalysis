@@ -41,7 +41,7 @@ fast_finish: true
 build_script:
   - travis-tool.sh install_deps
   - travis-tool.sh install_github KevCaz/recruitR
-  - travis-tool.sh install_github inSileco/letiRmisc
+  - travis-tool.sh install_github inSileco/inSilecomisc
   - travis-tool.sh install_github inSileco/graphicsUtils
 
 test_script:

@@ -14,7 +14,7 @@ before_install:
 
 before_script:
   - Rscript -e 'install.packages(c("devtools", "mapview"))'
-  - Rscript -e 'devtools::install_github(c("KevCaz/recruitR", "inSileco/letiRmisc", "inSileco/graphicsUtils"))'
+  - Rscript -e 'devtools::install_github(c("KevCaz/recruitR", "inSileco/inSilecoMisc", "inSileco/graphicsUtils"))'
 
 
 after_success:

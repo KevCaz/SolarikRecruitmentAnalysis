@@ -35,7 +35,7 @@ packages:
 
 ``` r
 library(devtools)
-install_github(c('KevCaz/recruitR', 'inSileco/letiRmisc', 'inSileco/graphicsUtils'))
+install_github(c('KevCaz/recruitR', 'inSileco/inSilecoMisc', 'inSileco/graphicsUtils'))
 ```
 
 including this package:

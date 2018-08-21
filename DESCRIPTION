@@ -1,11 +1,11 @@
 Package: seedlingsRecruitementAnalysis
-Title: Analysis of seedlings recruitment as in Solarik et al.
+Title: Analysis of seedlings recruitment as in Solarik et al. 2018
 Version: 0.1.1
 Authors@R: c(
-  person("Kevin", "Cazelles", email = "kevin.cazelle@uoguelph.ca", role = c("aut", "cre")),
+  person("Kevin", "Cazelles", email = "kevin.cazelle@uoguelph.ca", comment = c(ORCID = "0000-0001-6619-9874"), role = c("aut", "cre")),
   person("Kevin", "Solarik", email = "kevinsolarik@hotmail.com", role = c("aut"))
   )
-Description: Set of R functions used in Solarik et al. 2017 paper.
+Description: Set of R functions used in Solarik et al. 2018 paper.
 License: GPL-3
 LazyData: true
 Depends:
@@ -14,7 +14,7 @@ Imports:
     GenSA,
     graphics,
     graphicsutils,
-    letiRmisc,
+    inSilecoMisc,
     magrittr,
     recruitR,
     sp,
@@ -22,11 +22,10 @@ Imports:
     utils
 Remotes: KevCaz/recruitR,
     inSileco/graphicsUtils,
-    inSileco/letiRmisc
+    inSileco/inSilecoMisc
 Suggests: knitr,
     mapview,
     rmarkdown,
     testthat
-VignetteBuilder: rmarkdown,
-    knitr
+VignetteBuilder: knitr
 RoxygenNote: 6.0.1

@@ -31,13 +31,13 @@ formatData <- function(fl_trees, fl_regen, fl_regen2, treesp, abbr_site, path_ou
     ## Import the data based on the path to the files given as arguments.  tree data
     trees <- utils::read.csv(fl_trees, header = TRUE, stringsAsFactors = FALSE)
     ## Regeneration data for 2015
-    regen0 <- utils::read.csv(fl_regen, header = TRUE, stringsAsFactors = FALSE)
+    regen_0 <- utils::read.csv(fl_regen, header = TRUE, stringsAsFactors = FALSE)
     ## Regeneration data for 2016
-    regen20 <- utils::read.csv(fl_regen2, header = TRUE, stringsAsFactors = FALSE)
+    regen2_0 <- utils::read.csv(fl_regen2, header = TRUE, stringsAsFactors = FALSE)
     
     ## Subsetting (some plot are removed due to the border effect)
-    regen %<>% subset(X > -5 & X < 165 & Y > 15 & Y < 185)
-    regen2 %<>% subset(X > -5 & X < 165 & Y > 15 & Y < 185)
+    regen <- subset(regen_0, X > -5 & X < 165 & Y > 15 & Y < 185)
+    regen2 %<>% subset(regen_0, X > -5 & X < 165 & Y > 15 & Y < 185)
     
     ## List of distances between plots and
     lsdist <- list()
