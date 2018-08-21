@@ -4,18 +4,17 @@
 \alias{getConfInt}
 \title{Get Confidence Intervals.}
 \usage{
-getConfInt(filename, rm_pat = "codekev12",
-  basename_out = "../codekev12/resf/resf_",
-  datasim = "dataReady/simu_all.Rds", quiet = TRUE)
+getConfInt(filename, simu, iter, basename_out = "inst/resf_",
+  quiet = TRUE)
 }
 \arguments{
 \item{filename}{a character string, giving the path of output file to be read.}
 
-\item{rm_pat}{a pattern to be removed to get the simulation id.}
+\item{simu}{a data frame describing the simulation.}
+
+\item{iter}{a interger indentifying the iteration.}
 
 \item{basename_out}{basename of the file where results are written.}
-
-\item{datasim}{the path of the file of simulatipon.}
 
 \item{quiet}{logical. If \code{FALSE} then the id of the simulation is printed.}
 }

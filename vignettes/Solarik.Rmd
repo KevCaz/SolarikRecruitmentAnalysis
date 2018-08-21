@@ -3,7 +3,7 @@ title: Seedlings recruitment analysis of Solarik et al. XXXX paper.
 author: Kevin Cazelles and Kevin Solarik
 date: '`r Sys.Date()`'
 output:
-  # rmarkdown::html_vignette
+  #rmarkdown::html_vignette
   html_document:
       theme: readable
       toc: true
@@ -15,8 +15,8 @@ vignette: >
 ---
 
 
-```{r, echo=FALSE, message = FALSE}
-devtools::load_all()
+```{r,  message = FALSE}
+library(SolarikRecruitementAnalysis)
 ```
 
 <br>
@@ -153,26 +153,31 @@ with a simulated annealing algorithm.
 
 ### Numerical implementation
 
-(implemented by the [GenSA](https://cran.r-project.org/web/packages/GenSA/index.html) package).
-For different models (40 models for each combination site x species x year x age).
-
-
 For each row of `simuDesign` column are arguments passed to `recruitmentAnalysis()`
 in which:
 
-1- parameters are computed for the simulated annealing (`getParameters()`)
+1- parameters are computed for the simulated annealing (`getParameters()`),
 
-2- simulated annealing is performed (`GenSA()` from GenSA package) to minimize
+2- simulated annealing is performed (`GenSA()` from [GenSA](https://cran.r-project.org/web/packages/GenSA/index.html) package) to minimize
 the likelihood (`getLikelihood()`).
-
 
 
 ```{r getParameter}
 knitr::kable(getParameters(T, T, T, lognormal = FALSE))
 ```
 
+### Example
 
+The line below (not evaluated) allows to run for the 16<sup>th</sup> model.
 
-## Example
+```{r eval = FALSE}
+launchIt(iter = 16, simu = simuDesign, mxt = 100,
+  record = "inst/res/test.txt", quiet = TRUE, path = "inst/dataReady/")
+```
 
-Do it for the quick one (the one with nothing)
+In addition to the parameters estimation, we record estimation performed by
+`GenSA` in order to compute a confident interval.
+
+```{r eval = FALSE}
+getConfInt("inst/res/test.txt", simuDesign, 16, basename_out = "inst/resf_")
+```

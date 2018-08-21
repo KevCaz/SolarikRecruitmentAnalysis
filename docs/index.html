@@ -6305,6 +6305,7 @@ div.tocify {
 </div>
 
 
+<pre class="r"><code>library(SolarikRecruitementAnalysis)</code></pre>
 <p><br></p>
 <p>This vignette aims at guiding the reader through the different steps of the analysis carried out in Solarik <em>et al.</em> XXXX. Data, R code and this vignette are available at <a href="https://github.com/KevCaz/seedlingsRecruitmentAnalysis" class="uri">https://github.com/KevCaz/seedlingsRecruitmentAnalysis</a>.</p>
 <div id="data" class="section level1">
@@ -6414,8 +6415,18 @@ div.tocify {
 <div id="statistical-models" class="section level1">
 <h1>Statistical models</h1>
 <p>Below are detailed the steps to reproduce our analysis.</p>
-<div id="model" class="section level2">
-<h2>Model</h2>
+<div id="models" class="section level2">
+<h2>Models</h2>
+<div id="general-equation" class="section level3">
+<h3>General equation</h3>
+<p>For a givens species and a given year, the seeds recruitment depends on:</p>
+<ul>
+<li>the fecondity of surrounding individuals of the same species</li>
+<li>the substrate favorability</li>
+<li>the neighborhood effect</li>
+</ul>
+<p><span class="math display">\[R_i = \text{STR}\sum_{j=1}^Sc_{i,j}f_{i,j}\sum_{k=1}^T\left(\frac{\text{DBH}_k}{30}\right)^2 \frac{1}{K}e^{-\text{DM}_{i,k}}e^{-\frac{h_i}{1-h_i}\sum_{l=1}^Ba_{i,l}}\]</span></p>
+</div>
 <div id="parameters" class="section level3">
 <h3>Parameters</h3>
 <table>
@@ -6664,15 +6675,14 @@ knitr::kable(head(simuDesign, 15))</code></pre>
 </tr>
 </tbody>
 </table>
-<p>For each model, we estimate the parameters through the maximization of the likelihood (minimization of the likelihood log-transformed) for the corresponding data. As our model is not linear and highly customized we optimized the likelihood with simulated annealing algorithm.</p>
+<p>For each model, we estimate the parameters through the maximization of the likelihood (minimization of the likelihood log-transformed) for the corresponding data. As our model is not linear and highly customized we optimized the likelihood with a simulated annealing algorithm.</p>
 <p><br></p>
 </div>
 <div id="numerical-implementation" class="section level3">
 <h3>Numerical implementation</h3>
-<p>(implemented by the <a href="https://cran.r-project.org/web/packages/GenSA/index.html">GenSA</a> package). For different models (40 models for each combination site x species x year x age).</p>
 <p>For each row of <code>simuDesign</code> column are arguments passed to <code>recruitmentAnalysis()</code> in which:</p>
-<p>1- parameters are computed for the simulated annealing (<code>getParameters()</code>)</p>
-<p>2- simulated annealing is performed (<code>GenSA()</code> from GenSA package) to minimize the likelihood (<code>getLikelihood()</code>).</p>
+<p>1- parameters are computed for the simulated annealing (<code>getParameters()</code>),</p>
+<p>2- simulated annealing is performed (<code>GenSA()</code> from <a href="https://cran.r-project.org/web/packages/GenSA/index.html">GenSA</a> package) to minimize the likelihood (<code>getLikelihood()</code>).</p>
 <pre class="r"><code>knitr::kable(getParameters(T, T, T, lognormal = FALSE))</code></pre>
 <table>
 <thead>
@@ -6733,10 +6743,14 @@ knitr::kable(head(simuDesign, 15))</code></pre>
 </tbody>
 </table>
 </div>
+<div id="example" class="section level3">
+<h3>Example</h3>
+<p>The line below (not evaluated) allows to run for the 16<sup>th</sup> model.</p>
+<pre class="r"><code>launchIt(iter = 16, simu = simuDesign, mxt = 100,
+  record = &quot;inst/res/test.txt&quot;, quiet = TRUE, path = &quot;inst/dataReady/&quot;)</code></pre>
+<p>In addition to the parameters estimation, we record estimation performed by <code>GenSA</code> in order to compute a confident interval.</p>
+<pre class="r"><code>getConfInt(&quot;inst/res/test.txt&quot;, simuDesign, 16, basename_out = &quot;inst/resf_&quot;)</code></pre>
 </div>
-<div id="example" class="section level2">
-<h2>Example</h2>
-<p>Do it for the quick one (the one with nothing)</p>
 </div>
 </div>
 

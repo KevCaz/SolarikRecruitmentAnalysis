@@ -9,9 +9,9 @@
 #' @importFrom magrittr %T>%
 #'
 #' @param filename a character string, giving the path of output file to be read.
-#' @param rm_pat a pattern to be removed to get the simulation id.
+#' @param iter a interger indentifying the iteration.
+#' @param simu a data frame describing the simulation.
 #' @param basename_out basename of the file where results are written.
-#' @param datasim the path of the file of simulatipon.
 #' @param quiet logical. If \code{FALSE} then the id of the simulation is printed.
 #'
 #' @return
@@ -19,18 +19,13 @@
 #'
 #' @export
 
-getConfInt <- function(filename, rm_pat = "codekev12", basename_out = "../codekev12/resf/resf_", 
-    datasim = "dataReady/simu_all.Rds", quiet = TRUE) {
-    
-    ## The names of the files to be read countains the id, we get below.
-    id <- filename %>% gsub(pattern = rm_pat, replacement = "") %>% gsub(pattern = "\\D", 
-        replacement = "") %>% as.numeric
-    ## 
-    if (!quiet) 
-        print(id)
-    ## read *id* line of datasim
-    lin <- readRDS(file = datasim)[id, ]
-    out <- getParameters(disp = (lin$disp > 0), favo = lin$favo, neigh = lin$neigh)
+# getConfInt('inst/res/test.txt', simuDesign, 16)
+
+getConfInt <- function(filename, simu, iter, basename_out = "inst/resf_", quiet = TRUE) {
+    # 
+    sim <- simu[iter, ]
+    ## read *id* simue of datasim
+    out <- getParameters(disp = (sim$disp > 0), favo = sim$favo, neigh = sim$neigh)
     ## the estimation in the minimum not the last one!
     tmp <- try(utils::read.table(filename, dec = ".", sep = ""))
     if (class(tmp) != "try-error") {
@@ -48,7 +43,14 @@ getConfInt <- function(filename, rm_pat = "codekev12", basename_out = "../codeke
     }
     ## Make the list to be returned
     ls_out <- list(likelihood = lik, pars = out) %T>% saveRDS(file = paste0(basename_out, 
-        inSilecoMisc::adjustString(id, 4L), ".Rds"))
+        inSilecoMisc::adjustString(iter, 4L), ".rds"))
     ## 
     ls_out
+}
+
+
+getIter <- function(filename, rm_pat = "codekev12") {
+    ## The names of the files to be read countains the id, we get below.
+    filename %>% gsub(pattern = rm_pat, replacement = "") %>% gsub(pattern = "\\D", 
+        replacement = "") %>% as.numeric
 }

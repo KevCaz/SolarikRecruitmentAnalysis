@@ -25,7 +25,7 @@
 #' @param quiet logial. If \code{TRUE} details about the state of simulations are printed.
 #' @param record a connection, or a character string naming the file to print to. If \code{NULL}, the default values, no record is done.
 #' @param iter a interger indentifying the iteration.
-#' @param a file that includes a description of simulation.
+#' @param simu a data frame describing the simulation.
 #' @param simu_file a file that includes a description of simulation.
 #'
 #' @export
@@ -36,8 +36,8 @@
 #' @return
 #' The log-likelihood values associated to a given set of parameters.
 
-recuitmentAnalysis <- function(site, year, tree, age, mat_par, path = "dataReady/", 
-    zero_infl = FALSE, disp = FALSE, favo = FALSE, neigh = FALSE, clip = NULL, kernel = "kern_lognormal", 
+recuitmentAnalysis <- function(site, year, tree, age, mat_par, path = "./", zero_infl = FALSE, 
+    disp = FALSE, favo = FALSE, neigh = FALSE, clip = NULL, kernel = "kern_lognormal", 
     mxt = 100, quiet = TRUE, record = NULL) {
     ## Importing the data
     reg <- paste0(path, "regen", site, year, ".Rds") %>% readRDS
@@ -112,7 +112,7 @@ recuitmentAnalysis <- function(site, year, tree, age, mat_par, path = "dataReady
 #' @describeIn recuitmentAnalysis Launch the analysis for a given row of the simulation data frame or file.
 #' @export
 launchIt <- function(iter, simu = NULL, simu_file = "dataReady/simu_all.Rds", mxt = 100, 
-    record = "test.txt", quiet = TRUE) {
+    record = "test.txt", quiet = TRUE, path = "dataReady/") {
     ## 
     if (is.null(simu)) 
         simu <- readRDS(simu_file)
@@ -134,13 +134,13 @@ launchIt <- function(iter, simu = NULL, simu_file = "dataReady/simu_all.Rds", mx
             clip = 20
         } else clip = NULL
         ## 
-        res <- recuitmentAnalysis(sim$site, sim$year, sim$tree, sim$age, favo = sim$favo, 
-            disp = TRUE, neigh = sim$neigh, zero_infl = sim$pz, kernel = kernel, 
-            clip = clip, quiet = quiet, mxt = mxt, record = record)
+        res <- recuitmentAnalysis(sim$site, sim$year, sim$tree, sim$age, path = path, 
+            favo = sim$favo, disp = TRUE, neigh = sim$neigh, zero_infl = sim$pz, 
+            kernel = kernel, clip = clip, quiet = quiet, mxt = mxt, record = record)
     } else {
-        res <- recuitmentAnalysis(sim$site, sim$year, sim$tree, sim$age, favo = sim$favo, 
-            disp = FALSE, neigh = sim$neigh, zero_infl = sim$pz, mxt = mxt, quiet = quiet, 
-            record = record)
+        res <- recuitmentAnalysis(sim$site, sim$year, sim$tree, sim$age, path = path, 
+            favo = sim$favo, disp = FALSE, neigh = sim$neigh, zero_infl = sim$pz, 
+            mxt = mxt, quiet = quiet, record = record)
     }
     return(res)
 }

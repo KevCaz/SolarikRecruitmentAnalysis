@@ -1,6 +1,6 @@
-Package: seedlingsRecruitementAnalysis
+Package: SolarikRecruitementAnalysis
 Title: Analysis of seedlings recruitment as in Solarik et al. 2018
-Version: 0.1.1
+Version: 0.2.0
 Authors@R: c(
   person("Kevin", "Cazelles", email = "kevin.cazelle@uoguelph.ca", comment = c(ORCID = "0000-0001-6619-9874"), role = c("aut", "cre")),
   person("Kevin", "Solarik", email = "kevinsolarik@hotmail.com", role = c("aut"))
@@ -27,5 +27,6 @@ Suggests: knitr,
     mapview,
     rmarkdown,
     testthat
+Encoding: UTF-8
 VignetteBuilder: knitr
 RoxygenNote: 6.1.0

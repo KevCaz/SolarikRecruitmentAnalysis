@@ -5,13 +5,14 @@
 \alias{launchIt}
 \title{Recruitement analayis .}
 \usage{
-recuitmentAnalysis(site, year, tree, age, mat_par, path = "dataReady/",
+recuitmentAnalysis(site, year, tree, age, mat_par, path = "./",
   zero_infl = FALSE, disp = FALSE, favo = FALSE, neigh = FALSE,
   clip = NULL, kernel = "kern_lognormal", mxt = 100, quiet = TRUE,
   record = NULL)
 
 launchIt(iter, simu = NULL, simu_file = "dataReady/simu_all.Rds",
-  mxt = 100, record = "test.txt", quiet = TRUE)
+  mxt = 100, record = "test.txt", quiet = TRUE,
+  path = "dataReady/")
 }
 \arguments{
 \item{site}{site name.}
@@ -46,9 +47,9 @@ launchIt(iter, simu = NULL, simu_file = "dataReady/simu_all.Rds",
 
 \item{iter}{a interger indentifying the iteration.}
 
-\item{simu_file}{a file that includes a description of simulation.}
+\item{simu}{a data frame describing the simulation.}
 
-\item{a}{file that includes a description of simulation.}
+\item{simu_file}{a file that includes a description of simulation.}
 }
 \value{
 The log-likelihood values associated to a given set of parameters.

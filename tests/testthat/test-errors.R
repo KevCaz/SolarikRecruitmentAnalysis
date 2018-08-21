@@ -1,4 +1,3 @@
-library(seedlingsRecruitementAnalysis)
 context("check errors")
 
 

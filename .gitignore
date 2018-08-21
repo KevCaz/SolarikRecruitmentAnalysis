@@ -1,4 +1,13 @@
+# project specific files
 vignettes/tobeadded*
+README.Rmd
+README.Rmd
+inst/doc
+inst/old
+inst/res
+inst/dataReady
+record_updates.txt
+
 
 # History files
 .Rhistory
@@ -31,8 +40,3 @@ Makefile
 
 # MacOS files
 .DS_Store
-README.Rmd
-README.Rmd
-inst/doc
-inst/old
-record_updates.txt
