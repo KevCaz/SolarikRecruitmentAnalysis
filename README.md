@@ -1,55 +1,47 @@
-Current status
---------------
+# seedlingsRecruitmentAnalysis
 
-[![Build
-status](https://ci.appveyor.com/api/projects/status/xcsiox3ufc4bab69?svg=true)](https://ci.appveyor.com/project/KevCaz/seedlingsrecruitmentanalysis)
-[![Build
-Status](https://travis-ci.org/KevCaz/seedlingsRecruitmentAnalysis.svg?branch=master)](https://travis-ci.org/KevCaz/seedlingsRecruitmentAnalysis)
-<!-- [![codecov](https://codecov.io/gh/KevCaz/seedlingsRecruitmentAnalysis/branch/master/graph/badge.svg)](https://codecov.io/gh/KevCaz/seedlingsrecruitmentanalysis)
- -->
+## Current status
 
-Functions are written using Camel case (*e.g.* `formatData()`).
+[![Build status](https://ci.appveyor.com/api/projects/status/xcsiox3ufc4bab69?svg=true)](https://ci.appveyor.com/project/KevCaz/seedlingsrecruitmentanalysis)
+[![Build Status](https://travis-ci.org/KevCaz/seedlingsRecruitmentAnalysis.svg?branch=master)](https://travis-ci.org/KevCaz/seedlingsRecruitmentAnalysis)
 
-seedlingsRecruitmentAnalysis
-============================
 
-This repository includes all the R functions to reproduce the analyses
-we carry out in Solarik *et al.* (XXS). The form of a standard R package
-is convenient to share code and ensure Operating System (OS)
-interoperability. Moreover this repository is an appropriate platform to
-discuss and handle potential code issues.
+Note: functions are written using Camel case (*e.g.* `formatData()`).
 
-The whole analysis pipeline is described in the package’s vignette and
-accessible as a
-[webpage](https://kevcaz.github.io/seedlingsRecruitmentAnalysis/).
 
-How to use this R package
--------------------------
+## Description
 
-Note that in the analysis presented, we have used a Rcpp implementation
-of dispersal kernel available as a separate R package
-[recruitR](https://github.com/KevCaz/recruitR) as well as two other
-packages that include our own handy functions. All these three packahes
-needs to be installed to reproduce our analysis. The easiest way to
-install them, is to use of the `devtools` package available on CRAN:
+This repository includes all the R functions to reproduce the analysis for the article *Priority effects will prevent range shifts of temperate tree species into the boreal forest* by Solarik et al. (2019). The form of a standard R package is
+a convenient way to share code and ensure Operating System (OS) interoperability.
+Moreover, this GitHub repository is an appropriate platform to discuss and handle
+potential code issues.
 
-    install.packages('devtools')
+The whole analysis pipeline is described in the package's vignette and
+accessible as a [webpage](https://kevcaz.github.io/seedlingsRecruitmentAnalysis/).
 
-Once loaded, `install_github()` enables the installation of the other
-packages:
 
-    library(devtools)
-    install_github(c('KevCaz/recruitR', 'inSileco/inSileco', 'inSileco/graphicsutils'))
 
-Now, you can install this package:
+## How to use this package
 
-    install_github('KevCaz/seedlingsRecruitmentAnalysis')
+Several packages available only on GitHub were used for this analysis:
 
-To do
------
+- [diskers](https://github.com/KevCaz/diskers): a Rcpp implementation of dispersal kernels;
+- [graphicsutils](https://github.com/inSileco/graphicsutils): a collection of plotting functions.
 
--   \[ \] Include data as `.rda` files
--   \[ \] Complete vignette (~40% complete) up to provide an example for
-    on line of `simuDesign`
--   \[ \] Turn Solarik.Rmd as a real vignette
--   \[ \] Adding links to the paper and the datasets once published.
+To install these packages, use of the `devtools` package:
+
+```r
+install.packages('devtools')
+library(devtools)
+install_github(c('KevCaz/diskers', 'inSileco/graphicsutils'))
+```
+
+Now, use `devtools` once again to install this package:
+
+```r
+install_github('KevCaz/seedlingsRecruitmentAnalysis')
+```
+
+## Analysis pipeline
+
+See [XXX]() for more information. 

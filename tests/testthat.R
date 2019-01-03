@@ -1,4 +1,4 @@
 library(testthat)
-library(SolarikRecruitementAnalysis)
+library(seedlingsRecruitmentAnalysis)
 
-test_check("SolarikRecruitementAnalysis")
+test_check("seedlingsRecruitmentAnalysis")

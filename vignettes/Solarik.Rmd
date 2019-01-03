@@ -1,5 +1,5 @@
 ---
-title: Seedlings recruitment analysis of Solarik et al. XXXX paper.
+title: Seedlings recruitment analysis done in Solarik et al. (2019).
 author: Kevin Cazelles and Kevin Solarik
 date: '`r Sys.Date()`'
 output:
@@ -16,14 +16,13 @@ vignette: >
 
 
 ```{r,  message = FALSE}
-library(SolarikRecruitementAnalysis)
+library(seedlingsRecruitmentAnalysis)
 ```
 
 <br>
 
 This vignette aims at guiding the reader through the different steps of the
-analysis carried out in Solarik _et al._ XXXX. Data, R code and this vignette
-are available at <https://github.com/KevCaz/seedlingsRecruitmentAnalysis>.
+analysis carried out in *Priority effects will prevent range shifts of temperate tree species into the boreal forest.* (Solarik *et al.* 2019). Data, R code and this vignette are available at <https://github.com/KevCaz/seedlingsRecruitmentAnalysis>.
 
 # Data
 
@@ -62,15 +61,15 @@ spSite <- sp::SpatialPointsDataFrame(
 
 ## Tree species of the study
 
-| abbr1 | abbr2 | Scientific Names      | TSN    |abi  |bic  |sut  |
-|:------|:------|:----------------------|:-------|:----|:----|:----|
-| BF    | ABBA  | Abies balsamea        | 18032  |TRUE |TRUE |TRUE |
-| RM    | ACRU  | Acer rubrum           | 28728  |TRUE |TRUE |TRUE |
-| SM    | ACSA  | Acer saccharum        | 28731  |TRUE |TRUE |TRUE |
-| YB    | BEAL  | Betula alleghaniensis | 19481  |TRUE |TRUE |TRUE |
-| WB    | BEPA  | Betula papyrifera     | 19489  |TRUE |TRUE |TRUE |
-| AB    | FAGR  | Fagus grandifolia     | 19462  |TRUE |TRUE |TRUE |
-| AS    | POTR  | Populus tremuloides   | 195773 |TRUE |TRUE |TRUE |
+| abbr1 | abbr2 | Scientific Names      | TSN    |abi   |bic   |sut   |
+|:------|:------|:----------------------|:-------|:-----|:-----|:-----|
+| BF    | ABBA  | Abies balsamea        | 18032  |TRUE  |TRUE  |TRUE  |
+| RM    | ACRU  | Acer rubrum           | 28728  |TRUE  |TRUE  |FALSE |
+| SM    | ACSA  | Acer saccharum        | 28731  |TRUE  |TRUE  |TRUE  |
+| YB    | BEAL  | Betula alleghaniensis | 19481  |FALSE |FALSE |TRUE  |
+| WB    | BEPA  | Betula papyrifera     | 19489  |TRUE  |TRUE  |TRUE  |
+| AB    | FAGR  | Fagus grandifolia     | 19462  |FALSE |FALSE |TRUE  |
+| AS    | POTR  | Populus tremuloides   | 195773 |TRUE  |TRUE  |TRUE  |
 
 : Abbreviations, names, TSN (Taxonomic Serial Number, viti the [Integrated
   Taxonomic Information System website](https://www.itis.gov/pdf/faq_itis_tsn.pdf)
@@ -89,8 +88,6 @@ A link to the dataset would hopefully be available before publication.
 
 
 
-
-
 # Statistical models
 
 Below are detailed the steps to reproduce our analysis.
@@ -99,17 +96,18 @@ Below are detailed the steps to reproduce our analysis.
 
 ### General equation
 
-For a givens species and a given year, the seeds recruitment depends on:
+For a given species and a given year, the seeds recruitment depends on:
 
-- the fecondity of surrounding individuals of the same species
-- the substrate favorability
-- the neighborhood effect
+1. the fecundity of surrounding individuals of the same species;
+2. the substrate favorability;
+3. the neighborhood effect.
 
 
 $$R_i = \text{STR}\sum_{j=1}^Sc_{i,j}f_{i,j}\sum_{k=1}^T\left(\frac{\text{DBH}_k}{30}\right)^2 \frac{1}{K}e^{-\text{DM}_{i,k}}e^{-\frac{h_i}{1-h_i}\sum_{l=1}^Ba_{i,l}}$$
 
 
-### Parameters
+
+### Number of parameters per process
 
 | Ecological process  |abbr  |number of parameters|
 |:--------------------|:-----|:-------------------|
@@ -118,65 +116,72 @@ $$R_i = \text{STR}\sum_{j=1}^Sc_{i,j}f_{i,j}\sum_{k=1}^T\left(\frac{\text{DBH}_k
 | favorability        |favo  |1                   |
 
 
+
 ### Kernels
 
-| numb | disp | which          | clip  |
-|:-----|:-----|:---------------|:------|
-|0     |--    |non-significant | -     |
-|1     |dc    |lognormal       |clip   |
-|2     |d-    |lognormal       |no-clip|
-|3     |Dc    |power-exponetial|clip   |
-|4     |D-    |power-exponetial|no-clip|
+| numb | disp | which            | clip  |
+|:-----|:-----|:-----------------|:------|
+|0     |--    |non-significant   | -     |
+|1     |dc    |lognormal         |clip   |
+|2     |d-    |lognormal         |no-clip|
+|3     |Dc    |power-exponential |clip   |
+|4     |D-    |power-exponential |no-clip|
 
 
 
 ## Simulations
 
-
 ### Overall strategy
 
-Below we present the 15 first models (each row is a model) out of the
-`r nrow(simuDesign)/7` we tested for  *Abies balsamea*.
+For each model, we estimate the parameters through the maximization of the
+likelihood (minimization of the likelihood log-transformed) for the corresponding
+data. As our model is not linear and highly customized we optimized the likelihood
+with the simulated annealing algorithm implemented in GenSA.
+
+```{r}
+citation("GenSA")
+```
+
+
+Here are the 15 first models (each row is a model) out of the
+`r nrow(simuDesign)/7` tested for *Abies balsamea*.
+
 
 ```{r simudesign}
 data(simuDesign)
 knitr::kable(head(simuDesign, 15))
 ```
 
-For each model, we estimate the parameters through the maximization of the
-likelihood (minimization of the likelihood log-transformed) for the corresponding
-data. As our model is not linear and highly customized we optimized the likelihood
-with a simulated annealing algorithm.
 
-
-<br>
 
 ### Numerical implementation
 
-For each row of `simuDesign` column are arguments passed to `recruitmentAnalysis()`
-in which:
+For each row of `simuDesign`, columns are arguments passed to `recruitmentAnalysis()` in which:
 
-1- parameters are computed for the simulated annealing (`getParameters()`),
+1. parameters are computed for the simulated annealing (`getParameters()`);
 
-2- simulated annealing is performed (`GenSA()` from [GenSA](https://cran.r-project.org/web/packages/GenSA/index.html) package) to minimize
-the likelihood (`getLikelihood()`).
+2. simulated annealing is performed (`GenSA()` from [GenSA](https://cran.r-project.org/web/packages/GenSA/index.html) package) to minimize the likelihood (`getLikelihood()`).
 
 
 ```{r getParameter}
-knitr::kable(getParameters(T, T, T, lognormal = FALSE))
+knitr::kable(getParameters(TRUE, TRUE, TRUE, lognormal = FALSE))
 ```
+
 
 ### Example
 
-The line below (not evaluated) allows to run for the 16<sup>th</sup> model.
+The line below (not run) allows to run for the 16<sup>th</sup> model.
 
 ```{r eval = FALSE}
-launchIt(iter = 16, simu = simuDesign, mxt = 100,
+res <- launchIt(iter = 16, simu = simuDesign, mxt = 100,
   record = "inst/res/test.txt", quiet = TRUE, path = "inst/dataReady/")
+# value (likelihood)
+res$value
+# parameters value
+res$par
 ```
 
-In addition to the parameters estimation, we record estimation performed by
-`GenSA` in order to compute a confident interval.
+Note that `test.txt` records all the values tested during the simulated algorithm and the corresponding likelihood based on which we obtain a confident interval.
 
 ```{r eval = FALSE}
 getConfInt("inst/res/test.txt", simuDesign, 16, basename_out = "inst/resf_")

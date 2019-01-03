@@ -37,7 +37,7 @@ launchIt(iter, simu = NULL, simu_file = "dataReady/simu_all.Rds",
 
 \item{clip}{a numeric vector of standarized DBH (Diameter at breast heights).}
 
-\item{kernel}{a character string indicating which kernel should be used (either \code{kern_lognormal} or \code{kern_exponential_power}). See \link[recruitR]{kernels} for further details.}
+\item{kernel}{a character string indicating which kernel should be used (either \code{kern_lognormal} or \code{kern_exponential_power}). See \link[diskers]{kernels} for further details.}
 
 \item{mxt}{a numeric. Maximum running time in seconds (see \link[GenSA]{GenSA}).}
 

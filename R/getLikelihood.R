@@ -16,7 +16,7 @@
 #' @param disp a logical. If \code{NULL} (the default setting) the is  TRUE then neighborhood
 #' @param favo a logical. If \code{NULL} (the default setting) the is  TRUE then neighborhood
 #' @param SDBH a numeric vector of standarized DBH (Diameter at breast heights).
-#' @param kernel a character string indicating which kernel should be used (either \code{kern_lognormal} or \code{kern_exponential_power}). See \link[recruitR]{kernels} for further details.
+#' @param kernel a character string indicating which kernel should be used (either \code{kern_lognormal} or \code{kern_exponential_power}). See \link[diskers]{kernels} for further details.
 #' @param pstr position of paraneter in thevector of parameter values.
 #' @param ppz the position of \code{pz} parameter within the vector of parameter values.
 #' @param pscal An integer gving the position of the scale parameter (of the dispersal kernel) witin the vector of parameter values.
@@ -52,7 +52,7 @@ getLikelihood <- function(pars, obs, zero_infl = FALSE, neigh = NULL, disp = NUL
     if (!is.null(disp)) {
         stopifnot(length(disp) == nbq | is.na(pars[pscal]) | is.na(pars[pshap]))
         ## 
-        kernel %<>% paste0("recruitR::", .)
+        kernel %<>% paste0("diskers::", .)
         di0 <- disp %>% lapply(kernel, shap = pars[pshap], scal = pars[pscal])
         di <- sapply(1:nbq, FUN = function(x) sum(di0[[x]] * SDBH[[x]])) %>% unlist
     } else di <- 1

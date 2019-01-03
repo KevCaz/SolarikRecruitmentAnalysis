@@ -24,7 +24,7 @@ getLikelihood(pars, obs, zero_infl = FALSE, neigh = NULL,
 
 \item{SDBH}{a numeric vector of standarized DBH (Diameter at breast heights).}
 
-\item{kernel}{a character string indicating which kernel should be used (either \code{kern_lognormal} or \code{kern_exponential_power}). See \link[recruitR]{kernels} for further details.}
+\item{kernel}{a character string indicating which kernel should be used (either \code{kern_lognormal} or \code{kern_exponential_power}). See \link[diskers]{kernels} for further details.}
 
 \item{pstr}{position of paraneter in thevector of parameter values.}
 

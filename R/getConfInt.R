@@ -22,7 +22,7 @@
 # getConfInt('inst/res/test.txt', simuDesign, 16)
 
 getConfInt <- function(filename, simu, iter, basename_out = "inst/resf_", quiet = TRUE) {
-    # 
+    #
     sim <- simu[iter, ]
     ## read *id* simue of datasim
     out <- getParameters(disp = (sim$disp > 0), favo = sim$favo, neigh = sim$neigh)
@@ -42,15 +42,14 @@ getConfInt <- function(filename, simu, iter, basename_out = "inst/resf_", quiet 
         lik <- Inf
     }
     ## Make the list to be returned
-    ls_out <- list(likelihood = lik, pars = out) %T>% saveRDS(file = paste0(basename_out, 
-        inSilecoMisc::adjustString(iter, 4L), ".rds"))
-    ## 
+    ls_out <- list(likelihood = lik, pars = out) %T>% saveRDS(file = paste0(basename_out, sprintf("%04d", iter), ".rds"))
+    ##
     ls_out
 }
 
 
 getIter <- function(filename, rm_pat = "codekev12") {
     ## The names of the files to be read countains the id, we get below.
-    filename %>% gsub(pattern = rm_pat, replacement = "") %>% gsub(pattern = "\\D", 
+    filename %>% gsub(pattern = rm_pat, replacement = "") %>% gsub(pattern = "\\D",
         replacement = "") %>% as.numeric
 }
