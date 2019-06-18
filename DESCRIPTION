@@ -1,5 +1,5 @@
 Package: seedlingsRecruitmentAnalysis
-Title: Analysis of seedlings recruitment as in Solarik et al. 2019
+Title: Analysis of seedlings recruitment as in Solarik et al. (2019)
 Version: 1.0.0
 Authors@R: c(
   person("Kevin", "Cazelles", email = "kevin.cazelle@uoguelph.ca", comment = c(ORCID = "0000-0001-6619-9874"), role = c("aut", "cre")),
