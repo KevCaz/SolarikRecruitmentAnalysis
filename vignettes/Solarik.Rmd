@@ -1,5 +1,5 @@
 ---
-title: Seedlings recruitment analysis done in Solarik et al. (2019).
+title: "How to reproduce the analysis"
 author: Kevin Cazelles and Kevin Solarik
 date: '`r Sys.Date()`'
 output:
