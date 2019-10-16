@@ -3,8 +3,8 @@
 
 :book: Solarik et al. (2019) DOI:XXX - research compendium
 
+[![Build Status](https://travis-ci.org/KevCaz/seedlingsRecruitment.svg?branch=master)](https://travis-ci.org/KevCaz/seedlingsRecruitment)
 [![Build status](https://ci.appveyor.com/api/projects/status/xcsiox3ufc4bab69?svg=true)](https://ci.appveyor.com/project/KevCaz/seedlingsrecruitmentanalysis)
-[![Build Status](https://travis-ci.org/KevCaz/seedlingsRecruitmentAnalysis.svg?branch=master)](https://travis-ci.org/KevCaz/seedlingsRecruitmentAnalysis)
 
 Code to reproduce the analyses carried out in Solarik *et al.* (2019). We used a
 standard R package to share our code and ensure that our study is reproducible.

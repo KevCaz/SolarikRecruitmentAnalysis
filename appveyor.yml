@@ -1,6 +1,3 @@
-# DO NOT CHANGE the "init" and "install" sections below
-
-# Download script file from GitHub
 init:
   ps: |
         $ErrorActionPreference = "Stop"
@@ -10,38 +7,17 @@ init:
 install:
   ps: Bootstrap
 
-#
 environment:
-  global:
-    WARNINGS_ARE_ERRORS: 1
-
-  matrix:
-  - R_VERSION: devel
-    GCC_PATH: mingw_32
-
-  - R_VERSION: devel
-    R_ARCH: x64
-    GCC_PATH: mingw_64
-
-  - R_VERSION: release
-    R_ARCH: x64
-
-  - R_VERSION: stable
-
-  - R_VERSION: 3.1.3
-    RTOOLS_VERSION: 32
-    CRAN: http://cran.rstudio.com
-
-matrix:
-fast_finish: true
+  R_ARCH: x64
+  USE_RTOOLS: true
+  R_VERSION: release
 
 
 # Adapt as necessary starting from here
-
 build_script:
   - travis-tool.sh install_deps
   - travis-tool.sh install_github KevCaz/diskers
-  - travis-tool.sh install_github inSileco/graphicsUtils
+  - travis-tool.sh install_github inSileco/graphicsutils
 
 test_script:
   - travis-tool.sh run_tests
@@ -68,14 +44,3 @@ artifacts:
 
   - path: '\*_*.zip'
     name: Bits
-
-
-notifications:
- - provider:
-   to:
-     - kevin.cazelles@gmail.com
-   subject: 'r-appveyor build {{status}}'                  # optional
-   message: "A message from appveyor about seedlingsRecruitmentAnalysis"    # optional
-   on_build_success: false
-   on_build_failure: true
-on_build_status_changed: true
