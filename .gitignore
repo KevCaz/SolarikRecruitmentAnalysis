@@ -3,6 +3,7 @@ vignettes/tobeadded*
 README.Rmd
 README.Rmd
 inst/doc
+inst/docs
 inst/old
 inst/res
 inst/dataReady

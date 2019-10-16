@@ -1,11 +1,11 @@
 Package: seedlingsRecruitmentAnalysis
-Title: Research compendia for the analysis of seedlings recruitment as in Solarik et al. (2019)
+Title: Research compendium of Solarik et al. (2019) DOI: XXX
 Version: 1.0.0
 Authors@R: c(
   person("Kevin", "Cazelles", email = "kevin.cazelle@uoguelph.ca", comment = c(ORCID = "0000-0001-6619-9874"), role = c("aut", "cre")),
   person("Kevin", "Solarik", role = c("aut"))
   )
-Description: This package provides data and functions to reproduce the analyses carried out in Solarik et al. (2019).
+Description: Data and functions to reproduce the analysis carried out in Solarik et al. (2019).
 License: GPL-3
 LazyData: true
 Depends:

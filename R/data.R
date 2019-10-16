@@ -1,9 +1,10 @@
 #' Simulations design
 #'
-#' Design of the simulations as carried out in Solarik et al. 2018. Each row represent
-#' one simulation, i.e. a combination of a site, a tree species, a year, an
-#' age if a zero-inflated distibution was used (\code{pz} column) and also
-#' whether favrability (\code{favo}) and neighborhood (\code{neigh}) effect were used.
+#' Design of the simulations as carried out in Solarik et al. 2018. Each row
+#' represents one simulation, i.e. a combination of a site, a tree species, a
+#' year, an age if a zero-inflated distribution was used (\code{pz} column) and
+#' also whether favourability (\code{favo}) and neighborhood (\code{neigh})
+#' effect were used.
 #'
 #' @docType data
 #' @keywords datasets

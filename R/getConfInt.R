@@ -9,7 +9,7 @@
 #' @importFrom magrittr %T>%
 #'
 #' @param filename a character string, giving the path of output file to be read.
-#' @param iter a interger indentifying the iteration.
+#' @param iter a interger identifying the iteration.
 #' @param simu a data frame describing the simulation.
 #' @param basename_out basename of the file where results are written.
 #' @param quiet logical. If \code{FALSE} then the id of the simulation is printed.
