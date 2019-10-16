@@ -1,9 +1,7 @@
 language: r
 warnings_are_errors: false
 sudo: required
-
-r_packages:
-  - covr
+cache: packages
 
 before_install:
   - sudo apt-get -qq update

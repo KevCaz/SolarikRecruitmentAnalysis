@@ -16,7 +16,7 @@ vignette: >
 
 
 ```{r, include = FALSE}
-library(seedlingsRecruitmentAnalysis)
+library(seedlingsRecruitment)
 ```
 
 <br>
