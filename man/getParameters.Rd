@@ -13,15 +13,15 @@ convertTreeAbbr(abbr, full_names = FALSE)
 \arguments{
 \item{disp}{a logical. If \code{TRUE}, then dispersal parameters are returned.}
 
-\item{favo}{a logical. If \code{TRUE}, then favorability parameters are returned.}
+\item{favo}{a logical. If \code{TRUE}, then favourability parameters are returned.}
 
 \item{neigh}{a logical. If \code{TRUE}, then neighborhood effect parameter is returned.}
 
-\item{lognormal}{a logical. If \code{TRUE}, then the values of dispersal parameter are the one assocoated to a lognormal dispersal kernel, default is set to \code{FALSE}.}
+\item{lognormal}{a logical. If \code{TRUE}, then a lognormal dispersal kernel is considere.}
 
 \item{abbr}{an abbreviation for a tree species name.}
 
-\item{full_names}{a logical. If \code{TRUE} teh scientific names of the tree species is returned.}
+\item{full_names}{a logical. If \code{TRUE} then scientific names of tree species are returned.}
 }
 \value{
 A matrix including the parameters ranges and starting values.

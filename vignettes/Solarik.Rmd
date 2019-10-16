@@ -135,9 +135,10 @@ $$R_i = \text{STR}\sum_{j=1}^Sc_{i,j}f_{i,j}\sum_{k=1}^T\left(\frac{\text{DBH}_k
 ### Overall strategy
 
 For each model, we estimate the parameters through the maximization of the
-likelihood (minimization of the likelihood log-transformed) for the corresponding
-data. As our model is not linear and highly customized we optimized the likelihood
-with the simulated annealing algorithm implemented in GenSA.
+likelihood (minimization of the likelihood log-transformed) for the
+corresponding data. As our model is not linear and highly customized we
+optimized the likelihood with the simulated annealing algorithm implemented in
+GenSA.
 
 ```{r}
 citation("GenSA")
@@ -157,7 +158,8 @@ knitr::kable(head(simuDesign, 15))
 
 ### Numerical implementation
 
-For each row of `simuDesign`, columns are arguments passed to `recruitmentAnalysis()` in which:
+For each row of `simuDesign`, columns are arguments passed to
+`recruitmentAnalysis()` in which:
 
 1. parameters are computed for the simulated annealing (`getParameters()`);
 

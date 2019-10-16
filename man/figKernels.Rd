@@ -8,7 +8,7 @@ figKernels(datares, xlim = c(0, 50), ylim = c(0, 0.015),
   colors = c("#771224", "#31679f", "#6db80f", "grey10"))
 }
 \arguments{
-\item{datares}{the dataframe returned by the recruitement analysis.}
+\item{datares}{a data frame that contains the best models.}
 
 \item{xlim}{numeric vectors of length 2, giving the x coordinates ranges.}
 
@@ -17,7 +17,7 @@ figKernels(datares, xlim = c(0, 50), ylim = c(0, 0.015),
 \item{colors}{vector of colors.}
 }
 \description{
-Display the kernels associated to the best models.
+Draws kernels of the best models.
 }
 \author{
 Kevin Cazelles

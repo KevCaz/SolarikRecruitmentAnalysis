@@ -1,4 +1,3 @@
-
 # seedlingsRecruitmentAnalysis
 
 :book: Solarik et al. (2019) DOI:XXX - research compendium

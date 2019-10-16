@@ -4,18 +4,18 @@
 \alias{getTableLetters}
 \title{Get table describing best models with letters.}
 \usage{
-getTableLetters(tmp, year)
+getTableLetters(tmp, year = 2015)
 }
 \arguments{
-\item{tmp}{a data frame including the output of the recruitment analaysis.}
+\item{tmp}{a data frame that include the results of the recruitment analysis.}
 
-\item{year}{the year for which the table is produced.}
+\item{year}{the year for which the table should be produced.}
 }
 \value{
 A character matrix indicating the processes involved in the best models for the different plots.
 }
 \description{
-This functions creates ansd returns a table that identifies a list of ecological processes involved for all species x plots.
+This functions creates and returns a table depicting ecological processes involved for all species x region.
 }
 \author{
 Kevin Cazelles

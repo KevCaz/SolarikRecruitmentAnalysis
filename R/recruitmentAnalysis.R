@@ -13,17 +13,17 @@
 #' @param year year (2015 or 2016) name.
 #' @param tree abbreviation of the tree species names of the species.
 #' @param age age of the species (1 or 2).
-#' @param mat_par a matrix of parameters (see \code{getParameters}).
+#' @param mat_par a matrix of parameters (see `getParameters`).
 #' @param path a character string giving the path to access the data.
-#' @param zero_infl logical. If \code{TRUE} then a zero-inflated poisson distribution is used, otherwose a poisson distribution is used.
-#' @param disp a logical. If \code{TRUE}, then dispersal parameters are used.
-#' @param favo a logical. If \code{TRUE}, then favorability parameters are used.
-#' @param neigh a logical. If \code{TRUE}, then neighborhood effect parameter is used.
+#' @param zero_infl logical. If `TRUE` then a zero-inflated poisson distribution is used, otherwose a poisson distribution is used.
+#' @param disp a logical. If `TRUE`, then dispersal parameters are used.
+#' @param favo a logical. If `TRUE`, then favorability parameters are used.
+#' @param neigh a logical. If `TRUE`, then neighborhood effect parameter is used.
 #' @param clip a numeric vector of standarized DBH (Diameter at breast heights).
-#' @param kernel a character string indicating which kernel should be used (either \code{kern_lognormal} or \code{kern_exponential_power}). See \link[diskers]{kernels} for further details.
+#' @param kernel a character string indicating which kernel should be used (either `kern_lognormal` or `kern_exponential_power`). See \link[diskers]{kernels} for further details.
 #' @param mxt a numeric. Maximum running time in seconds (see \link[GenSA]{GenSA}).
-#' @param quiet logial. If \code{TRUE} details about the state of simulations are printed.
-#' @param record a connection, or a character string naming the file to print to. If \code{NULL}, the default values, no record is done.
+#' @param quiet logial. If `TRUE` details about the state of simulations are printed.
+#' @param record a connection, or a character string naming the file to print to. If `NULL`, the default values, no record is done.
 #' @param iter a interger indentifying the iteration.
 #' @param simu a data frame describing the simulation.
 #' @param simu_file a file that includes a description of simulation.
@@ -31,7 +31,7 @@
 #' @export
 #'
 #' @details
-#' The parameter \code{pz} have a value even if it is not included in the analysis (meaning a poisson distrubution is used).
+#' The parameter `pz` have a value even if it is not included in the analysis (meaning a poisson distrubution is used).
 #'
 #' @return
 #' The log-likelihood values associated to a given set of parameters.

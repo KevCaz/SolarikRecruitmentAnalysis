@@ -1,8 +1,8 @@
-Package: seedlingsRecruitmentAnalysis
+Package: seedlingsRecruitment
 Title: Research compendium of Solarik et al. (2019) DOI: XXX
 Version: 1.0.0
 Authors@R: c(
-  person("Kevin", "Cazelles", email = "kevin.cazelle@uoguelph.ca", comment = c(ORCID = "0000-0001-6619-9874"), role = c("aut", "cre")),
+  person("Kevin", "Cazelles", email = "kevin.cazelle@gmail.com", comment = c(ORCID = "0000-0001-6619-9874"), role = c("aut", "cre")),
   person("Kevin", "Solarik", role = c("aut"))
   )
 Description: Data and functions to reproduce the analysis carried out in Solarik et al. (2019).
@@ -27,8 +27,8 @@ Suggests:
     mapview,
     rmarkdown,
     testthat
-URL: https://github.com/KevCaz/seedlingsRecruitmentAnalysis, http://kevcaz.github.io/seedlingsRecruitmentAnalysis/
-BugReports: https://github.com/KevCaz/seedlingsRecruitmentAnalysis/issues
+URL: https://github.com/KevCaz/seedlingsRecruitment, http://kevcaz.github.io/seedlingsRecruitment/
+BugReports: https://github.com/KevCaz/seedlingsRecruitment/issues
 Encoding: UTF-8
 VignetteBuilder: knitr
 RoxygenNote: 6.1.1

@@ -10,47 +10,48 @@ getLikelihood(pars, obs, zero_infl = FALSE, neigh = NULL,
   pneigh = NA, quiet = TRUE, record = NULL)
 }
 \arguments{
-\item{pars}{vector of parameters values, the size must}
+\item{pars}{vector of parameters values.}
 
-\item{obs}{vector of observations of recruitement for each plots of the stand.}
+\item{obs}{vector of observations of recruitment for each plots of the stand.}
 
-\item{zero_infl}{logical. If \code{TRUE} then a zero-inflated poisson distribution is used, otherwose a poisson distribution is used.}
+\item{zero_infl}{a logical. If \code{TRUE} then a zero-inflated poisson distribution is used, otherwise a poisson distribution is used.}
 
-\item{neigh}{a logical. If \code{NULL} (the default setting) the is  TRUE then neighborhood}
+\item{neigh}{a vector of the size of \code{obs} describing the surrounding neighborhood. If \code{NULL} (the default setting) then neighborhood is not included in the model.}
 
-\item{disp}{a logical. If \code{NULL} (the default setting) the is  TRUE then neighborhood}
+\item{disp}{a vector of the size of \code{obs} of the surrounding trees of the focal species where seeds may be dispersed from. If \code{NULL} then dispersal is not included in the model.}
 
-\item{favo}{a logical. If \code{NULL} (the default setting) the is  TRUE then neighborhood}
+\item{favo}{a vector of the size of \code{obs} describing the composition of all parcel. If \code{NULL} then the soil favourability is not included in the model.}
 
-\item{SDBH}{a numeric vector of standarized DBH (Diameter at breast heights).}
+\item{SDBH}{a numeric vector of standardized DBH (Diameter at breast heights).}
 
-\item{kernel}{a character string indicating which kernel should be used (either \code{kern_lognormal} or \code{kern_exponential_power}). See \link[diskers]{kernels} for further details.}
+\item{kernel}{a character string indicating which kernel should be used (either \code{\link[diskers:kern_lognormal]{diskers::kern_lognormal()}} or \code{\link[diskers:kern_exponential_power]{diskers::kern_exponential_power()}}.}
 
-\item{pstr}{position of paraneter in thevector of parameter values.}
+\item{pstr}{position of parameter \code{str} in the vector of parameter values.}
 
-\item{ppz}{the position of \code{pz} parameter within the vector of parameter values.}
+\item{ppz}{position of \code{pz} parameter within the vector of parameter values.}
 
-\item{pscal}{An integer gving the position of the scale parameter (of the dispersal kernel) witin the vector of parameter values.}
+\item{pscal}{position of the scale parameter (of the dispersal kernel) within the vector of parameter values.}
 
-\item{pshap}{An integer gving the position of the shape parameter (of the dispersal kernel) witin the vector of parameter values.}
+\item{pshap}{the position of the shape parameter (of the dispersal kernel) within the vector of parameter values.}
 
-\item{pfav}{A vector of integer indicating the position of the five favorability values within the vector of parameter values.}
+\item{pfav}{the position of the five favourability values within the vector of parameter values.}
 
 \item{pneigh}{position of the parameter associated to the neighborhood effect in the vector of parameter values.}
 
-\item{quiet}{logial. If \code{FALSE} then parameters and likelyhood estimations are printed.}
+\item{quiet}{a logical. If \code{FALSE} then parameters and likelihood estimations are printed.}
 
-\item{record}{a connection, or a character string naming the file to print to. If \code{NULL}, the default values, no record is done.}
+\item{record}{a connection, or a character string naming the file to print to. If \code{NULL} then this step is skipped.}
 }
 \value{
 The log-likelihood values associated to a given set of parameters.
 }
 \description{
-This function computes the likelihood associated to a specific set of parameters.
-The specification of parameters determines the ecological processes involved.
+This function computes the likelihood associated to a specific set of
+parameters, i.e. a specific. Note that the parameters included determine the
+ecological processes considered.
 }
 \details{
-The parameter \code{pz} have a value even if it is not included in the analysis (meaning a poisson distrubution is used).
+The parameter \code{pz} have a value even if it is not included in the analysis (meaning a poisson distribution is used).
 }
 \author{
 Kevin Cazelles

@@ -1,21 +1,19 @@
 #' Get table describing best models with letters.
 #'
-#' This functions creates ansd returns a table that identifies a list of ecological processes involved for all species x plots.
+#' This functions creates and returns a table depicting ecological processes involved for all species x region.
 #'
 #' @author
 #' Kevin Cazelles
 #'
-#' @importFrom magrittr %>%
-#'
-#' @param tmp a data frame including the output of the recruitment analaysis.
-#' @param year the year for which the table is produced.
+#' @param tmp a data frame that include the results of the recruitment analysis.
+#' @param year the year for which the table should be produced.
 #'
 #' @return
 #' A character matrix indicating the processes involved in the best models for the different plots.
 #'
 #' @export
 
-getTableLetters <- function(tmp, year) {
+getTableLetters <- function(tmp, year = 2015) {
     ##
     id <- which(tmp$year == year)
     tmp <- tmp[id, ]
@@ -25,13 +23,13 @@ getTableLetters <- function(tmp, year) {
     nsage <- paste0(rep(as.character(unique(tmp$site)), each = 2), "_", 1:2)
     out <- matrix("absent", nrow = nspe, ncol = length(nsage))
     colnames(out) <- nsage
-    rownames(out) <- unique(tmp$tree) %>% as.character
+    rownames(out) <- as.character(unique(tmp$tree))
     ## Letters assigned for dispersion
     dislet <- c("dc", "d-", "Dc", "D-")
     ##
     tmp2 <- tmp[tmp$best, ]
     #
-    for (i in 1:nrow(tmp2)) {
+    for (i in seq_len(nrow(tmp2))) {
         let <- ""
         if (tmp2$pz[i]) {
             let <- addlet(let, "Z")

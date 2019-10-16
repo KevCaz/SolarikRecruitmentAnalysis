@@ -8,11 +8,11 @@ formatData(fl_trees, fl_regen, fl_regen2, treesp, abbr_site,
   path_out = ".", dist_buffer = 20, export = TRUE)
 }
 \arguments{
-\item{fl_trees}{a character string indicating path to the .csv file including the georeferenced trees.}
+\item{fl_trees}{a character string indicating path to the \code{.csv }file including the georeferenced trees.}
 
-\item{fl_regen}{a character string indicating path to the .csv file including the plots' data for 2015 (seedling and favorability).}
+\item{fl_regen}{a character string indicating path to the \code{.csv} file including the plots' data for 2015 (seedling and favourability).}
 
-\item{fl_regen2}{a character string indicating path to the .csv file including the plots' data for 2016.}
+\item{fl_regen2}{a character string indicating path to the \code{.csv} file including the plots' data for 2016.}
 
 \item{treesp}{a vector of abbreviation indicating the tree species considered.}
 
@@ -22,17 +22,17 @@ formatData(fl_trees, fl_regen, fl_regen2, treesp, abbr_site,
 
 \item{dist_buffer}{the buffering distance (in meters).}
 
-\item{export}{logical. If \code{TRUE} then formated data are written as .rds files.}
+\item{export}{logical. If \code{TRUE} then formatted data are written as .rds files.}
 }
 \value{
-A list of dataset includin a set of trees and their location, 2 regen files
-one for 2015, the author for 2016 including the seedling recruitment and
-the favorability of all plots and also all disctance between plots and trees
+A list of dataset including a set of trees and their location, 2 \code{regen} files
+one for 2015 and the other for 2016 including the seedling recruitment and
+the favourability of all plots and also all distance between plots and trees
 and the list to indicate the trees including in a buffer.
 }
 \description{
-Apply a couple of simple steps to get data formated and therefore
-ready to be analysed.
+Apply a couple of simple steps to get data formatted and therefore
+ready to be analyzed.
 }
 \author{
 Kevin Cazelles

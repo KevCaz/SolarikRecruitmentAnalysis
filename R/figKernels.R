@@ -1,15 +1,16 @@
 #' Draw kernels.
 #'
-#' Display the kernels associated to the best models.
+#' Draws kernels of the best models.
 #'
 #' @author
 #' Kevin Cazelles
 #'
-#' @param datares the dataframe returned by the recruitement analysis.
+#' @param datares a data frame that contains the best models.
 #' @param xlim numeric vectors of length 2, giving the x coordinates ranges.
 #' @param ylim numeric vectors of length 2, giving the y coordinates ranges.
 #' @param colors vector of colors.
 #'
+#' @importFrom graphicsutils plot0 box2 percX percY
 #' @importFrom graphics axis par layout legend lines points text
 #' @importFrom diskers kern_exponential_power kern_lognormal
 #'
@@ -25,20 +26,23 @@ figKernels <- function(datares, xlim = c(0, 50), ylim = c(0, 0.015), colors = c(
     lty <- rep(c(1, 2), each = 4, length.out = length(nm_tre))
     ## text size
     cex.txt <- 2
-    ##
+    ## Layout matrix
     matlay <- cbind(7, rbind(8, matrix(1:6, 2), 9))
     matlay[c(1, 4), 1] <- 0
+    ##
     seqd <- seq(xlim[1], xlim[2], 0.01)
     ##
+    # datares <- datares[datares$age == 1, ]
+    # datares$tosplit <- paste0(datares$site, datares$year)
     datares$tosplit <- paste0(datares$site, datares$age)
     ls_tre <- split(datares, datares$tosplit)
 
     ##
     layout(mat = matlay, widths = c(0.2, 1, 1, 1), heights = c(0.15, 1, 1, 0.5))
-    par(mar = c(1.5, 2.25, 0.5, 1.25), las = 1, mgp = c(2.2, 0.75, 0))
+    par(mar = c(1.5, 2.25, 0.5, 1.25), las = 1, mgp = c(2.2, 0.75, 0), xpd = FALSE)
     ##
-    for (i in 1:length(ls_tre)) {
-        graphicsutils::plot0(xlim, ylim)
+    for (i in seq_along(ls_tre)) {
+        plot0(xlim, ylim)
         axis(1, lwd = 0, lwd.ticks = 0.5)
         axis(2, lwd = 0, lwd.ticks = 0.5)
         for (j in 1:nrow(ls_tre[[i]])) {
@@ -53,20 +57,19 @@ figKernels <- function(datares, xlim = c(0, 50), ylim = c(0, 0.015), colors = c(
                 lines(seqd, seqy, col = pal[id], lty = lty[id], lwd = 1.4)
             }
         }
-        text(graphicsutils::percX(80), graphicsutils::percY(92), paste0("Age: ",
-            2 - i%%2), cex = 1.6)
-        graphicsutils::box2(1:2)
+        text(percX(80), percY(92), paste0("Age: ", 2 - i%%2), cex = 1.6)
+        box2(1:2)
     }
     ##
     par(mar = c(1.5, 0, 1, 0))
-    graphicsutils::plot0()
+    plot0()
     text(-0.2, 0, labels = "Density", srt = 90, cex = cex.txt)
     ##
     par(mar = c(0.1, 2, 0, 1), xaxs = "i")
-    graphicsutils::plot0(c(0, 3), c(0, 1))
+    plot0(c(0, 3), c(0, 1))
     text(c(0.12, 1.17, 2.24), rep(0.5, 3), labels = c("ABI", "BIC", "SUT"), cex = cex.txt)
     ##
-    graphicsutils::plot0()
+    plot0()
     text(0, 0.7, labels = "Distance (m)", cex = cex.txt)
     ##
     legend("bottom", bty = "n", legend = nm_tre, lwd = 2.4, lty = lty, seg.len = 2,

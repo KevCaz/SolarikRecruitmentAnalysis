@@ -12,7 +12,7 @@ getConfInt(filename, simu, iter, basename_out = "inst/resf_",
 
 \item{simu}{a data frame describing the simulation.}
 
-\item{iter}{a interger indentifying the iteration.}
+\item{iter}{a integer identifying the iteration.}
 
 \item{basename_out}{basename of the file where results are written.}
 
@@ -22,7 +22,8 @@ getConfInt(filename, simu, iter, basename_out = "inst/resf_",
 A list including the likelihood and the parameters estimates as well as the confident interval associates to the parameters.
 }
 \description{
-This function returns confidence interval of paramters associated to a givem simulation output file.
+This function returns confidence intervals for all parameters of a given
+simulation output file.
 }
 \author{
 Kevin Cazelles

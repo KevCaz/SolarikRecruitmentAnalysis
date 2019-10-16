@@ -6,12 +6,12 @@
 #' @author
 #' Kevin Cazelles
 #'
-#' @param disp a logical. If \code{TRUE}, then dispersal parameters are returned.
-#' @param favo a logical. If \code{TRUE}, then favorability parameters are returned.
-#' @param neigh a logical. If \code{TRUE}, then neighborhood effect parameter is returned.
-#' @param lognormal a logical. If \code{TRUE}, then the values of dispersal parameter are the one assocoated to a lognormal dispersal kernel, default is set to \code{FALSE}.
+#' @param disp a logical. If `TRUE`, then dispersal parameters are returned.
+#' @param favo a logical. If `TRUE`, then favourability parameters are returned.
+#' @param neigh a logical. If `TRUE`, then neighborhood effect parameter is returned.
+#' @param lognormal a logical. If `TRUE`, then a lognormal dispersal kernel is considere.
 #' @param abbr an abbreviation for a tree species name.
-#' @param full_names a logical. If \code{TRUE} teh scientific names of the tree species is returned.
+#' @param full_names a logical. If `TRUE` then scientific names of tree species are returned.
 #'
 #' @return
 #' A matrix including the parameters ranges and starting values.
@@ -47,8 +47,9 @@ getParameters <- function(disp = TRUE, favo = TRUE, neigh = TRUE, lognormal = FA
 convertTreeAbbr <- function(abbr, full_names = FALSE) {
     nm_sp <- c("ABBA", "ACRU", "ACSA", "BEAL", "BEPA", "FAGR", "POTR")
     nm_plt <- c("BF", "RM", "SM", "YB", "WB", "AB", "AS")
-    nm_full <- c("Abies balsamea", "Acer rubrum", "Acer saccharum", "Betula alleghaniensis",
-        "Betula papyrifera", "Betula papyrifera", "Fagus grandifolia", "Populus tremuloides")
+    nm_full <- c("Abies balsamea", "Acer rubrum", "Acer saccharum",
+      "Betula alleghaniensis", "Betula papyrifera", "Betula papyrifera",
+      "Fagus grandifolia", "Populus tremuloides")
     #
     stopifnot(abbr %in% nm_sp | abbr %in% nm_plt)
     #
