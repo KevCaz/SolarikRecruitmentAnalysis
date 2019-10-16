@@ -16,9 +16,6 @@ before_script:
   - Rscript -e 'install.packages(c("devtools", "mapview"))'
   - Rscript -e 'devtools::install_github(c("KevCaz/diskers", "inSileco/graphicsUtils"))'
 
-after_success:
-  - Rscript -e 'covr::codecov()'
-
 
 before_deploy: Rscript -e 'remotes::install_cran("pkgdown")'
 
@@ -26,3 +23,4 @@ deploy:
   provider: script
   script: Rscript -e 'pkgdown::deploy_site_github()'
   skip_cleanup: true
+
