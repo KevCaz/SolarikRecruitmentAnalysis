@@ -16,7 +16,7 @@
 #' @export
 
 getTableLetters <- function(tmp, year) {
-    ## 
+    ##
     id <- which(tmp$year == year)
     tmp <- tmp[id, ]
     nsite <- length(unique(tmp$site))
@@ -28,9 +28,9 @@ getTableLetters <- function(tmp, year) {
     rownames(out) <- unique(tmp$tree) %>% as.character
     ## Letters assigned for dispersion
     dislet <- c("dc", "d-", "Dc", "D-")
-    ## 
+    ##
     tmp2 <- tmp[tmp$best, ]
-    # 
+    #
     for (i in 1:nrow(tmp2)) {
         let <- ""
         if (tmp2$pz[i]) {
@@ -48,11 +48,10 @@ getTableLetters <- function(tmp, year) {
         if (tmp2$neigh[i]) {
             let <- addlet(let, "N")
         } else let <- addlet(let, "-")
-        ## 
+        ##
         nr <- which(rownames(out) == as.character(tmp2$tree[i]))
         nc <- which(colnames(out) == paste0(as.character(tmp2$site[i]), "_", as.character(tmp2$age[i])))
         out[nr, nc] <- let
     }
-    ## 
-    return(out)
+    out
 }

@@ -34,15 +34,15 @@
 #' @return
 #' The log-likelihood values associated to a given set of parameters.
 
-getLikelihood <- function(pars, obs, zero_infl = FALSE, neigh = NULL, disp = NULL, 
-    favo = NULL, SDBH = NULL, kernel = "kern_lognormal", pstr = NA, ppz = NA, pscal = NA, 
+getLikelihood <- function(pars, obs, zero_infl = FALSE, neigh = NULL, disp = NULL,
+    favo = NULL, SDBH = NULL, kernel = "kern_lognormal", pstr = NA, ppz = NA, pscal = NA,
     pshap = NA, pfav = NA, pneigh = NA, quiet = TRUE, record = NULL) {
-    
+
     ## Number of quadrats
     nbq <- length(obs)
-    ## 
+    ##
     STR <- pars[pstr]
-    
+
     ## Favorability
     if (!is.null(favo)) {
         stopifnot(nrow(favo) == nbq | is.na(pars[pfav]))
@@ -51,7 +51,7 @@ getLikelihood <- function(pars, obs, zero_infl = FALSE, neigh = NULL, disp = NUL
     ## Dispersal
     if (!is.null(disp)) {
         stopifnot(length(disp) == nbq | is.na(pars[pscal]) | is.na(pars[pshap]))
-        ## 
+        ##
         kernel %<>% paste0("diskers::", .)
         di0 <- disp %>% lapply(kernel, shap = pars[pshap], scal = pars[pscal])
         di <- sapply(1:nbq, FUN = function(x) sum(di0[[x]] * SDBH[[x]])) %>% unlist
@@ -61,33 +61,33 @@ getLikelihood <- function(pars, obs, zero_infl = FALSE, neigh = NULL, disp = NUL
         stopifnot(length(neigh) == nbq | is.na(pars[pneigh]))
         ne <- exp(-pars[pneigh] * neigh)
     } else ne <- 1
-    
+
     ## Computing R
     R <- STR * rep(1, nbq) * di * fa * ne
-    
+
     ## Fitting (include the selection of the proper distribution)
     if (zero_infl) {
         Pz <- pars[ppz]
         ## Zero-inflated Poisson distribution
         lik = double(length(obs))
-        if (length(obs == 0) > 0) 
-            lik[obs == 0] = Pz + (1 - Pz) * stats::dpois(obs[obs == 0], lambda = R[obs == 
+        if (length(obs == 0) > 0)
+            lik[obs == 0] = Pz + (1 - Pz) * stats::dpois(obs[obs == 0], lambda = R[obs ==
                 0])
-        if (length(obs > 0) > 0) 
-            lik[obs > 0] = (1 - Pz) * stats::dpois(obs[obs > 0], lambda = R[obs > 
+        if (length(obs > 0) > 0)
+            lik[obs > 0] = (1 - Pz) * stats::dpois(obs[obs > 0], lambda = R[obs >
                 0])
     } else lik <- stats::dpois(obs, lambda = R)
-    
+
     ## Sum of log-likelihood
     out <- -sum(log(lik))
     if (!is.null(record)) {
-        if (!is.infinite(out)) 
+        if (!is.infinite(out))
             cat(c(out, pars), "\n", file = record, append = TRUE)
     }
     if (!quiet) {
         print(pars)
         print(out)
     }
-    
-    return(out)
+
+    out
 }

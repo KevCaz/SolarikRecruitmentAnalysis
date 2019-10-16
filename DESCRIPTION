@@ -1,11 +1,11 @@
 Package: seedlingsRecruitmentAnalysis
-Title: Analysis of seedlings recruitment as in Solarik et al. (2019)
+Title: Research compendia for the analysis of seedlings recruitment as in Solarik et al. (2019)
 Version: 1.0.0
 Authors@R: c(
   person("Kevin", "Cazelles", email = "kevin.cazelle@uoguelph.ca", comment = c(ORCID = "0000-0001-6619-9874"), role = c("aut", "cre")),
   person("Kevin", "Solarik", role = c("aut"))
   )
-Description: Set of R functions used in Solarik et al. (2019).
+Description: This package provides data and functions to reproduce the analyses carried out in Solarik et al. (2019).
 License: GPL-3
 LazyData: true
 Depends:
@@ -19,9 +19,11 @@ Imports:
     sp,
     stats,
     utils
-Remotes: KevCaz/diskers,
-    inSileco/graphicsUtils
-Suggests: knitr,
+Remotes:
+    KevCaz/diskers,
+    inSileco/graphicsutils
+Suggests:
+    knitr,
     mapview,
     rmarkdown,
     testthat
@@ -30,3 +32,4 @@ BugReports: https://github.com/KevCaz/seedlingsRecruitmentAnalysis/issues
 Encoding: UTF-8
 VignetteBuilder: knitr
 RoxygenNote: 6.1.1
+Roxygen: list(markdown = TRUE)

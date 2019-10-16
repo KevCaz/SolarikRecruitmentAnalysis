@@ -22,7 +22,7 @@ getParameters <- function(disp = TRUE, favo = TRUE, neigh = TRUE, lognormal = FA
     cnm <- c("STR", "Pz", "scal", "shap", "pm", "pl", "pn", "pd", "ps", "pb")
     rnm <- c("start", "low", "high")
     delta <- 10^-5
-    mat_par <- rbind(st <- c(100, 0.5, 1, 2, rep(0.5, 5), 1), lo <- c(0, 0, 0.02, 
+    mat_par <- rbind(st <- c(100, 0.5, 1, 2, rep(0.5, 5), 1), lo <- c(0, 0, 0.02,
         1, rep(0, 5), 0), hg <- c(10^6, 1, 20, 4, rep(1, 5), 1000))
     if (lognormal) {
         mat_par[, 3L] <- c(1, 0.01, 20)  # peak min = 1 cm max 20m
@@ -30,14 +30,14 @@ getParameters <- function(disp = TRUE, favo = TRUE, neigh = TRUE, lognormal = FA
     }
     colnames(mat_par) <- cnm
     rownames(mat_par) <- rnm
-    
-    if (!disp) 
+
+    if (!disp)
         mat_par <- mat_par[, !colnames(mat_par) %in% c("shap", "scal")]
-    if (!favo) 
+    if (!favo)
         mat_par <- mat_par[, !colnames(mat_par) %in% c("pm", "pl", "pn", "pd", "ps")]
-    if (!neigh) 
+    if (!neigh)
         mat_par <- mat_par[, !colnames(mat_par) %in% c("pb")]
-    
+
     mat_par
 }
 
@@ -47,21 +47,17 @@ getParameters <- function(disp = TRUE, favo = TRUE, neigh = TRUE, lognormal = FA
 convertTreeAbbr <- function(abbr, full_names = FALSE) {
     nm_sp <- c("ABBA", "ACRU", "ACSA", "BEAL", "BEPA", "FAGR", "POTR")
     nm_plt <- c("BF", "RM", "SM", "YB", "WB", "AB", "AS")
-    nm_full <- c("Abies balsamea", "Acer rubrum", "Acer saccharum", "Betula alleghaniensis", 
+    nm_full <- c("Abies balsamea", "Acer rubrum", "Acer saccharum", "Betula alleghaniensis",
         "Betula papyrifera", "Betula papyrifera", "Fagus grandifolia", "Populus tremuloides")
-    # 
+    #
     stopifnot(abbr %in% nm_sp | abbr %in% nm_plt)
-    # 
+    #
     vec1 <- nm_sp
     vec2 <- nm_plt
     if (abbr %in% nm_plt) {
         vec1 <- nm_plt
         vec2 <- nm_sp
     }
-    # 
-    if (full_names) {
-        return(nm_full[which(vec1 == abbr)])
-    } else {
-        return(vec2[which(vec1 == abbr)])
-    }
+    #
+    if (full_names) nm_full[which(vec1 == abbr)] else vec2[which(vec1 == abbr)]
 }

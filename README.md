@@ -1,13 +1,15 @@
 
 # seedlingsRecruitmentAnalysis
 
+:book: Solarik et al. (2019) DOI:XXX - research compendium
+
 [![Build status](https://ci.appveyor.com/api/projects/status/xcsiox3ufc4bab69?svg=true)](https://ci.appveyor.com/project/KevCaz/seedlingsrecruitmentanalysis)
 [![Build Status](https://travis-ci.org/KevCaz/seedlingsRecruitmentAnalysis.svg?branch=master)](https://travis-ci.org/KevCaz/seedlingsRecruitmentAnalysis)
 
 Code to reproduce the analyses carried out in Solarik *et al.* (2019). We used a
-standard R package to readily share our code and ensure our study is
-reproducible. Moreover this repository is an appropriate platform to discuss and
-fix potential code issues.
+standard R package to share our code and ensure that our study is reproducible.
+Moreover this repository is an appropriate platform to discuss and fix potential
+code issues.
 
 The whole analysis pipeline is described in the package's vignette and
 accessible as a [webpage](https://github.com/KevCaz/diskers/).

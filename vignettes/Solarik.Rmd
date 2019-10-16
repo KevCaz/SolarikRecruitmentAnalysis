@@ -15,7 +15,7 @@ vignette: >
 ---
 
 
-```{r,  message = FALSE}
+```{r, include = FALSE}
 library(seedlingsRecruitmentAnalysis)
 ```
 
@@ -24,19 +24,20 @@ library(seedlingsRecruitmentAnalysis)
 This vignette aims at guiding the reader through the different steps of the
 analysis carried out in *Priority effects will prevent range shifts of temperate tree species into the boreal forest.* (Solarik *et al.* 2019). Data, R code and this vignette are available at <https://github.com/KevCaz/seedlingsRecruitmentAnalysis>.
 
+
 # Data
 
 <br>
 
 ## Sites of the study
 
-Recruitment data have been measured on three different sites:
+As explained in the original study, recruitment data have been measured on three different sites:
 
 - 'abi': Abitibi
 - 'bic': Le Bic
 - 'sut': Sutton
 
-The map below show the location of those sites. For each sites some extra information are available on clicks.
+The map below shows the location of those sites. For each site, extra information are available on clicks.
 
 ```{r map, message=FALSE, echo=FALSE, fig.width=9}
 datS <- data.frame(
@@ -71,7 +72,7 @@ spSite <- sp::SpatialPointsDataFrame(
 | AB    | FAGR  | Fagus grandifolia     | 19462  |FALSE |FALSE |TRUE  |
 | AS    | POTR  | Populus tremuloides   | 195773 |TRUE  |TRUE  |TRUE  |
 
-: Abbreviations, names, TSN (Taxonomic Serial Number, viti the [Integrated
+: Abbreviations, names, TSN (Taxonomic Serial Number, visit the [Integrated
   Taxonomic Information System website](https://www.itis.gov/pdf/faq_itis_tsn.pdf)
   for more details about TSN) of the tree species considered and their
   respective presence in the three sites of the study.
@@ -186,3 +187,6 @@ Note that `test.txt` records all the values tested during the simulated algorith
 ```{r eval = FALSE}
 getConfInt("inst/res/test.txt", simuDesign, 16, basename_out = "inst/resf_")
 ```
+
+
+## References

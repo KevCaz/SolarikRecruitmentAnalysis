@@ -45,9 +45,7 @@ recuitmentAnalysis <- function(site, year, tree, age, mat_par, path = "./", zero
     ## Getting the observations
     obs <- reg[, paste0(convertTreeAbbr(tree), "_", age)]
     ##
-    ker <- FALSE
-    if (kernel == "kern_lognormal")
-        ker <- TRUE
+    ker <- ifelse(kernel == "kern_lognormal", TRUE, FALSE)
 
     pars <- getParameters(disp, favo, neigh, lognormal = FALSE)
     ## Finding the index of parameters
@@ -104,7 +102,7 @@ recuitmentAnalysis <- function(site, year, tree, age, mat_par, path = "./", zero
         obs = obs, zero_infl = zero_infl, disp = disp, SDBH = SDBH, kernel = "kern_lognormal",
         neigh = neigh, favo = favo, quiet = quiet, pstr = pstr, ppz = ppz, pscal = pscal,
         pshap = pshap, pfav = pfav, pneigh = pneigh, record = record)
-    # OUTPUT
+    # output
     resSA
 }
 

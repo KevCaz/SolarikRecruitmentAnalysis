@@ -38,9 +38,7 @@ getConfInt <- function(filename, simu, iter, basename_out = "inst/resf_", quiet 
             out[3L, i] <- max(tmp[val, i + 1])
         }
         lik <- tmp[idmn, 1L]
-    } else {
-        lik <- Inf
-    }
+    } else lik <- Inf
     ## Make the list to be returned
     ls_out <- list(likelihood = lik, pars = out) %T>% saveRDS(file = paste0(basename_out, sprintf("%04d", iter), ".rds"))
     ##
