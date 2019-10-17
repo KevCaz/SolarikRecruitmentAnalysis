@@ -4,11 +4,13 @@
 \alias{figKernels}
 \title{Draw kernels.}
 \usage{
-figKernels(datares, xlim = c(0, 50), ylim = c(0, 0.015),
-  colors = c("#771224", "#31679f", "#6db80f", "grey10"))
+figKernels(datares, age = 1, xlim = c(0, 50), ylim = c(0, 0.015),
+  colors = c("#5d393f", "#4899c7", "#c8de86", "grey10"))
 }
 \arguments{
 \item{datares}{a data frame that contains the best models.}
+
+\item{age}{age of the seedling for which the figure is drawn (either 1 or 2).}
 
 \item{xlim}{numeric vectors of length 2, giving the x coordinates ranges.}
 
@@ -18,6 +20,9 @@ figKernels(datares, xlim = c(0, 50), ylim = c(0, 0.015),
 }
 \description{
 Draws kernels of the best models.
+}
+\examples{
+figKernels(res_bestModels)
 }
 \author{
 Kevin Cazelles

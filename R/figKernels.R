@@ -6,18 +6,22 @@
 #' Kevin Cazelles
 #'
 #' @param datares a data frame that contains the best models.
+#' @param age age of the seedling for which the figure is drawn (either 1 or 2).
 #' @param xlim numeric vectors of length 2, giving the x coordinates ranges.
 #' @param ylim numeric vectors of length 2, giving the y coordinates ranges.
 #' @param colors vector of colors.
 #'
-#' @importFrom graphicsutils plot0 box2 percX percY
-#' @importFrom graphics axis par layout legend lines points text
+#' @importFrom graphicsutils plot0 percX percY
+#' @importFrom graphics axis par layout legend lines points text box
 #' @importFrom diskers kern_exponential_power kern_lognormal
 #'
 #' @export
+#'
+#' @examples
+#' figKernels(res_bestModels)
 
-figKernels <- function(datares, xlim = c(0, 50), ylim = c(0, 0.015), colors = c("#771224",
-    "#31679f", "#6db80f", "grey10")) {
+figKernels <- function(datares, age = 1, xlim = c(0, 50), ylim = c(0, 0.015),
+  colors = c("#5d393f", "#4899c7", "#c8de86", "grey10")) {
     ##
     nm_tre <- as.character(unique(datares$tree))
     ## Colors
@@ -30,21 +34,22 @@ figKernels <- function(datares, xlim = c(0, 50), ylim = c(0, 0.015), colors = c(
     matlay <- cbind(7, rbind(8, matrix(1:6, 2), 9))
     matlay[c(1, 4), 1] <- 0
     ##
-    seqd <- seq(xlim[1], xlim[2], 0.01)
+    seqd <- seq(xlim[1], xlim[2], .01)
     ##
-    # datares <- datares[datares$age == 1, ]
+    # datares <- datares[datares$year == year, ]
+    datares <- datares[datares$age == 1, ]
     # datares$tosplit <- paste0(datares$site, datares$year)
-    datares$tosplit <- paste0(datares$site, datares$age)
+    datares$tosplit <- paste0(datares$site, datares$year)
     ls_tre <- split(datares, datares$tosplit)
 
     ##
     layout(mat = matlay, widths = c(0.2, 1, 1, 1), heights = c(0.15, 1, 1, 0.5))
-    par(mar = c(1.5, 2.25, 0.5, 1.25), las = 1, mgp = c(2.2, 0.75, 0), xpd = FALSE)
+    par(mar = c(1.5, 2.25, 0.5, 1.25), las = 1, mgp = c(2.2, 0.75, 0))
     ##
     for (i in seq_along(ls_tre)) {
-        plot0(xlim, ylim)
-        axis(1, lwd = 0, lwd.ticks = 0.5)
-        axis(2, lwd = 0, lwd.ticks = 0.5)
+        plot0(xlim, ylim, xpd = FALSE)
+        axis(1, lwd = 0, lwd.ticks = .5)
+        axis(2, lwd = 0, lwd.ticks = .5)
         for (j in 1:nrow(ls_tre[[i]])) {
             if (ls_tre[[i]]$disp[j]) {
                 id <- as.numeric(ls_tre[[i]]$tree[j])
@@ -57,8 +62,8 @@ figKernels <- function(datares, xlim = c(0, 50), ylim = c(0, 0.015), colors = c(
                 lines(seqd, seqy, col = pal[id], lty = lty[id], lwd = 1.4)
             }
         }
-        text(percX(80), percY(92), paste0("Age: ", 2 - i%%2), cex = 1.6)
-        box2(1:2)
+        # text(percX(80), percY(92), paste0("Age: ", 2 - i%%2), cex = 1.6)
+        box(bty = "l")
     }
     ##
     par(mar = c(1.5, 0, 1, 0))
@@ -67,7 +72,7 @@ figKernels <- function(datares, xlim = c(0, 50), ylim = c(0, 0.015), colors = c(
     ##
     par(mar = c(0.1, 2, 0, 1), xaxs = "i")
     plot0(c(0, 3), c(0, 1))
-    text(c(0.12, 1.17, 2.24), rep(0.5, 3), labels = c("ABI", "BIC", "SUT"), cex = cex.txt)
+    text(c(0.12, 1.17, 2.24), rep(0.5, 3), labels = c("Aitibi", "Bic", "Sutton"), cex = cex.txt)
     ##
     plot0()
     text(0, 0.7, labels = "Distance (m)", cex = cex.txt)

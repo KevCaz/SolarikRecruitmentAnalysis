@@ -13,3 +13,16 @@
 #' @usage simuDesign
 #' @format A data frame of 2240 rows and 8 columns.
 "simuDesign"
+
+
+#' Parameters values for the best models
+#'
+#' Running all the simulations took hours. Tht is the reason why kept the parameters values for the best models in this dataset.
+#'
+#' @docType data
+#' @keywords datasets
+#' @author Kevin Cazelles
+#' @name res_bestModels
+#' @usage res_bestModels
+#' @format A data frame of 49 rows and 28 columns.
+"res_bestModels"
