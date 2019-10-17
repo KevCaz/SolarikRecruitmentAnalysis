@@ -129,8 +129,8 @@
     <p>Draws kernels of the best models.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>figKernels</span>(<span class='no'>datares</span>, <span class='kw'>xlim</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0</span>, <span class='fl'>50</span>), <span class='kw'>ylim</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0</span>, <span class='fl'>0.015</span>),
-  <span class='kw'>colors</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"#771224"</span>, <span class='st'>"#31679f"</span>, <span class='st'>"#6db80f"</span>, <span class='st'>"grey10"</span>))</pre>
+    <pre class="usage"><span class='fu'>figKernels</span>(<span class='no'>datares</span>, <span class='kw'>age</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>xlim</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0</span>, <span class='fl'>50</span>), <span class='kw'>ylim</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0</span>, <span class='fl'>0.015</span>),
+  <span class='kw'>colors</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"#5d393f"</span>, <span class='st'>"#4899c7"</span>, <span class='st'>"#c8de86"</span>, <span class='st'>"grey10"</span>))</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -138,6 +138,10 @@
     <tr>
       <th>datares</th>
       <td><p>a data frame that contains the best models.</p></td>
+    </tr>
+    <tr>
+      <th>age</th>
+      <td><p>age of the seedling for which the figure is drawn (either 1 or 2).</p></td>
     </tr>
     <tr>
       <th>xlim</th>
@@ -154,11 +158,14 @@
     </table>
 
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='fu'>figKernels</span>(<span class='no'>res_bestModels</span>)</div><div class='img'><img src='figKernels-1.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
+      <li><a href="#examples">Examples</a></li>
     </ul>
 
     <h2>Author</h2>
