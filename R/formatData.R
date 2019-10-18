@@ -1,7 +1,6 @@
-#' Functions to format data.
+#' Format data.
 #'
-#' Apply a couple of simple steps to get data formatted and therefore
-#' ready to be analyzed.
+#' Formatted to get ready for the analysis.
 #'
 #' @author
 #' Kevin Cazelles
@@ -9,10 +8,9 @@
 #' @importFrom magrittr %>% %<>% %T>%
 #'
 #' @return
-#' A list of dataset including a set of trees and their location, 2 `regen` files
-#' one for 2015 and the other for 2016 including the seedling recruitment and
-#' the favourability of all plots and also all distance between plots and trees
-#' and the list to indicate the trees including in a buffer.
+#' A list of datasets including a set of trees and their spatial coordinates, 2 #' '`regen` files: one for 2015 and the other for 2016 including the seedling
+#' recruitment and the favourability of all plots and also all distances between
+#' plots and trees and a list of trees included in a buffer.
 #'
 #' @param fl_trees a character string indicating path to the `.csv `file including the georeferenced trees.
 #' @param fl_regen a character string indicating path to the `.csv` file including the plots' data for 2015 (seedling and favourability).
@@ -21,7 +19,7 @@
 #' @param abbr_site a character string giving the abbreviation of the site considered.
 #' @param path_out a character string indicating the path to write the data files.
 #' @param dist_buffer the buffering distance (in meters).
-#' @param export logical. If `TRUE` then formatted data are written as .rds files.
+#' @param export logical. If `TRUE`, then formatted data are written as .rds files.
 #'
 #' @importFrom utils read.csv
 #' @importFrom sp spDistsN1
@@ -53,7 +51,7 @@ formatData <- function(fl_trees, fl_regen, fl_regen2, treesp, abbr_site, path_ou
     regen$ba_tot <- regen2$ba_tot <- lapply(lsdist,
         function(x) sum(pi * 2.5e-05 * trees$DBH[x <dist_buffer]^2)) %>% unlist
 
-    ## Buffering (return the id of the tree withing the buffer and the basal area
+    ## Buffering (return the id of the tree within 25m buffer and the basal area
     ## associated for all studied species)
     for (i in treesp) {
         id <- which(trees$SP != i)
@@ -61,7 +59,7 @@ formatData <- function(fl_trees, fl_regen, fl_regen2, treesp, abbr_site, path_ou
           pi * 2.5e-05 * trees$DBH[id][x[id] < dist_buffer]^2)) %>% unlist
     }
 
-    ## Exporting R objects
+    ## Exporting objects as files
     if (export) {
         export_file(trees, path_out, "/trees", abbr_site)
         export_file(regen, path_out, "/regen", abbr_site, "2015")

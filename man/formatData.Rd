@@ -2,7 +2,7 @@
 % Please edit documentation in R/formatData.R
 \name{formatData}
 \alias{formatData}
-\title{Functions to format data.}
+\title{Format data.}
 \usage{
 formatData(fl_trees, fl_regen, fl_regen2, treesp, abbr_site,
   path_out = "output", dist_buffer = 20, export = TRUE)
@@ -22,17 +22,15 @@ formatData(fl_trees, fl_regen, fl_regen2, treesp, abbr_site,
 
 \item{dist_buffer}{the buffering distance (in meters).}
 
-\item{export}{logical. If \code{TRUE} then formatted data are written as .rds files.}
+\item{export}{logical. If \code{TRUE}, then formatted data are written as .rds files.}
 }
 \value{
-A list of dataset including a set of trees and their location, 2 \code{regen} files
-one for 2015 and the other for 2016 including the seedling recruitment and
-the favourability of all plots and also all distance between plots and trees
-and the list to indicate the trees including in a buffer.
+A list of datasets including a set of trees and their spatial coordinates, 2 #' '\code{regen} files: one for 2015 and the other for 2016 including the seedling
+recruitment and the favourability of all plots and also all distances between
+plots and trees and a list of trees included in a buffer.
 }
 \description{
-Apply a couple of simple steps to get data formatted and therefore
-ready to be analyzed.
+Formatted to get ready for the analysis.
 }
 \author{
 Kevin Cazelles

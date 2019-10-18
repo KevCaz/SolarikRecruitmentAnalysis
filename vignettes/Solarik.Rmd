@@ -26,7 +26,15 @@ analysis carried out in *Priority effects will prevent range shifts of temperate
 
 # Data
 
-Data are currently archived on [Dryad](https://datadryad.org/stash) at the following URL <https://doi.org/10.5061/dryad.q573n5tdx>.
+Data are currently archived on [Dryad](https://datadryad.org) at the following URL <https://doi.org/10.5061/dryad.q573n5tdx> and can be download using `retrieveData()` as follows
+
+```r
+retrieveData()
+```
+
+This create a folder (by default its name is `input`) with all the datasets as `.csv` or `.xlsx` files.
+
+
 
 <br>
 
