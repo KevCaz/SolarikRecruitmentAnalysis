@@ -22,10 +22,11 @@ library(seedlingsRecruitment)
 <br>
 
 This vignette aims at guiding the reader through the different steps of the
-analysis carried out in *Priority effects will prevent range shifts of temperate tree species into the boreal forest.* (Solarik *et al.* 2019). Data, R code and this vignette are available at <https://github.com/KevCaz/seedlingsRecruitmentAnalysis>.
-
+analysis carried out in *Priority effects will prevent range shifts of temperate tree species into the boreal forest.*[^not1].
 
 # Data
+
+Data are currently archived on [Dryad](https://datadryad.org/stash) at the following URL <https://doi.org/10.5061/dryad.q573n5tdx>.
 
 <br>
 
@@ -37,7 +38,7 @@ As explained in the original study, recruitment data have been measured on three
 - 'bic': Le Bic
 - 'sut': Sutton
 
-The map below shows the location of those sites. For each site, extra information are available on clicks.
+The map below shows the location of those sites. For each site, extra information are available on click.
 
 ```{r map, message=FALSE, echo=FALSE, fig.width=9}
 datS <- data.frame(
@@ -75,15 +76,16 @@ spSite <- sp::SpatialPointsDataFrame(
 : Abbreviations, names, TSN (Taxonomic Serial Number, visit the [Integrated
   Taxonomic Information System website](https://www.itis.gov/pdf/faq_itis_tsn.pdf)
   for more details about TSN) of the tree species considered and their
-  respective presence in the three sites of the study.
+  respective presence in the three sites.
 
 
 <br>
 
 ## Recruitment data
 
-A link to the dataset would hopefully be available before publication.
+A link to the dataset would be added once data are released.
 <!-- even as rda... -->
+
 
 
 
@@ -175,7 +177,7 @@ knitr::kable(getParameters(TRUE, TRUE, TRUE, lognormal = FALSE))
 
 The line below (not run) allows to run for the 16<sup>th</sup> model.
 
-```{r eval = FALSE}
+```{r, eval = FALSE}
 res <- launchIt(iter = 16, simu = simuDesign, mxt = 100,
   record = "inst/res/test.txt", quiet = TRUE, path = "inst/dataReady/")
 # value (likelihood)
@@ -186,9 +188,27 @@ res$par
 
 Note that `test.txt` records all the values tested during the simulated algorithm and the corresponding likelihood based on which we obtain a confident interval.
 
-```{r eval = FALSE}
+```{r, eval = FALSE}
 getConfInt("inst/res/test.txt", simuDesign, 16, basename_out = "inst/resf_")
+```
+
+### Figure 5
+
+Once all models run and the best models identified, we draw figure 5 that is the dispersal kernels infered for one year seedlings
+
+
+```{r}
+figKernels(res_bestModels)
+```
+
+Similarly, we used this function to draw the same figure for 2 years seedlings (see Supplememtary Information of the paper):
+
+```{r}
+figKernels(res_bestModels, age = 2)
 ```
 
 
 ## References
+
+
+[^not1]: Solarik et al. DOI: 2Badded

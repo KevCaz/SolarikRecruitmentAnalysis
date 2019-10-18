@@ -12,13 +12,13 @@
 #' @param colors vector of colors.
 #'
 #' @importFrom graphicsutils plot0 percX percY
-#' @importFrom graphics axis par layout legend lines points text box
+#' @importFrom graphics axis par layout legend lines points text box mtext
 #' @importFrom diskers kern_exponential_power kern_lognormal
 #'
 #' @export
 #'
 #' @examples
-#'
+#' figKernels(res_bestModels)
 
 
 
@@ -44,10 +44,10 @@ figKernels <- function(datares, age = 1, xlim = c(0, 50), ylim = c(0, 0.015),
     datares$tosplit <- paste0(datares$site, datares$year)
     ls_tre <- split(datares, datares$tosplit)
 
-    regions <- c("Aitibi", "", "Bic",  "", "Sutton", "")
+    regions <- c("Abitibi", "", "Le Bic",  "", "Sutton", "")
     ##
-    layout(mat = matlay, widths = c(0.3, 1, 1, 1), heights = c(1, 1, 0.4))
-    par(mar = c(1.2, 2, 0.5, .8), las = 1, cex.axis = .6, lend = 1, tck = -0.05)
+    layout(mat = matlay, widths = c(0.33, 1, 1, 1), heights = c(1, 1, 0.36))
+    par(mar = c(1.2, 2, 0.5, .5), las = 1, cex.axis = .6, lend = 1, tck = -0.05)
     ##
     for (i in seq_along(ls_tre)) {
         plot0(xlim, ylim)
@@ -65,26 +65,28 @@ figKernels <- function(datares, age = 1, xlim = c(0, 50), ylim = c(0, 0.015),
                   seqy <- kern_lognormal(seqd, scal = ls_tre[[i]]$scal[j],
                     shap = ls_tre[[i]]$shap[j])
                 }
-                lines(seqd, seqy, col = pal[id], lty = lty[id], lwd = 1.1)
+                lines(seqd, seqy, col = pal[id], lty = lty[id], lwd = 1)
             }
         }
         box(bty = "l")
     }
     ##
-    par(mar = c(1, 0, .1, 0))
+    par(mar = c(1.2, 0, .5, 0))
     plot0()
-    text(-0.3, 0, labels = "density", srt = 90, cex = cex.txt)
-    text(rep(0.5, 2), c(-.57,.57), labels = c(2016, 2015), srt = 90, cex = .8*cex.txt)
+    text(-0.4, 0, labels = expression("Probability Density (1/"*m^2*")"),
+      srt = 90, cex = cex.txt)
+    text(rep(0.6, 2), c(-.59,.59), labels = c(2016, 2015), srt = 90, cex = .9*cex.txt)
     ##
     # par(mar = c(0.1, 2, 0, 1), xaxs = "i")
     # plot0(c(0, 3), c(0, 1))
     # text(c(0.12, 1.17, 2.24), rep(0.5, 3), labels = c("Aitibi", "Bic", "Sutton"), cex = cex.txt)
     ##
+    par(mar = c(.5, 0, .1, 0))
     plot0()
     text(0, 0.72, labels = "Distance (m)", cex = cex.txt)
     ##
     legend("bottom", bty = "n", legend = nm_tre, lwd = 1.4, lty = lty,
-      seg.len = 2.7, col = pal, ncol = 7, cex = .7)
+      seg.len = 2.7, col = pal, ncol = 7, cex = .77)
     ##
     invisible(NULL)
 }

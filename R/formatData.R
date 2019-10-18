@@ -27,10 +27,9 @@
 #' @importFrom sp spDistsN1
 #' @export
 
-formatData <- function(fl_trees, fl_regen, fl_regen2, treesp, abbr_site, path_out = ".",
+formatData <- function(fl_trees, fl_regen, fl_regen2, treesp, abbr_site, path_out = "output",
     dist_buffer = 20, export = TRUE) {
 
-    ## 2Bchanged
     ## Import the data based on the path to the files given as arguments.  tree data
     trees <- read.csv(fl_trees, header = TRUE, stringsAsFactors = FALSE)
     ## Regeneration data for 2015

@@ -5,7 +5,7 @@
 \title{Draw kernels.}
 \usage{
 figKernels(datares, age = 1, xlim = c(0, 50), ylim = c(0, 0.015),
-  colors = c("#5d393f", "#4899c7", "#c8de86", "grey10"))
+  colors = c("#6b2934", "#4899c7", "#c8de86", "grey10"))
 }
 \arguments{
 \item{datares}{a data frame that contains the best models.}
