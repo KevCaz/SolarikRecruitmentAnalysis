@@ -4,15 +4,16 @@
 \alias{formatData}
 \title{Format data.}
 \usage{
-formatData(fl_trees, fl_regen, fl_regen2, treesp, abbr_site,
+formatData(fl_trees, fl_regen, fl_favo = NULL,
+  treesp = unique(simuDesign$tree), abbr_site = "abi",
   path_out = "output", dist_buffer = 20, export = TRUE)
 }
 \arguments{
 \item{fl_trees}{a character string indicating path to the \code{.csv }file including the georeferenced trees.}
 
-\item{fl_regen}{a character string indicating path to the \code{.csv} file including the plots' data for 2015 (seedling and favourability).}
+\item{fl_regen}{a character string indicating path to the \code{.csv} file including regeneration data for 2015 and 2016.}
 
-\item{fl_regen2}{a character string indicating path to the \code{.csv} file including the plots' data for 2016.}
+\item{fl_favo}{a character string indicating path to the \code{.csv} file including favourability data.}
 
 \item{treesp}{a vector of abbreviation indicating the tree species considered.}
 
@@ -22,7 +23,7 @@ formatData(fl_trees, fl_regen, fl_regen2, treesp, abbr_site,
 
 \item{dist_buffer}{the buffering distance (in meters).}
 
-\item{export}{logical. If \code{TRUE}, then formatted data are written as .rds files.}
+\item{export}{logical. If \code{TRUE}, then formatted data are written as \code{.rds} files.}
 }
 \value{
 A list of datasets including a set of trees and their spatial coordinates, 2 #' '\code{regen} files: one for 2015 and the other for 2016 including the seedling
@@ -30,7 +31,8 @@ recruitment and the favourability of all plots and also all distances between
 plots and trees and a list of trees included in a buffer.
 }
 \description{
-Formatted to get ready for the analysis.
+Format datasets for the recruitment analysis. Note that this function was
+used at a early stage if the development.
 }
 \author{
 Kevin Cazelles

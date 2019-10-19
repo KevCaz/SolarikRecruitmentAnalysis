@@ -27,7 +27,7 @@ remotes::install_github(c('KevCaz/diskers', 'inSileco/inSilecoMisc', 'inSileco/g
 Once installed, you can install this package:
 
 ```r
-remotes::install_github('KevCaz/seedlingsRecruitmentAnalysis')
+remotes::install_github('KevCaz/seedlingsRecruitment')
 ```
 
 

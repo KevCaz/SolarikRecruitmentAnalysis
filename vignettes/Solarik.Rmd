@@ -32,11 +32,22 @@ Data are currently archived on [Dryad](https://datadryad.org) at the following U
 retrieveData()
 ```
 
-This create a folder (by default its name is `input`) with all the datasets as `.csv` or `.xlsx` files.
+This create a folder (by default it is `input`) with all datasets as `.csv` or `.xlsx` files. Once done, trees locations and regeneration files can readily be formatted with `formatData()`. Note that, as favuorability data are strored as `.docx` files,in order to use the code below it requires to convert the `.docx`  into `.csv` files.
 
 
 
-<br>
+```r
+dat_abitibi <- formatData("input/abitibitrees.csv", "input/abitibiregen.csv")
+dat_lebic <- formatData("input/lebictrees.csv", "input/lebicregen.csv",
+  abbr_site = "bic")
+dat_sutton <- formatData("input/suttontrees.csv", "input/suttonregen.csv",
+  abbr_site = "sut")
+```
+
+By default all the files created will be exported as `.rds` file in `output`.
+We stored all data formatted are rda files
+
+
 
 ## Sites of the study
 
@@ -145,22 +156,19 @@ $$R_i = \text{STR}\sum_{j=1}^Sc_{i,j}f_{i,j}\sum_{k=1}^T\left(\frac{\text{DBH}_k
 ### Overall strategy
 
 For each model, we estimate the parameters through the maximization of the
-likelihood (minimization of the likelihood log-transformed) for the
+likelihood (actually the minimization of the likelihood log-transformed) for the
 corresponding data. As our model is not linear and highly customized we
 optimized the likelihood with the simulated annealing algorithm implemented in
-GenSA.
-
-```{r}
-citation("GenSA")
-```
+GenSA[^gensa].
 
 
-Here are the 15 first models (each row is a model) out of the
-`r nrow(simuDesign)/7` tested for *Abies balsamea*.
+For instance, below are the 15 first models out of the `r nrow(simuDesign)/7`
+tested for *Abies balsamea*.
 
 
 ```{r simudesign}
 data(simuDesign)
+# NB: each row is a model
 knitr::kable(head(simuDesign, 15))
 ```
 
@@ -220,3 +228,7 @@ figKernels(res_bestModels, age = 2)
 
 
 [^not1]: Solarik et al. DOI: 2Badded
+[^gensa]: Y. Xiang, S. Gubian. B. Suomela, J. Hoeng (2013). Generalized
+  Simulated Annealing for Efficient Global Optimization: the GenSA
+  Package for R. The R Journal, Volume 5/1, June 2013.
+  https://journal.r-project.org/archive/2013/RJ-2013-002/index.html

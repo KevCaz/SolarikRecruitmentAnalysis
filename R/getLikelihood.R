@@ -4,9 +4,6 @@
 #' parameters, i.e. a specific. Note that the parameters included determine the
 #' ecological processes considered.
 #'
-#' @author
-#' Kevin Cazelles
-#'
 #' @importFrom magrittr %>% %<>%
 #'
 #' @param pars vector of parameters values.

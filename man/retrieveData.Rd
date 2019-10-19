@@ -12,6 +12,3 @@ retrieveData(dir = "input")
 \description{
 Retrieve original datasets from dryad \url{https://datadryad.org}.
 }
-\author{
-Kevin Cazelles
-}

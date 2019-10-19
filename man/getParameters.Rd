@@ -35,6 +35,3 @@ a given simulation.
 \item \code{convertTreeAbbr}: Make the conversion between the two different abbreviation used for the names of tree species.
 }}
 
-\author{
-Kevin Cazelles
-}

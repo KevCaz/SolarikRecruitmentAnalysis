@@ -3,9 +3,6 @@
 #' A function to get ranges and starting values for the parameters associated to
 #' a given simulation.
 #'
-#' @author
-#' Kevin Cazelles
-#'
 #' @param disp a logical. If `TRUE`, then dispersal parameters are returned.
 #' @param favo a logical. If `TRUE`, then favourability parameters are returned.
 #' @param neigh a logical. If `TRUE`, then neighborhood effect parameter is returned.

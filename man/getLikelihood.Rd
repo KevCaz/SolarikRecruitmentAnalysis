@@ -53,6 +53,3 @@ ecological processes considered.
 \details{
 The parameter \code{pz} have a value even if it is not included in the analysis (meaning a poisson distribution is used).
 }
-\author{
-Kevin Cazelles
-}

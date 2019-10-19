@@ -2,9 +2,6 @@
 #'
 #' Retrieve original datasets from dryad <https://datadryad.org>.
 #'
-#' @author
-#' Kevin Cazelles
-#'
 #' @param dir path to folder where the data will be stored.
 #'
 #' @importFrom utils unzip download.file

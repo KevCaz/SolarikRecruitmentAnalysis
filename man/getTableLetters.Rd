@@ -17,6 +17,3 @@ A character matrix indicating the processes involved in the best models for the 
 \description{
 This functions creates and returns a table depicting ecological processes involved for all species x region.
 }
-\author{
-Kevin Cazelles
-}

@@ -2,9 +2,6 @@
 #'
 #' This functions creates and returns a table depicting ecological processes involved for all species x region.
 #'
-#' @author
-#' Kevin Cazelles
-#'
 #' @param tmp a data frame that include the results of the recruitment analysis.
 #' @param year the year for which the table should be produced.
 #'
