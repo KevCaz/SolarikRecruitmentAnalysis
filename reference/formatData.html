@@ -36,7 +36,8 @@
 
 
 <meta property="og:title" content="Format data. — formatData" />
-<meta property="og:description" content="Formatted to get ready for the analysis." />
+<meta property="og:description" content="Format datasets for the recruitment analysis. Note that this function was
+used at a early stage if the development." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -126,10 +127,12 @@
     </div>
 
     <div class="ref-description">
-    <p>Formatted to get ready for the analysis.</p>
+    <p>Format datasets for the recruitment analysis. Note that this function was
+used at a early stage if the development.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>formatData</span>(<span class='no'>fl_trees</span>, <span class='no'>fl_regen</span>, <span class='no'>fl_regen2</span>, <span class='no'>treesp</span>, <span class='no'>abbr_site</span>,
+    <pre class="usage"><span class='fu'>formatData</span>(<span class='no'>fl_trees</span>, <span class='no'>fl_regen</span>, <span class='kw'>fl_favo</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>treesp</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/unique.html'>unique</a></span>(<span class='no'>simuDesign</span>$<span class='no'>tree</span>), <span class='kw'>abbr_site</span> <span class='kw'>=</span> <span class='st'>"abi"</span>,
   <span class='kw'>path_out</span> <span class='kw'>=</span> <span class='st'>"output"</span>, <span class='kw'>dist_buffer</span> <span class='kw'>=</span> <span class='fl'>20</span>, <span class='kw'>export</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -141,11 +144,11 @@
     </tr>
     <tr>
       <th>fl_regen</th>
-      <td><p>a character string indicating path to the <code>.csv</code> file including the plots' data for 2015 (seedling and favourability).</p></td>
+      <td><p>a character string indicating path to the <code>.csv</code> file including regeneration data for 2015 and 2016.</p></td>
     </tr>
     <tr>
-      <th>fl_regen2</th>
-      <td><p>a character string indicating path to the <code>.csv</code> file including the plots' data for 2016.</p></td>
+      <th>fl_favo</th>
+      <td><p>a character string indicating path to the <code>.csv</code> file including favourability data.</p></td>
     </tr>
     <tr>
       <th>treesp</th>
@@ -165,7 +168,7 @@
     </tr>
     <tr>
       <th>export</th>
-      <td><p>logical. If <code>TRUE</code>, then formatted data are written as .rds files.</p></td>
+      <td><p>logical. If <code>TRUE</code>, then formatted data are written as <code>.rds</code> files.</p></td>
     </tr>
     </table>
 
