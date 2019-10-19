@@ -4,9 +4,9 @@
 \alias{formatData}
 \title{Format data.}
 \usage{
-formatData(fl_trees, fl_regen, fl_favo = NULL,
-  treesp = unique(simuDesign$tree), abbr_site = "abi",
-  path_out = "output", dist_buffer = 20, export = TRUE)
+formatData(fl_trees, fl_regen, fl_favo, treesp = unique(simuDesign$tree),
+  abbr_site = "abi", path_out = "output", dist_buffer = 20,
+  export = TRUE)
 }
 \arguments{
 \item{fl_trees}{a character string indicating path to the \code{.csv }file including the georeferenced trees.}
@@ -33,7 +33,4 @@ plots and trees and a list of trees included in a buffer.
 \description{
 Format datasets for the recruitment analysis. Note that this function was
 used at a early stage if the development.
-}
-\author{
-Kevin Cazelles
 }

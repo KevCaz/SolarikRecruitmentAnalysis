@@ -3,9 +3,6 @@
 #' Format datasets for the recruitment analysis. Note that this function was
 #' used at a early stage if the development.
 #'
-#' @author
-#' Kevin Cazelles
-#'
 #' @importFrom magrittr %>% %<>% %T>%
 #'
 #' @return
@@ -26,7 +23,7 @@
 #' @importFrom sp spDistsN1
 #' @export
 
-formatData <- function(fl_trees, fl_regen, fl_favo = NULL,
+formatData <- function(fl_trees, fl_regen, fl_favo,
     treesp = unique(simuDesign$tree), abbr_site = "abi", path_out = "output",
     dist_buffer = 20, export = TRUE) {
 
@@ -37,12 +34,13 @@ formatData <- function(fl_trees, fl_regen, fl_favo = NULL,
     trees <- trees[!is.na(trees$X),]
     ## Regeneration data for 2015 and 2016
     regen <- read.csv(fl_regen, header = TRUE, stringsAsFactors = FALSE)
-
     ## Subsetting (some plot are removed due to the border effect)
     regen2015 <- subset(regen[regen$Year == 2015, ],
         X > -5 & X < 165 & Y > 15 & Y < 185)
     regen2016 <- subset(regen[regen$Year == 2016, ],
         X > -5 & X < 165 & Y > 15 & Y < 185)
+    ## Favorability data
+    favo <- read.csv(fl_favo, header = TRUE, stringsAsFactors = FALSE)
 
 
     ## List of distances between trees and plots. Note that plots were the same
@@ -64,13 +62,17 @@ formatData <- function(fl_trees, fl_regen, fl_favo = NULL,
     # ensure that species considered are present
     treesp <- treesp[treesp %in% unique(trees$SP)]
     for (i in treesp) {
-        # exlude the focals species
+        # exclude focal species
         id <- which(trees$SP != i)
         regen2015[paste0("ba_", i)] <- unlist(
           lapply(lsdist,
             function(x) sum(pi*2.5e-5*trees$DBH[id][x[id] < dist_buffer]^2)
           ))
     }
+
+    ## Merge favourability data
+    regen2015 <- merge_favo(regen2015, favo)
+    regen2016 <- merge_favo(regen2016, favo)
 
     ## Exporting objects as files
     if (export) {
@@ -82,9 +84,23 @@ formatData <- function(fl_trees, fl_regen, fl_favo = NULL,
     }
 
     ## data as a list.
-    list(trees, regen2015, regen2016, lsdist, iddist)
+    list(
+      trees = trees,
+      regen2015 = regen2015,
+      regen2016 = regen2016,
+      lsdist = lsdist,
+      iddist = iddist
+    )
 }
 
 export_file <- function(obj, path, nmf, site, year = "") {
   saveRDS(obj, file = paste0(path, nmf, site, year, ".rds"))
+}
+
+merge_col <- function(x) paste0("X", x$X, "_Y", x$Y)
+
+merge_favo <- function(regen, favo) {
+    regen$mrg <- merge_col(regen)
+    favo$mrg <- merge_col(favo)
+    merge(regen, favo[!names(favo) %in% c("X", "Y")], by = "mrg")
 }

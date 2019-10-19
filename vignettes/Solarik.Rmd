@@ -37,15 +37,20 @@ This create a folder (by default it is `input`) with all datasets as `.csv` or `
 
 
 ```r
-dat_abitibi <- formatData("input/abitibitrees.csv", "input/abitibiregen.csv")
+dat_abitibi <- formatData("input/abitibitrees.csv", "input/abitibiregen.csv",
+  "input/abitibisubstrate.csv")
 dat_lebic <- formatData("input/lebictrees.csv", "input/lebicregen.csv",
-  abbr_site = "bic")
-dat_sutton <- formatData("input/suttontrees.csv", "input/suttonregen.csv",
-  abbr_site = "sut")
+  "input/lebicsubstrate.csv",  abbr_site = "bic")
+dat_sutton <- formatData("input/suttontrees.csv", "input/suttonregen.csv", "input/suttonsubstrate.csv", abbr_site = "sut")
 ```
 
+<!-- save(dat_abitibi, file = "data/dat_abitibi.rda", compress = "xz",
+  version = 2)
+save(dat_lebic, file = "data/dat_lebic.rda", compress = "xz", version = 2)
+save(dat_sutton, file = "data/dat_sutton.rda", compress = "xz", version -2) -->
+
 By default all the files created will be exported as `.rds` file in `output`.
-We stored all data formatted are rda files
+Note that we stored all these data as `.rda` files in `data`.
 
 
 

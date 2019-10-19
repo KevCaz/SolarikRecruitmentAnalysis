@@ -11,7 +11,4 @@ res_bestModels
 \description{
 Running all the simulations took hours. Tht is the reason why kept the parameters values for the best models in this dataset.
 }
-\author{
-Kevin Cazelles
-}
 \keyword{datasets}
