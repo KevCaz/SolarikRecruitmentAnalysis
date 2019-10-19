@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Function reference • seedlingsRecruitment</title>
+<title>Abitibi dataset — dat_abitibi • seedlingsRecruitment</title>
 
 
 <!-- jquery -->
@@ -35,7 +35,9 @@
 
 
 
-<meta property="og:title" content="Function reference" />
+<meta property="og:title" content="Abitibi dataset — dat_abitibi" />
+<meta property="og:description" content="Trees and regeneration data for Abitibi site." />
+<meta name="twitter:card" content="summary" />
 
 
 
@@ -54,7 +56,7 @@
   </head>
 
   <body>
-    <div class="container template-reference-index">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -116,114 +118,36 @@
       </header>
 
 <div class="row">
-  <div class="contents col-md-9">
+  <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Reference</h1>
+    <h1>Abitibi dataset</h1>
+    <small class="dont-index">Source: <a href='https://github.com/KevCaz/seedlingsRecruitment/blob/master/R/data.R'><code>R/data.R</code></a></small>
+    <div class="hidden name"><code>dat_abitibi.Rd</code></div>
     </div>
 
-    <table class="ref-index">
+    <div class="ref-description">
+    <p>Trees and regeneration data for Abitibi site.</p>
+    </div>
 
-    <colgroup>
-      
-      <col class="alias" />
-      <col class="title" />
-    </colgroup>
+    <pre class="usage"><span class='no'>dat_abitibi</span></pre>
 
-    <tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-all-functions" class="hasAnchor"><a href="#section-all-functions" class="anchor"></a>All functions</h2>
-          <p class="section-desc"></p>
-        </th>
-      </tr>
-      <tr>
-        
-        <td>
-          <p><code><a href="dat_abitibi.html">dat_abitibi</a></code> </p>
-        </td>
-        <td><p>Abitibi dataset</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="dat_lebic.html">dat_lebic</a></code> </p>
-        </td>
-        <td><p>Le bic dataset</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="dat_sutton.html">dat_sutton</a></code> </p>
-        </td>
-        <td><p>Sutton dataset</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="figKernels.html">figKernels()</a></code> </p>
-        </td>
-        <td><p>Draw kernels.</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="formatData.html">formatData()</a></code> </p>
-        </td>
-        <td><p>Format data.</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="getConfInt.html">getConfInt()</a></code> </p>
-        </td>
-        <td><p>Get Confidence Intervals.</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="getLikelihood.html">getLikelihood()</a></code> </p>
-        </td>
-        <td><p>Compute the likelihood.</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="getParameters.html">getParameters()</a></code> <code><a href="getParameters.html">convertTreeAbbr()</a></code> </p>
-        </td>
-        <td><p>Get parameters values.</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="getTableLetters.html">getTableLetters()</a></code> </p>
-        </td>
-        <td><p>Get table describing best models with letters.</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="recuitmentAnalysis.html">recuitmentAnalysis()</a></code> <code><a href="recuitmentAnalysis.html">launchIt()</a></code> </p>
-        </td>
-        <td><p>Recruitment analaysis .</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="res_bestModels.html">res_bestModels</a></code> </p>
-        </td>
-        <td><p>Parameters values for the best models</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="retrieveData.html">retrieveData()</a></code> </p>
-        </td>
-        <td><p>Retrieve datasets</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="simuDesign.html">simuDesign</a></code> </p>
-        </td>
-        <td><p>Simulations design</p></td>
-      </tr>
-    </tbody>
-    </table>
+
+    <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
+
+    <p>A list of 5 objects:</p><ul>
+<li><p><code>trees</code> that includes identity and position of trees;</p></li>
+<li><p><code>regen2015</code> and <code>regen2016</code> regeneration and favourability data for 2015 and 2016 respectively (note that favourability values are the same for both years);</p></li>
+<li><p><code>lsdist</code> a list of distances: for every plot it gives the distance of all surrounding tree including in the site.</p></li>
+<li><p><code>iddist</code> a list of logicals of the same format as <code>lsdist</code> that states whether the tree is included in the buffer.</p></li>
+</ul>
+
   </div>
-
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#section-all-functions">All functions</a></li>
+      <li><a href="#format">Format</a></li>
     </ul>
+
   </div>
 </div>
 
