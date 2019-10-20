@@ -18,7 +18,8 @@ Imports:
     magrittr,
     sp,
     stats,
-    utils
+    utils,
+    vegan
 Remotes:
     KevCaz/diskers,
     inSileco/graphicsutils

@@ -102,5 +102,6 @@ merge_col <- function(x) paste0("X", x$X, "_Y", x$Y)
 merge_favo <- function(regen, favo) {
     regen$mrg <- merge_col(regen)
     favo$mrg <- merge_col(favo)
-    merge(regen, favo[!names(favo) %in% c("X", "Y")], by = "mrg")
+    out <- merge(regen, favo[!names(favo) %in% c("X", "Y")], by = "mrg")
+    out <- out[,names(out) != "mrg"]
 }
