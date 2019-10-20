@@ -44,13 +44,14 @@ dat_lebic <- formatData("input/lebictrees.csv", "input/lebicregen.csv",
 dat_sutton <- formatData("input/suttontrees.csv", "input/suttonregen.csv", "input/suttonsubstrate.csv", abbr_site = "sut")
 ```
 
-<!-- save(dat_abitibi, file = "data/dat_abitibi.rda", compress = "xz",
-  version = 2)
+<!--
+save(dat_abitibi, file = "data/dat_abitibi.rda", compress = "xz", version = 2)
 save(dat_lebic, file = "data/dat_lebic.rda", compress = "xz", version = 2)
-save(dat_sutton, file = "data/dat_sutton.rda", compress = "xz", version -2) -->
+save(dat_sutton, file = "data/dat_sutton.rda", compress = "xz", version = 2)
+ -->
 
 By default all the files created will be exported as `.rds` file in `output`.
-Note that we stored all these data as `.rda` files in `data`.
+Note that we stored all these data as `.rda` files in `data` (see, for instance, `?dat_abitibi`).
 
 
 
@@ -119,6 +120,7 @@ A link to the dataset would be added once data are released.
 
 Below are detailed the steps to reproduce our analysis.
 
+
 ## Models
 
 ### General equation
@@ -126,7 +128,7 @@ Below are detailed the steps to reproduce our analysis.
 For a given species and a given year, the seeds recruitment depends on:
 
 1. the fecundity of surrounding individuals of the same species;
-2. the substrate favorability;
+2. the substrate favourability;
 3. the neighborhood effect.
 
 
@@ -156,19 +158,23 @@ $$R_i = \text{STR}\sum_{j=1}^Sc_{i,j}f_{i,j}\sum_{k=1}^T\left(\frac{\text{DBH}_k
 
 
 
+
 ## Simulations
 
 ### Overall strategy
 
 For each model, we estimate the parameters through the maximization of the
 likelihood (actually the minimization of the likelihood log-transformed) for the
-corresponding data. As our model is not linear and highly customized we
-optimized the likelihood with the simulated annealing algorithm implemented in
-GenSA[^gensa].
+corresponding data. Every model is a combination  :
 
+* the site and the tree species considered;
+* the age of seedling taken into account (1 or 2);
+* whether we used a zero-inflated poisson or a regular poisson distribution;
+* the kernel dispersal used;
+* the distribution used to model seedling recruitment (zero-inflated poisson or a regular poisson).
 
-For instance, below are the 15 first models out of the `r nrow(simuDesign)/7`
-tested for *Abies balsamea*.
+As an example, below are the 15 first models out of the `r nrow(simuDesign)/7`
+tested for *Abies balsamea*:
 
 
 ```{r simudesign}
@@ -176,6 +182,10 @@ data(simuDesign)
 # NB: each row is a model
 knitr::kable(head(simuDesign, 15))
 ```
+
+As the models we used are not linear and highly customized we optimized the
+likelihood with the simulated annealing algorithm implemented in GenSA[^gensa].
+
 
 
 
@@ -200,7 +210,7 @@ The line below (not run) allows to run for the 16<sup>th</sup> model.
 
 ```{r, eval = FALSE}
 res <- launchIt(iter = 16, simu = simuDesign, mxt = 100,
-  record = "inst/res/test.txt", quiet = TRUE, path = "inst/dataReady/")
+  record = "output/test.txt", quiet = TRUE, path = "output/")
 # value (likelihood)
 res$value
 # parameters value
@@ -213,9 +223,11 @@ Note that `test.txt` records all the values tested during the simulated algorith
 getConfInt("inst/res/test.txt", simuDesign, 16, basename_out = "inst/resf_")
 ```
 
+
+
 ### Figure 5
 
-Once all models run and the best models identified, we draw figure 5 that is the dispersal kernels infered for one year seedlings
+Once all models run and the best models identified, we draw figure 5 that is the dispersal kernels inferred for one year seedlings
 
 
 ```{r}

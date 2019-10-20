@@ -10,9 +10,8 @@ recuitmentAnalysis(site, year, tree, age, mat_par, path = "./",
   clip = NULL, kernel = "kern_lognormal", mxt = 100, quiet = TRUE,
   record = NULL)
 
-launchIt(iter, simu = NULL, simu_file = "dataReady/simu_all.Rds",
-  mxt = 100, record = "test.txt", quiet = TRUE,
-  path = "dataReady/")
+launchIt(iter, simu = NULL, mxt = 100, record = "test.txt",
+  quiet = TRUE, path = "output/")
 }
 \arguments{
 \item{site}{site name.}
@@ -48,8 +47,6 @@ launchIt(iter, simu = NULL, simu_file = "dataReady/simu_all.Rds",
 \item{iter}{a integer identifying the iteration.}
 
 \item{simu}{a data frame describing the simulation.}
-
-\item{simu_file}{a file that includes a description of simulation.}
 }
 \value{
 The log-likelihood values associated to a given set of parameters.

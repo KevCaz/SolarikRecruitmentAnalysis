@@ -25,7 +25,6 @@
 #' @param record a connection, or a character string naming the file to print to. If `NULL`, the default values, no record is done.
 #' @param iter a integer identifying the iteration.
 #' @param simu a data frame describing the simulation.
-#' @param simu_file a file that includes a description of simulation.
 #'
 #' @export
 #'
@@ -39,8 +38,8 @@ recuitmentAnalysis <- function(site, year, tree, age, mat_par, path = "./", zero
     disp = FALSE, favo = FALSE, neigh = FALSE, clip = NULL, kernel = "kern_lognormal",
     mxt = 100, quiet = TRUE, record = NULL) {
     ## Importing the data
-    reg <- paste0(path, "regen", site, year, ".Rds") %>% readRDS
-    tre <- paste0(path, "trees", site, ".Rds") %>% readRDS
+    reg <- readRDS(paste0(path, "regen", site, year, ".rds"))
+    tre <- readRDS(paste0(path, "trees", site, ".rds"))
     ## Getting the observations
     obs <- reg[, paste0(convertTreeAbbr(tree), "_", age)]
     ##
@@ -60,7 +59,7 @@ recuitmentAnalysis <- function(site, year, tree, age, mat_par, path = "./", zero
     nbq <- length(obs)
     ##-- disp
     if (disp) {
-        disp0 <- paste0(path, "lsdist", site, ".Rds") %>% readRDS %>% lapply(FUN = function(x) x[id_tre])
+        disp0 <- paste0(path, "lsdist", site, ".rds") %>% readRDS %>% lapply(FUN = function(x) x[id_tre])
         ##-- Getting a liste of distances/dbh matrices, one per quadrat.
         SDBH0 <- (tre$DBH[id_tre] * tre$DBH[id_tre])/900
         ## clipping
@@ -107,11 +106,11 @@ recuitmentAnalysis <- function(site, year, tree, age, mat_par, path = "./", zero
 
 #' @describeIn recuitmentAnalysis Launch the analysis for a given row of the simulation data frame or file.
 #' @export
-launchIt <- function(iter, simu = NULL, simu_file = "dataReady/simu_all.Rds", mxt = 100,
-    record = "test.txt", quiet = TRUE, path = "dataReady/") {
+launchIt <- function(iter, simu = NULL, mxt = 100, record = "test.txt",
+  quiet = TRUE, path = "output/") {
     ##
-    if (is.null(simu))
-        simu <- readRDS(simu_file)
+    if (is.null(simu)) simu <- simuDesign
+    ##
     simu$site %<>% as.character
     simu$tree %<>% as.character
     simu$age %<>% as.character
