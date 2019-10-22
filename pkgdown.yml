@@ -2,5 +2,5 @@ pandoc: '2.2'
 pkgdown: 1.4.1
 pkgdown_sha: ~
 articles:
-  Solarik: Solarik.html
+  Solarik2019: Solarik2019.html
 
