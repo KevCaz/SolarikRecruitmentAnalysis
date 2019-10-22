@@ -1,5 +1,5 @@
 Package: seedlingsRecruitment
-Title: Research compendium of Solarik et al. (2019) DOI: XXX
+Title: Research compendium of Solarik et al. (2019) DOI: 10.1111/1365-2745.13311
 Version: 1.0.0
 Authors@R: c(
   person("Kevin", "Cazelles", email = "kevin.cazelle@gmail.com", comment = c(ORCID = "0000-0001-6619-9874"), role = c("aut", "cre")),

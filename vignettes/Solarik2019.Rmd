@@ -1,5 +1,5 @@
 ---
-title: "How to reproduce https://github.com/KevCaz/diskers/the analysis"
+title: "How to reproduce the analysis"
 author: Kevin Cazelles and Kevin Solarik
 date: '`r Sys.Date()`'
 output:
@@ -256,7 +256,7 @@ figKernels(res_bestModels, age = 2)
 ## References
 
 
-[^not1]: Solarik et al. DOI: 2Badded
+[^not1]: Solarik et al. DOI: [10.1111/1365-2745.13311](https://besjournals.onlinelibrary.wiley.com/doi/abs/10.1111/1365-2745.13311)
 [^gensa]: Y. Xiang, S. Gubian. B. Suomela, J. Hoeng (2013). Generalized
   Simulated Annealing for Efficient Global Optimization: the GenSA
   Package for R. The R Journal, Volume 5/1, June 2013.

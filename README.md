@@ -1,14 +1,14 @@
 # seedlingsRecruitmentAnalysis
 
-:book: Solarik et al. (2019) DOI:XXX - research compendium
+:book: Solarik et al. (2019) DOI:10.1111/1365-2745.13311 - research compendium
 
 [![Build Status](https://travis-ci.org/KevCaz/seedlingsRecruitment.svg?branch=master)](https://travis-ci.org/KevCaz/seedlingsRecruitment)
 [![Build status](https://ci.appveyor.com/api/projects/status/xcsiox3ufc4bab69?svg=true)](https://ci.appveyor.com/project/KevCaz/seedlingsrecruitmentanalysis)
 
 This packages includes the code to reproduce the analysis we carried out in
-Solarik *et al.* (2019) XXX. The form of a standard R :package: is meant to ease
-the sharing of the code. Moreover this repository is an appropriate platform to
-discuss and fix potential code issues.
+Solarik *et al.* (2019) DOI: 10.1111/1365-2745.13311. The form of a standard R
+:package: is meant to ease the sharing of the code. Moreover this repository is
+an appropriate platform to discuss and fix potential code issues.
 
 ## Installation
 
