@@ -1,9 +1,8 @@
 ---
-title: "How to reproduce the analysis"
+title: "How to reproduce https://github.com/KevCaz/diskers/the analysis"
 author: Kevin Cazelles and Kevin Solarik
 date: '`r Sys.Date()`'
 output:
-  #rmarkdown::html_vignette
   html_document:
       theme: readable
       toc: true
@@ -51,8 +50,18 @@ save(dat_sutton, file = "data/dat_sutton.rda", compress = "xz", version = 2)
  -->
 
 By default all the files created will be exported as `.rds` file in `output`.
-Note that we stored all these data as `.rda` files in `data` (see, for instance, `?dat_abitibi`).
+Note that we stored all these data as `.rda` files in `data`. For every site data are list of five objects:
 
+```{r}
+names(dat_abitibi)
+```
+
+* `trees` that includes identity and position of trees;
+* `regen2015` and `regen2016` regeneration and favourability data for 2015 and 2016 respectively (favourability values are the same for both years);
+* `lsdist` a list of distances: for every plot it gives the distance of all surrounding tree including in the site;
+* `iddist` a list of logicals of the same format as `lsdist` that states whether the tree is included in the buffer.
+
+See, for instance, `?dat_abitibi`
 
 
 ## Sites of the study
@@ -227,14 +236,17 @@ getConfInt("inst/res/test.txt", simuDesign, 16, basename_out = "inst/resf_")
 
 ### Figure 5
 
-Once all models run and the best models identified, we draw figure 5 that is the dispersal kernels inferred for one year seedlings
+Once all models run and the best models identified (which took days on a server
+and we thank [Calcul Quebec](https://www.calculquebec.ca/) for making such
+computations possible), we draw figure 5 that is the dispersal kernels inferred
+for one year seedlings
 
 
 ```{r}
 figKernels(res_bestModels)
 ```
 
-Similarly, we used this function to draw the same figure for 2 years seedlings (see Supplememtary Information of the paper):
+Similarly, we used this function to draw the same figure for 2 years seedlings (see Supplementary Information of the paper):
 
 ```{r}
 figKernels(res_bestModels, age = 2)

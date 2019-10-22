@@ -63,6 +63,7 @@ formatData <- function(fl_trees, fl_regen, fl_favo,
     treesp <- treesp[treesp %in% unique(trees$SP)]
     for (i in treesp) {
         # exclude focal species
+        # NB so ba_toto - ba_ABBA  = basal are for ABBA
         id <- which(trees$SP != i)
         regen2015[paste0("ba_", i)] <- unlist(
           lapply(lsdist,

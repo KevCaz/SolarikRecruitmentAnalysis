@@ -28,7 +28,7 @@
 #' A list of 5 objects:
 #' * `trees` that includes identity and position of trees;
 #' * `regen2015` and `regen2016` regeneration and favourability data for 2015 and 2016 respectively (note that favourability values are the same for both years);
-#' * `lsdist` a list of distances: for every plot it gives the distance of all surrounding tree including in the site.
+#' * `lsdist` a list of distances: for every plot it gives the distance of all surrounding tree including in the site;
 #' * `iddist` a list of logicals of the same format as `lsdist` that states whether the tree is included in the buffer.
 "dat_abitibi"
 
@@ -45,7 +45,7 @@
 #' A list of 5 objects:
 #' * `trees` that includes identity and position of trees;
 #' * `regen2015` and `regen2016` regeneration and favourability data for 2015 and 2016 respectively (note that favourability values are the same for both years);
-#' * `lsdist` a list of distances: for every plot it gives the distance of all surrounding tree including in the site.
+#' * `lsdist` a list of distances: for every plot it gives the distance of all surrounding tree including in the site;
 #' * `iddist` a list of logicals of the same format as `lsdist` that states whether the tree is included in the buffer.
 "dat_lebic"
 
@@ -62,7 +62,7 @@
 #' A list of 5 objects:
 #' * `trees` that includes identity and position of trees;
 #' * `regen2015` and `regen2016` regeneration and favourability data for 2015 and 2016 respectively (note that favourability values are the same for both years);
-#' * `lsdist` a list of distances: for every plot it gives the distance of all surrounding tree including in the site.
+#' * `lsdist` a list of distances: for every plot it gives the distance of all surrounding tree including in the site;
 #' * `iddist` a list of logicals of the same format as `lsdist` that states whether the tree is included in the buffer.
 "dat_sutton"
 
