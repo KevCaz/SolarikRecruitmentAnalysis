@@ -1,9 +1,12 @@
 # seedlingsRecruitmentAnalysis
 
-:book: Solarik et al. (2019) DOI:10.1111/1365-2745.13311 - research compendium
+:book: Solarik et al. (2019) DOI:[10.1111/1365-2745.13311](https://besjournals.onlinelibrary.wiley.com/doi/abs/10.1111/1365-2745.13311) - research compendium
 
 [![Build Status](https://travis-ci.org/KevCaz/seedlingsRecruitment.svg?branch=master)](https://travis-ci.org/KevCaz/seedlingsRecruitment)
 [![Build status](https://ci.appveyor.com/api/projects/status/xcsiox3ufc4bab69?svg=true)](https://ci.appveyor.com/project/KevCaz/seedlingsrecruitmentanalysis)
+[![DOI](https://zenodo.org/badge/80908301.svg)](https://zenodo.org/badge/latestdoi/80908301)
+
+
 
 This packages includes the code to reproduce the analysis we carried out in
 Solarik *et al.* (2019) DOI: 10.1111/1365-2745.13311. The form of a standard R
